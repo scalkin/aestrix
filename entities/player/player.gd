@@ -19,17 +19,17 @@ func _physics_process(delta):
 			move(delta)
 			held_item.idle()
 		ATTACK:
-			attack(delta)
+			attack()
 			move(delta)
 			held_item.attack(delta)
 	if Input.is_action_just_pressed("attack") and current_action == MOVE:
 		current_action = ATTACK
 		held_item.start_attack()
 
-func attack(delta):
+func attack():
 	#velocity = velocity.move_toward(Vector2.ZERO, 500*delta)
 	#velocity = move_and_slide(velocity)
-	print("Attack")
+	pass
 
 func move(delta):
 	velocity = velocity.move_toward(input_vector * global.player_max_speed, global.player_accel * delta)

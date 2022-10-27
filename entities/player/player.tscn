@@ -4,14 +4,15 @@
 [ext_resource path="res://entities/player/player.gd" type="Script" id=2]
 [ext_resource path="res://game/items/weapons/held_item.tscn" type="PackedScene" id=3]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 30, 30 )
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 7.38462
+height = 34.4615
 
 [node name="player" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.40625, 0.40625 )
+position = Vector2( 0.5, 0 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -24,5 +25,6 @@ smoothing_enabled = true
 smoothing_speed = 10.0
 
 [node name="held_item" parent="." instance=ExtResource( 3 )]
+rotation_speed = 250
 
 [connection signal="attack_finished" from="held_item" to="." method="_on_held_item_attack_finished"]
