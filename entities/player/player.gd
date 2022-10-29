@@ -22,7 +22,7 @@ func _physics_process(delta):
 			attack()
 			move(delta)
 			held_item.attack(delta)
-	if Input.is_action_just_pressed("attack") and current_action == MOVE:
+	if Input.is_action_just_pressed("attack") and current_action == MOVE and not $held_item.attack_cooldown:
 		current_action = ATTACK
 		held_item.start_attack()
 

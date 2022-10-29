@@ -7,8 +7,8 @@ enum{
 
 var player_accel = 500
 var player_max_speed = 200
-export var held_item_id = 0
-var inventory = [1, 0]
+export var held_item_id = 1
+var inventory = [0, 1, 0, 0]
 var target_mode = MOUSE
 var last_mouse_pos = Vector2.ZERO
 
@@ -22,6 +22,10 @@ func _process(_delta):
 			0:
 				held_item_id = 1
 			1:
+				held_item_id = 2
+			2:
+				held_item_id = 3
+			3:
 				held_item_id = 0
 	if controller_input_vector != Vector2.ZERO:
 		target_mode = CONTROLLER

@@ -14,6 +14,12 @@ item_held_distance = 14
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
 
-[node name="Hand" type="Sprite" parent="."]
+[node name="hand" type="Sprite" parent="."]
 position = Vector2( 0, -9 )
 texture = ExtResource( 2 )
+
+[node name="hurtbox_timer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[connection signal="timeout" from="hurtbox_timer" to="." method="_on_hitbox_timer_timeout"]

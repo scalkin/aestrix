@@ -11,27 +11,35 @@ enum{
 	DOWN
 }
 
+var hurtbox
+var attack_cooldown = false
 var attack_direction = RIGHT
 var target_rotation = 0
 var rotated = 0
 var item_position = UP
 var item_applied_position = 0
-var attack_positions = []
+var trail_points = []
+var hurtbox_points = []
 var attack_trail_generated
 var item_sprite_list = [
+	load("res://game/items/weapons/energy_sword_1.png"),
 	load("res://game/items/weapons/dagger_1.png"),
-	load("res://game/items/weapons/dagger_2.png")
+	load("res://game/items/weapons/dagger_2.png"),
+	load("res://game/items/weapons/rapier_1.png"),
 ]
-var item_swing_size_list = [120, 130]
-var item_held_distance_list = [13, 14]
-var item_attack_speed_list = [500, 400]
+var item_swing_size_list = [140, 120, 130, 120]
+var item_held_distance_list = [17, 14, 15, 17]
+var item_attack_speed_list = [2000, 500, 400, 1000]
+var item_blade_length_list = [14, 6, 8, 13]
 
 export var swing_size = 120
 export var item_held_distance = 13
 export var attack_speed = 500
+export var blade_length = 4
 var item_sprite = 0
 
-var trail_effect = preload("res://game/effects/attack_trail.tscn")
+var trail_res = preload("res://game/effects/attack_trail.tscn")
+var hurtbox_res = preload("res://game/detection_boxes/hurtbox.tscn")
 
 func attack(delta):
 	var applied_rotation_speed = ((sin((3.14*rotated)/swing_size)*1500)+(attack_speed*0.001))*delta
@@ -41,29 +49,31 @@ func attack(delta):
 			rotated += applied_rotation_speed
 			if rotated >= swing_size:
 				$Sprite.hide()
+				var prev_rotation = rotation_degrees
 				rotate(deg2rad(rotated/2))
 				calculate_trail_points()
 				attack_trail()
 				emit_signal("attack_finished")
 				flip_item_position()
-				idle()
+				rotation_degrees = prev_rotation
 				$Sprite.show()
 		UP:
 			rotate(deg2rad(applied_rotation_speed))
 			rotated += applied_rotation_speed
 			if rotated >= swing_size:
 				$Sprite.hide()
+				var prev_rotation = rotation_degrees
 				rotate(-deg2rad(rotated/2))
 				calculate_trail_points()
 				attack_trail()
 				emit_signal("attack_finished")
 				flip_item_position()
-				idle()
+				rotation_degrees = prev_rotation
 				$Sprite.show()
 
 func calculate_trail_points():
 	#TODO add 2 more points in between middle and ends
-	attack_positions = [
+	trail_points = [
 		Vector2(
 			sin(deg2rad(swing_size/2))*item_held_distance+2,
 			-cos(deg2rad(swing_size/2))*item_held_distance-2),
@@ -77,15 +87,41 @@ func calculate_trail_points():
 		Vector2(
 			-sin(deg2rad(swing_size/2))*item_held_distance-2,
 			-cos(deg2rad(swing_size/2))*item_held_distance-2)
-		]
+	]
+	hurtbox_points = [
+		Vector2(
+			sin(deg2rad(swing_size/2))*item_held_distance-3,
+			-cos(deg2rad(swing_size/2))*item_held_distance+3),
+		Vector2(0, -(item_held_distance - 5)),
+		Vector2(
+			-sin(deg2rad(swing_size/2))*item_held_distance+3,
+			-cos(deg2rad(swing_size/2))*item_held_distance+3),
+		Vector2(
+			-sin(deg2rad(swing_size/2))*(item_held_distance+(blade_length)),
+			-cos(deg2rad(swing_size/2))*(item_held_distance+(blade_length))),
+		Vector2(0, -(item_held_distance + blade_length)),
+		Vector2(
+			sin(deg2rad(swing_size/2))*(item_held_distance+(blade_length)),
+			-cos(deg2rad(swing_size/2))*(item_held_distance+(blade_length))),
+	]
 
 func attack_trail():
-	var trail = trail_effect.instance()
+	var trail = trail_res.instance()
 	get_parent().get_parent().add_child(trail)
 	trail.rotation_degrees = rotation_degrees
 	trail.global_position = global_position
-	trail.points = attack_positions
+	trail.points = trail_points
 	attack_trail_generated = true
+	hurtbox = hurtbox_res.instance()
+	get_parent().get_parent().add_child(hurtbox)
+	var hurtbox_collision_box = CollisionPolygon2D.new()
+	hurtbox.add_child(hurtbox_collision_box)
+	hurtbox_collision_box.rotation_degrees = rotation_degrees
+	hurtbox_collision_box.global_position = global_position
+	hurtbox_collision_box.polygon = hurtbox_points
+	hurtbox.collision_layer = 8
+	$hurtbox_timer.start()
+	attack_cooldown = true
 
 func idle():
 	$Sprite.offset.y = -item_held_distance
@@ -98,7 +134,7 @@ func idle():
 	rotation_degrees = rad2deg(atan2(relative_mouse_location.y, relative_mouse_location.x)) + 90
 	rotate(deg2rad(item_applied_position))
 	$Sprite.flip_h = (item_position == UP)
-	$Hand.flip_h = $Sprite.flip_h
+	$hand.flip_h = $Sprite.flip_h
 
 func start_attack():
 	attack_trail_generated = false
@@ -120,6 +156,11 @@ func update_item():
 	swing_size = item_swing_size_list[global.held_item_id]
 	item_held_distance = item_held_distance_list[global.held_item_id]
 	attack_speed = item_attack_speed_list[global.held_item_id]
+	blade_length = item_blade_length_list[global.held_item_id]
 
 func _physics_process(_delta):
 	update_item()
+
+func _on_hitbox_timer_timeout():
+	attack_cooldown = false
+	hurtbox.queue_free()
