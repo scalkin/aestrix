@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends "res://entities/not_player/entity.gd"
 
 func _on_hitbox_hit():
-	print("hit")
+	$AnimationPlayer.play("hit")

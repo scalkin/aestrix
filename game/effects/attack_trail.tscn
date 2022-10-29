@@ -17,11 +17,11 @@ func _physics_process(delta):
 "
 
 [node name="trail" type="Line2D"]
-position = Vector2( 0, -90 )
+position = Vector2( 0, -99 )
 rotation = -1.5708
 z_index = 1
 z_as_relative = false
-points = PoolVector2Array( 9, 0, 3, -2, -3, -4, 0, 0, 0, 0 )
+points = PoolVector2Array( -2.00002, 3.99999, 2.99996, 10, 4.99994, 16, 3.99992, 23, -1.00011, 32 )
 width_curve = SubResource( 1 )
 default_color = Color( 1, 1, 1, 1 )
 script = SubResource( 2 )

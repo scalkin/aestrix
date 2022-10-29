@@ -1,71 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://game/ui/ui.gd" type="Script" id=1]
-[ext_resource path="res://game/ui/assets/Oswald-VariableFont_wght.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://game/ui/assets/ui_textures.png" type="Texture" id=3]
-
-[sub_resource type="DynamicFont" id=9]
-size = 9
-outline_size = 1
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 2 )
-
-[sub_resource type="StyleBoxTexture" id=8]
-texture = ExtResource( 3 )
-region_rect = Rect2( 0, 5, 10, 5 )
-margin_left = 2.0
-margin_right = 2.0
-margin_top = 3.0
-margin_bottom = 3.0
-
-[sub_resource type="StyleBoxTexture" id=6]
-texture = ExtResource( 3 )
-region_rect = Rect2( 0, 0, 5, 5 )
-margin_left = 2.0
-margin_right = 2.0
-margin_top = 3.0
-margin_bottom = 3.0
-
-[sub_resource type="DynamicFont" id=1]
-size = 10
-outline_size = 1
-outline_color = Color( 0, 0, 0, 1 )
-use_filter = true
-font_data = ExtResource( 2 )
-
-[sub_resource type="StyleBoxTexture" id=3]
-texture = ExtResource( 3 )
-region_rect = Rect2( 0, 0, 5, 5 )
-margin_left = 1.0
-margin_right = 1.0
-margin_top = 1.0
-margin_bottom = 1.0
-
-[sub_resource type="StyleBoxTexture" id=4]
-texture = ExtResource( 3 )
-region_rect = Rect2( 0, 5, 10, 4 )
-margin_left = 4.0
-margin_right = 4.0
-margin_top = 1.0
-margin_bottom = 1.0
-
-[sub_resource type="StyleBoxTexture" id=5]
-texture = ExtResource( 3 )
-region_rect = Rect2( 0, 10, 10, 4 )
-margin_left = 5.0
-margin_right = 5.0
-margin_top = 1.0
-margin_bottom = 1.0
-
-[sub_resource type="Theme" id=2]
-Button/fonts/font = SubResource( 9 )
-Button/styles/hover = SubResource( 8 )
-Button/styles/normal = SubResource( 6 )
-Button/styles/pressed = SubResource( 8 )
-TabContainer/fonts/font = SubResource( 1 )
-TabContainer/styles/panel = SubResource( 3 )
-TabContainer/styles/tab_bg = SubResource( 4 )
-TabContainer/styles/tab_fg = SubResource( 5 )
+[ext_resource path="res://game/ui/assets/ui_theme.tres" type="Theme" id=2]
+[ext_resource path="res://entities/player/player_icon.png" type="Texture" id=3]
 
 [node name="ui" type="CanvasLayer"]
 pause_mode = 2
@@ -84,10 +21,205 @@ margin_left = 5.0
 margin_top = 5.0
 margin_right = -5.0
 margin_bottom = -5.0
-theme = SubResource( 2 )
+theme = ExtResource( 2 )
 tab_align = 0
 
+[node name="Player" type="Tabs" parent="TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = 26.0
+margin_right = -1.0
+margin_bottom = -1.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Player"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = -2.0
+
+[node name="Panel" type="Panel" parent="TabContainer/Player/HBoxContainer"]
+margin_right = 118.0
+margin_bottom = 109.0
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Player/HBoxContainer/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = -2.0
+
+[node name="player_icon" type="TextureRect" parent="TabContainer/Player/HBoxContainer/Panel/VBoxContainer"]
+margin_right = 114.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 5
+
+[node name="player_stats" type="Label" parent="TabContainer/Player/HBoxContainer/Panel/VBoxContainer"]
+margin_top = 54.0
+margin_right = 114.0
+margin_bottom = 105.0
+size_flags_vertical = 7
+
+[node name="ability_points" type="Panel" parent="TabContainer/Player/HBoxContainer"]
+margin_left = 122.0
+margin_right = 240.0
+margin_bottom = 109.0
+size_flags_horizontal = 3
+
+[node name="ability_points" type="VBoxContainer" parent="TabContainer/Player/HBoxContainer/ability_points"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = -2.0
+
+[node name="Label" type="Label" parent="TabContainer/Player/HBoxContainer/ability_points/ability_points"]
+margin_right = 114.0
+margin_bottom = 23.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "Attribute points: 0"
+align = 1
+valign = 1
+
+[node name="strength" type="HBoxContainer" parent="TabContainer/Player/HBoxContainer/ability_points/ability_points"]
+margin_top = 27.0
+margin_right = 114.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="TabContainer/Player/HBoxContainer/ability_points/ability_points/strength"]
+margin_right = 36.0
+margin_bottom = 23.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "Strength"
+align = 1
+valign = 1
+
+[node name="Button" type="Button" parent="TabContainer/Player/HBoxContainer/ability_points/ability_points/strength"]
+margin_left = 40.0
+margin_right = 114.0
+margin_bottom = 23.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+text = "Add point"
+
+[node name="agility" type="HBoxContainer" parent="TabContainer/Player/HBoxContainer/ability_points/ability_points"]
+margin_top = 54.0
+margin_right = 114.0
+margin_bottom = 77.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="TabContainer/Player/HBoxContainer/ability_points/ability_points/agility"]
+margin_right = 36.0
+margin_bottom = 23.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "Agility"
+align = 1
+valign = 1
+
+[node name="Button" type="Button" parent="TabContainer/Player/HBoxContainer/ability_points/ability_points/agility"]
+margin_left = 40.0
+margin_right = 114.0
+margin_bottom = 23.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+text = "Add point"
+
+[node name="defense" type="HBoxContainer" parent="TabContainer/Player/HBoxContainer/ability_points/ability_points"]
+margin_top = 81.0
+margin_right = 114.0
+margin_bottom = 105.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="TabContainer/Player/HBoxContainer/ability_points/ability_points/defense"]
+margin_right = 36.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "Defense"
+align = 1
+valign = 1
+
+[node name="Button" type="Button" parent="TabContainer/Player/HBoxContainer/ability_points/ability_points/defense"]
+margin_left = 40.0
+margin_right = 114.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+text = "Add point"
+
+[node name="Inventory" type="Tabs" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = 26.0
+margin_right = -1.0
+margin_bottom = -1.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Inventory"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = -2.0
+
+[node name="Panel" type="Panel" parent="TabContainer/Inventory/HBoxContainer"]
+margin_right = 118.0
+margin_bottom = 109.0
+size_flags_horizontal = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Inventory/HBoxContainer/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = -2.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Inventory/HBoxContainer/Panel/ScrollContainer"]
+margin_right = 114.0
+margin_bottom = 105.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel2" type="Panel" parent="TabContainer/Inventory/HBoxContainer"]
+margin_left = 122.0
+margin_right = 240.0
+margin_bottom = 109.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="TabContainer/Inventory/HBoxContainer/Panel2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = -2.0
+text = "poggers, am i right?"
+autowrap = true
+
 [node name="Menu" type="Tabs" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1.0
@@ -121,6 +253,7 @@ margin_right = 72.0
 margin_bottom = 60.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+text = "Save game"
 
 [node name="Button3" type="Button" parent="TabContainer/Menu/HBoxContainer/VBoxContainer"]
 margin_top = 64.0
@@ -128,6 +261,7 @@ margin_right = 72.0
 margin_bottom = 93.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+text = "To house"
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="TabContainer/Menu/HBoxContainer"]
 margin_left = 76.0
@@ -141,20 +275,5 @@ margin_right = 224.0
 margin_bottom = 93.0
 size_flags_horizontal = 3
 
-[node name="Player" type="Tabs" parent="TabContainer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 1.0
-margin_top = 25.0
-margin_right = -1.0
-margin_bottom = -1.0
-
-[node name="Inventory" type="Tabs" parent="TabContainer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 25.0
-margin_right = -4.0
-margin_bottom = -4.0
+[connection signal="tab_changed" from="TabContainer" to="." method="_on_TabContainer_tab_changed"]
+[connection signal="pressed" from="TabContainer/Menu/HBoxContainer/VBoxContainer/Button" to="." method="_on_Button_pressed"]

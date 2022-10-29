@@ -21,21 +21,17 @@ var item_applied_position = 0
 var trail_points = []
 var hurtbox_points = []
 var attack_trail_generated
-var item_sprite_list = [
-	load("res://game/items/weapons/energy_sword_1.png"),
-	load("res://game/items/weapons/dagger_1.png"),
-	load("res://game/items/weapons/dagger_2.png"),
-	load("res://game/items/weapons/rapier_1.png"),
-]
-var item_swing_size_list = [140, 120, 130, 120]
-var item_held_distance_list = [17, 14, 15, 17]
-var item_attack_speed_list = [2000, 500, 400, 1000]
-var item_blade_length_list = [14, 6, 8, 13]
+var item_swing_size_list = [140, 120, 130, 120, 170]
+var item_held_distance_list = [17, 14, 15, 17, 15]
+var item_attack_speed_list = [2000, 500, 400, 1000, 10]
+var item_blade_length_list = [14, 6, 8, 13, 12]
+var item_damage_list = [5, 1, 1, 2, 3]
 
 export var swing_size = 120
 export var item_held_distance = 13
 export var attack_speed = 500
 export var blade_length = 4
+export var damage = 1
 var item_sprite = 0
 
 var trail_res = preload("res://game/effects/attack_trail.tscn")
@@ -99,7 +95,13 @@ func calculate_trail_points():
 		Vector2(
 			-sin(deg2rad(swing_size/2))*(item_held_distance+(blade_length)),
 			-cos(deg2rad(swing_size/2))*(item_held_distance+(blade_length))),
+		Vector2(
+			-sin(deg2rad(swing_size/4))*(item_held_distance+(blade_length)),
+			-cos(deg2rad(swing_size/4))*(item_held_distance+(blade_length))),
 		Vector2(0, -(item_held_distance + blade_length)),
+		Vector2(
+			sin(deg2rad(swing_size/4))*(item_held_distance+(blade_length)),
+			-cos(deg2rad(swing_size/4))*(item_held_distance+(blade_length))),
 		Vector2(
 			sin(deg2rad(swing_size/2))*(item_held_distance+(blade_length)),
 			-cos(deg2rad(swing_size/2))*(item_held_distance+(blade_length))),
@@ -120,6 +122,7 @@ func attack_trail():
 	hurtbox_collision_box.global_position = global_position
 	hurtbox_collision_box.polygon = hurtbox_points
 	hurtbox.collision_layer = 8
+	hurtbox.damage = damage
 	$hurtbox_timer.start()
 	attack_cooldown = true
 
@@ -152,14 +155,19 @@ func flip_item_position():
 			item_position = UP
 
 func update_item():
-	$Sprite.texture = item_sprite_list[global.held_item_id]
+	$Sprite.texture = global.item_sprite_list[global.held_item_id]
 	swing_size = item_swing_size_list[global.held_item_id]
 	item_held_distance = item_held_distance_list[global.held_item_id]
 	attack_speed = item_attack_speed_list[global.held_item_id]
 	blade_length = item_blade_length_list[global.held_item_id]
+	damage = item_damage_list[global.held_item_id]
 
 func _physics_process(_delta):
 	update_item()
+	if rotation_degrees > 90 or rotation_degrees < -90:
+		z_index = 1
+	else:
+		z_index = 0
 
 func _on_hitbox_timer_timeout():
 	attack_cooldown = false
