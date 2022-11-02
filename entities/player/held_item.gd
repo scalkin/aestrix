@@ -164,7 +164,7 @@ func update_item():
 
 func _physics_process(_delta):
 	update_item()
-	if rotation_degrees > 90 or rotation_degrees < -90:
+	if rotation_degrees > 90 or rotation_degrees < -180:
 		z_index = 1
 	else:
 		z_index = 0

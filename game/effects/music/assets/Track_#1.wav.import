@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Track_#1.wav-3957232ef2e55e25736c5cd0a231b163.sample"
+
+[deps]
+
+source_file="res://game/effects/music/assets/Track_#1.wav"
+dest_files=[ "res://.import/Track_#1.wav-3957232ef2e55e25736c5cd0a231b163.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

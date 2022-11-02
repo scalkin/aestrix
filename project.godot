@@ -11,18 +11,21 @@ config_version=4
 [application]
 
 config/name="Pixelrpg"
-run/main_scene="res://levels/root.tscn"
+run/main_scene="res://levels/hub.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 global="*res://game/global.tscn"
 ui="*res://game/ui/ui.tscn"
+chest_ui="*res://game/ui/chest_ui.tscn"
+musicplayer="*res://game/effects/music/musicplayer.tscn"
 
 [display]
 
 window/size/width=256
 window/size/height=150
+window/size/fullscreen=true
 window/size/test_width=1024
 window/size/test_height=600
 mouse_cursor/custom_image="res://game/ui/assets/mouse.png"

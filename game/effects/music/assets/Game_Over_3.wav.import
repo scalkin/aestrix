@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Game_Over_3.wav-c4cc563c6e9930f6b7f55b79a14ab294.sample"
+
+[deps]
+
+source_file="res://game/effects/music/assets/Game_Over_3.wav"
+dest_files=[ "res://.import/Game_Over_3.wav-c4cc563c6e9930f6b7f55b79a14ab294.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
