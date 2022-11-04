@@ -1,12 +1,23 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://levels/root.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/objects/rocks/small_rock.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/objects/tree/tree.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/objects/chest.tscn" type="PackedScene" id=4]
 [ext_resource path="res://entities/not_player/non_mobile/dummy.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/objects/buildings/building.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/objects/buildings/assets/house_1.png" type="Texture" id=7]
 
 [node name="root" instance=ExtResource( 1 )]
+
+[node name="dirt_path" parent="." index="1"]
+tile_data = PoolIntArray( -589818, 0, 3, -524282, 0, 131077, -524281, 0, 2, -458746, 0, 65536, -458745, 0, 65538, -458743, 0, 0, -458742, 0, 2, -393210, 0, 65536, -393209, 0, 131078, -393208, 0, 1, -393207, 0, 131079, -393206, 0, 131078, -393205, 0, 2, -327674, 0, 65536, -327673, 0, 65537, -327672, 0, 65537, -327671, 0, 65537, -327670, 0, 65542, -327669, 0, 131074, -262139, 0, 0, -262138, 0, 131079, -262137, 0, 65537, -262136, 0, 65537, -262135, 0, 65542, -262134, 0, 131074, -196603, 0, 65536, -196602, 0, 65537, -196601, 0, 65537, -196600, 0, 65542, -196599, 0, 131074, -131069, 0, 0, -131068, 0, 1, -131067, 0, 131079, -131066, 0, 65537, -131065, 0, 65537, -131064, 0, 65538, -65534, 0, 0, -65533, 0, 131079, -65532, 0, 65537, -65531, 0, 65542, -65530, 0, 131073, -65529, 0, 131073, -65528, 0, 131074, 1, 0, 0, 2, 0, 131079, 3, 0, 65542, 4, 0, 131073, 5, 0, 131074, 65537, 0, 65536, 65538, 0, 65542, 65539, 0, 131074, 131073, 0, 131072, 131074, 0, 131074 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="2"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" index="0"]
+position = Vector2( 1, -1 )
+polygon = PoolVector2Array( -13, -87, 15, -89, 33, -83, 45, -71, 96, -81, 73, -113, 48, -143, 11, -134, -2, -123, -31, -124, -60, -116, -69, -98 )
 
 [node name="objects" type="YSort" parent="YSort" index="1"]
 
@@ -99,6 +110,17 @@ position = Vector2( 46, -127 )
 [node name="tree26" parent="YSort/objects" index="28" instance=ExtResource( 3 )]
 position = Vector2( 68, -112 )
 
+[node name="building" parent="YSort/objects" index="29" instance=ExtResource( 6 )]
+position = Vector2( 160, -102 )
+
+[node name="CollisionPolygon2D" parent="YSort/objects/building" index="0"]
+position = Vector2( 0, -40 )
+polygon = PoolVector2Array( -25, 47, 25, 47, 25, -15, -25, -15 )
+
+[node name="Sprite" parent="YSort/objects/building" index="1"]
+position = Vector2( 0, -40 )
+texture = ExtResource( 7 )
+
 [node name="chest2" parent="YSort" index="2" instance=ExtResource( 4 )]
 position = Vector2( -77, 10 )
 chest_id = 1
@@ -109,8 +131,4 @@ position = Vector2( -33, -40 )
 [node name="dummy" parent="YSort" index="4" instance=ExtResource( 5 )]
 position = Vector2( -17, 33 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." index="2"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" index="0"]
-position = Vector2( 1, -1 )
-polygon = PoolVector2Array( -13, -87, 15, -89, 33, -83, 45, -71, 96, -81, 73, -113, 48, -143, 11, -134, -2, -123, -31, -124, -60, -116, -69, -98 )
+[editable path="YSort/objects/building"]

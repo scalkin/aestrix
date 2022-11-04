@@ -1,0 +1,21 @@
+{
+	"color": "#ffffffff",
+	"description": "It's greg the tutorial man",
+	"display_name": "",
+	"display_name_bool": false,
+	"id": "character-1667572573.json",
+	"mirror_portraits": false,
+	"name": "Greg",
+	"nickname": "",
+	"nickname_bool": false,
+	"offset_x": 0,
+	"offset_y": 0,
+	"portraits": [
+		{
+			"name": "Default",
+			"path": "res://icon.png"
+		}
+	],
+	"scale": 100,
+	"theme": ""
+}

@@ -5,3 +5,4 @@
 [node name="Node" type="Node2D"]
 pause_mode = 2
 script = ExtResource( 1 )
+health = 5.0

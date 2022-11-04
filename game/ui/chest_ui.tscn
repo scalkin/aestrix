@@ -38,13 +38,13 @@ margin_bottom = -2.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 margin_right = 242.0
-margin_bottom = 112.0
+margin_bottom = 117.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Panel2" type="Panel" parent="NinePatchRect/VBoxContainer/HBoxContainer"]
 margin_right = 119.0
-margin_bottom = 112.0
+margin_bottom = 117.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -59,14 +59,14 @@ size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer/Panel2/ScrollContainer"]
 margin_right = 115.0
-margin_bottom = 108.0
+margin_bottom = 113.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Panel" type="Panel" parent="NinePatchRect/VBoxContainer/HBoxContainer"]
 margin_left = 123.0
 margin_right = 242.0
-margin_bottom = 112.0
+margin_bottom = 117.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/Panel"]
@@ -82,7 +82,7 @@ autowrap = true
 
 [node name="get_items" type="Button" parent="NinePatchRect/VBoxContainer"]
 pause_mode = 2
-margin_top = 116.0
+margin_top = 121.0
 margin_right = 242.0
 margin_bottom = 136.0
 size_flags_horizontal = 3

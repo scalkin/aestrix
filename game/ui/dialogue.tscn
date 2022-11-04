@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://game/ui/dialogue.gd" type="Script" id=3]
+
+[node name="dialogue" type="Node"]
+script = ExtResource( 3 )

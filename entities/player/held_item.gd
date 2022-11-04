@@ -21,11 +21,11 @@ var item_applied_position = 0
 var trail_points = []
 var hurtbox_points = []
 var attack_trail_generated
-var item_swing_size_list = [140, 120, 130, 120, 170]
-var item_held_distance_list = [17, 14, 15, 17, 15]
-var item_attack_speed_list = [2000, 500, 400, 1000, 10]
-var item_blade_length_list = [14, 6, 8, 13, 12]
-var item_damage_list = [5, 1, 1, 2, 3]
+var item_swing_size_list = [140, 120, 130, 120, 170, 170]
+var item_held_distance_list = [17, 14, 15, 17, 15, 20]
+var item_attack_speed_list = [2000, 500, 400, 1000, 10, 750]
+var item_blade_length_list = [14, 6, 8, 13, 12, 20]
+var item_damage_list = [5, 1, 1, 2, 3, 3]
 
 export var swing_size = 120
 export var item_held_distance = 13
@@ -86,12 +86,12 @@ func calculate_trail_points():
 	]
 	hurtbox_points = [
 		Vector2(
-			sin(deg2rad(swing_size/2))*item_held_distance-3,
-			-cos(deg2rad(swing_size/2))*item_held_distance+3),
-		Vector2(0, -(item_held_distance - 5)),
+			sin(deg2rad(swing_size/2))*item_held_distance-(blade_length/2),
+			-cos(deg2rad(swing_size/2))*item_held_distance+(blade_length/2)),
+		Vector2(0, 0),
 		Vector2(
-			-sin(deg2rad(swing_size/2))*item_held_distance+3,
-			-cos(deg2rad(swing_size/2))*item_held_distance+3),
+			-sin(deg2rad(swing_size/2))*item_held_distance+(blade_length/2),
+			-cos(deg2rad(swing_size/2))*item_held_distance+(blade_length/2)),
 		Vector2(
 			-sin(deg2rad(swing_size/2))*(item_held_distance+(blade_length)),
 			-cos(deg2rad(swing_size/2))*(item_held_distance+(blade_length))),
@@ -155,7 +155,7 @@ func flip_item_position():
 			item_position = UP
 
 func update_item():
-	$Sprite.texture = global.item_sprite_list[global.held_item_id]
+	$Sprite.texture = global.weapon_sprite_list[global.held_item_id]
 	swing_size = item_swing_size_list[global.held_item_id]
 	item_held_distance = item_held_distance_list[global.held_item_id]
 	attack_speed = item_attack_speed_list[global.held_item_id]

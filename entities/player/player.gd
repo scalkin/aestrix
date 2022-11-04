@@ -13,6 +13,9 @@ var current_action = MOVE
 onready var state_machine = $AnimationTree.get("parameters/playback")
 onready var held_item = $held_item
 
+func _ready():
+	global_position = global.start_location
+
 func _physics_process(delta):
 	input_vector = Input.get_vector("left", "right", "up", "down")
 	input_vector = input_vector.normalized()

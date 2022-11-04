@@ -33,6 +33,8 @@ var tracks = [
 var track_list = [[7, 18, 19, 20], [6, 21]]
 var state = EXPLORING setget set_state
 var current_track = 0
+var volume = 7
+
 onready var music = $AudioStreamPlayer
 
 func shuffle_tracks():
@@ -55,5 +57,6 @@ func _on_Timer_timeout():
 	music.play()
 
 func _process(_delta):
+	music.volume_db = (5*volume)-40
 	if Input.is_action_just_pressed("ui_focus_prev") and OS.is_debug_build():
 		_on_AudioStreamPlayer_finished()
