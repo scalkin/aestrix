@@ -16,12 +16,12 @@ script = ExtResource( 3 )
 position = Vector2( 0, 1 )
 texture = ExtResource( 4 )
 
-[node name="CollisionShape2D" parent="." index="1"]
+[node name="Sprite" parent="." index="1"]
+position = Vector2( 0, -12 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="." index="2"]
 visible = false
 position = Vector2( 0, 1 )
 rotation = -1.57079
 shape = SubResource( 1 )
-
-[node name="Sprite" parent="." index="2"]
-position = Vector2( 0, -12 )
-texture = ExtResource( 2 )

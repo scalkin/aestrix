@@ -17,6 +17,7 @@ func _ready():
 	global_position = global.start_location
 
 func _physics_process(delta):
+	global.player_position = global_position
 	input_vector = Input.get_vector("left", "right", "up", "down")
 	input_vector = input_vector.normalized()
 	if input_vector:

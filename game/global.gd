@@ -82,6 +82,9 @@ var level = 1
 var target_mode = MOUSE
 var last_mouse_pos = Vector2.ZERO
 var attribute_points = 0
+var player_position = Vector2.ZERO
+
+signal game_loaded
 
 func save():
 	var save_dict = {
@@ -97,6 +100,8 @@ func save():
 		"fullscreen" : OS.window_fullscreen,
 		"max_health" : max_health,
 		"health" : health,
+		"current_scene" : get_tree().current_scene.filename,
+		"player_position" : player_position,
 	}
 	print(save_dict)
 	return save_dict
@@ -112,6 +117,7 @@ func reset():
 		"held_item_id" : 1,
 		"player_max_speed" : 200,
 		"player_accel" : 500,
+		"current_scene" : "res://levels/hub.tscn"
 	}
 	save_game(save_dict)
 	load_game()
@@ -133,12 +139,15 @@ func load_game():
 		if node_data == null:
 			return
 		for i in node_data.keys():
-			if not i in ["fullscreen"]:
+			if not i in ["fullscreen", "current_scene"]:
 				set(i, node_data[i])
 			else:
 				match i:
 					"fullscreen":
 						OS.window_fullscreen = node_data[i]
+					"current_scene":
+						travel_scene(i, player_position)
+	emit_signal("game_loaded")
 	save_game.close()
 
 func _ready():
@@ -147,6 +156,7 @@ func _ready():
 	load_game()
 
 func _process(delta):
+	OS.window_size.x = clamp(OS.window_size.x, OS.window_size.y, OS.window_size.y*2)
 	if (not get_tree().paused) and health < max_health:
 		health += delta*0.25
 		health = clamp(health, 0, 10)
