@@ -6,8 +6,8 @@
 [ext_resource path="res://game/effects/shadow/11x7.png" type="Texture" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 1.00001
-height = 5.07689
+radius = 2.00001
+height = 3.99997
 
 [sub_resource type="CapsuleShape2D" id=25]
 radius = 2.00001
@@ -26,18 +26,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0.5, -8 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -124,18 +112,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6 ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0.5, -8 ), Vector2( 0.5, -9 ), Vector2( 0.5, -8 ), Vector2( 0.5, -9 ) ]
-}
 
 [sub_resource type="Animation" id=9]
 resource_name = "walk_left"
@@ -152,18 +128,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 21, 22, 23, 24, 25, 26, 27 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0.5, -8 ), Vector2( 0.5, -9 ), Vector2( 0.5, -8 ), Vector2( 0.5, -9 ) ]
 }
 
 [sub_resource type="Animation" id=10]
@@ -182,18 +146,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 14, 15, 16, 17, 18, 19, 20 ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0.5, -8 ), Vector2( 0.5, -9 ), Vector2( 0.5, -8 ), Vector2( 0.5, -9 ) ]
-}
 
 [sub_resource type="Animation" id=4]
 resource_name = "walk_up"
@@ -210,18 +162,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 7, 8, 9, 10, 11, 12, 13 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0.5, -8 ), Vector2( 0.5, -9 ), Vector2( 0.5, -8 ), Vector2( 0.5, -9 ) ]
 }
 
 [sub_resource type="AnimationNodeAnimation" id=17]
@@ -288,18 +228,19 @@ collision_layer = 2
 script = ExtResource( 2 )
 
 [node name="shadow" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 4 )
 
 [node name="held_item" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, -8 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0.5, -8 )
+position = Vector2( 0.5, -9 )
 texture = ExtResource( 1 )
 hframes = 28
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
+position = Vector2( 0, -2 )
 rotation = 1.57079
 shape = SubResource( 1 )
 

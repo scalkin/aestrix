@@ -83,10 +83,13 @@ var target_mode = MOUSE
 var last_mouse_pos = Vector2.ZERO
 var attribute_points = 0
 var player_position = Vector2.ZERO
+var current_scene
 
 signal game_loaded
+signal game_saved
 
 func save():
+	emit_signal("game_saved")
 	var save_dict = {
 		"xp" : xp,
 		"level" : level,
@@ -100,8 +103,8 @@ func save():
 		"fullscreen" : OS.window_fullscreen,
 		"max_health" : max_health,
 		"health" : health,
+		"player_position" : [player_position.x, player_position.y],
 		"current_scene" : get_tree().current_scene.filename,
-		"player_position" : player_position,
 	}
 	print(save_dict)
 	return save_dict
@@ -117,10 +120,14 @@ func reset():
 		"held_item_id" : 1,
 		"player_max_speed" : 200,
 		"player_accel" : 500,
+		"max_health" : 10.0,
+		"health" : 10.0,
+		"player_position" : Vector2.ZERO,
 		"current_scene" : "res://levels/hub.tscn"
 	}
 	save_game(save_dict)
 	load_game()
+# warning-ignore:return_value_discarded
 	get_tree().reload_current_scene()
 
 func save_game(data):
@@ -138,17 +145,20 @@ func load_game():
 		var node_data = parse_json(save_game.get_line())
 		if node_data == null:
 			return
+		print(node_data.keys())
 		for i in node_data.keys():
-			if not i in ["fullscreen", "current_scene"]:
+			if not i in ["fullscreen", "player_position"]:
 				set(i, node_data[i])
 			else:
 				match i:
 					"fullscreen":
 						OS.window_fullscreen = node_data[i]
-					"current_scene":
-						travel_scene(i, player_position)
-	emit_signal("game_loaded")
+					"player_position":
+						player_position = Vector2(node_data[i][0], node_data[i][1])
 	save_game.close()
+	print(player_position)
+	travel_scene(current_scene, player_position, false)
+	emit_signal("game_loaded")
 
 func _ready():
 	randomize()
@@ -215,9 +225,12 @@ func give_food(id):
 	print("recieved food with id " + str(id))
 	print(food_inventory)
 
-func travel_scene(scene: String, location: Vector2):
+func travel_scene(scene: String, location: Vector2, save: bool):
+	print("travel")
 	start_location = location
 # warning-ignore:return_value_discarded
+	if save:
+		save_game(save())
 	get_tree().change_scene(scene)
 
 func set_health(value):
@@ -227,5 +240,7 @@ func set_health(value):
 	elif health <= 0:
 		health = 0
 		load_game()
+# warning-ignore:return_value_discarded
 		get_tree().reload_current_scene()
-		global.travel_scene("res://levels/hub.tscn", Vector2.ZERO)
+		travel_scene("res://levels/hub.tscn", Vector2.ZERO, false)
+		global.save_game(global.save())

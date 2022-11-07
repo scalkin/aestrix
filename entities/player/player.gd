@@ -50,3 +50,8 @@ func move(delta):
 
 func _on_held_item_attack_finished():
 	current_action = MOVE
+
+func load_player_position():
+	print("siegfiuoasgeiogfagdsufuegiufagoiegfiuoasgeiufgasiuoegfoaiuegiufagoesgfoaegfiuageoigfoaiuegfiugaoegfiuagefugaiuoegfuoaegfuageuoifgiuaoegfugaiuoegfiuoaegiuageiufgaoegufaiuoegfuoagoeugfuaegiuofgaoeigfiuoawegfiuageiufgaugeoifausegfiouaegiuofgaiuoegfiuoasegfiuogaeiugfiuasegfoiagefiuoaegiuofagiuoegfiugesiuofgasiuoefgiuoasegfiuoaegfiuoaegfiuoage")
+	global_position = global.player_position
+	print(global_position)
