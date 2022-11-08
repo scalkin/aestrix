@@ -14,10 +14,11 @@ onready var state_machine = $AnimationTree.get("parameters/playback")
 onready var held_item = $held_item
 
 func _ready():
+# warning-ignore:return_value_discarded
+	global.connect("game_saved", self, "save_player_position")
 	global_position = global.start_location
 
 func _physics_process(delta):
-	global.player_position = global_position
 	input_vector = Input.get_vector("left", "right", "up", "down")
 	input_vector = input_vector.normalized()
 	if input_vector:
@@ -51,7 +52,8 @@ func move(delta):
 func _on_held_item_attack_finished():
 	current_action = MOVE
 
-func load_player_position():
-	print("siegfiuoasgeiogfagdsufuegiufagoiegfiuoasgeiufgasiuoegfoaiuegiufagoesgfoaegfiuageoigfoaiuegfiugaoegfiuagefugaiuoegfuoaegfuageuoifgiuaoegfugaiuoegfiuoaegiuageiufgaoegufaiuoegfuoagoeugfuaegiuofgaoeigfiuoawegfiuageiufgaugeoifausegfiouaegiuofgaiuoegfiuoasegfiuogaeiugfiuasegfoiagefiuoaegiuofagiuoegfiugesiuofgasiuoefgiuoasegfiuoaegfiuoaegfiuoage")
-	global_position = global.player_position
-	print(global_position)
+func save_player_position():
+	global.player_position = global_position
+
+func _on_hitbox_area_entered(area):
+	global.health -= area.damage

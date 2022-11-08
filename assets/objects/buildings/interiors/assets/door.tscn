@@ -21,7 +21,7 @@ animations = [ {
 
 [sub_resource type="CapsuleShape2D" id=4]
 radius = 8.0
-height = 2.0
+height = 12.0
 
 [node name="door" type="Area2D"]
 collision_layer = 0
@@ -30,6 +30,7 @@ script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 3 )
+offset = Vector2( 0, 0.5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 10 )

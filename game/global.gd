@@ -82,7 +82,7 @@ var level = 1
 var target_mode = MOUSE
 var last_mouse_pos = Vector2.ZERO
 var attribute_points = 0
-var player_position = Vector2.ZERO
+var player_position = Vector2(215, -93)
 var current_scene
 
 signal game_loaded
@@ -106,7 +106,6 @@ func save():
 		"player_position" : [player_position.x, player_position.y],
 		"current_scene" : get_tree().current_scene.filename,
 	}
-	print(save_dict)
 	return save_dict
 
 func reset():
@@ -114,7 +113,7 @@ func reset():
 		"xp" : 0,
 		"level" : 1,
 		"attribute_points" : 0,
-		"chest_data" : [[[0, 5], [0]], [[2, 3], [1]]],
+		"chest_data" : [[[2], [0, 0, 0]], [[], [0, 0, 0, 0, 0, 0]]],
 		"player_stats" : [0, 0, 0],
 		"inventory" : [0, 1, 0, 0, 0],
 		"held_item_id" : 1,
@@ -122,15 +121,15 @@ func reset():
 		"player_accel" : 500,
 		"max_health" : 10.0,
 		"health" : 10.0,
-		"player_position" : Vector2.ZERO,
+		"player_position" : Vector2(215, -93),
 		"current_scene" : "res://levels/hub.tscn"
 	}
 	save_game(save_dict)
 	load_game()
-# warning-ignore:return_value_discarded
-	get_tree().reload_current_scene()
+
 
 func save_game(data):
+	print(data)
 	var save_game = File.new()
 	save_game.open("user://savegame.save", File.WRITE)
 	save_game.store_line(to_json(data))
@@ -139,12 +138,12 @@ func save_game(data):
 func load_game():
 	var save_game = File.new()
 	if not save_game.file_exists("user://savegame.save"):
-		return
+		return false
 	save_game.open("user://savegame.save", File.READ)
 	while save_game.get_position() < save_game.get_len():
 		var node_data = parse_json(save_game.get_line())
 		if node_data == null:
-			return
+			return false
 		print(node_data.keys())
 		for i in node_data.keys():
 			if not i in ["fullscreen", "player_position"]:
@@ -156,14 +155,17 @@ func load_game():
 					"player_position":
 						player_position = Vector2(node_data[i][0], node_data[i][1])
 	save_game.close()
+	print("\nhello\n")
 	print(player_position)
 	travel_scene(current_scene, player_position, false)
 	emit_signal("game_loaded")
+	return true
 
 func _ready():
 	randomize()
 	print(get_tree().current_scene.filename)
-	load_game()
+	if not load_game():
+		save_game(reset())
 
 func _process(delta):
 	OS.window_size.x = clamp(OS.window_size.x, OS.window_size.y, OS.window_size.y*2)
@@ -226,12 +228,12 @@ func give_food(id):
 	print(food_inventory)
 
 func travel_scene(scene: String, location: Vector2, save: bool):
-	print("travel")
+	print(str(scene) + "\n" + str(location) + "\n")
 	start_location = location
 # warning-ignore:return_value_discarded
+	get_tree().change_scene(scene)
 	if save:
 		save_game(save())
-	get_tree().change_scene(scene)
 
 func set_health(value):
 	health = value

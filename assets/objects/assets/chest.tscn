@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/objects/object.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/objects/chest.png" type="Texture" id=2]
-[ext_resource path="res://assets/objects/chest.gd" type="Script" id=3]
+[ext_resource path="res://assets/objects/assets/chest.png" type="Texture" id=2]
+[ext_resource path="res://assets/objects/assets/chest.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 25.8366, 22.0818 )
+extents = Vector2( 35.5252, 27.6023 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 2 )
@@ -26,14 +26,16 @@ animations = [ {
 [node name="chest" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 
-[node name="CollisionShape2D" parent="." index="0"]
-position = Vector2( 0, 3.25 )
+[node name="Sprite" parent="." index="0"]
+visible = false
+texture = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="." index="1"]
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2( 0, 2 )
 scale = Vector2( 0.309639, 0.362289 )
 shape = SubResource( 4 )
 
@@ -41,9 +43,8 @@ shape = SubResource( 4 )
 position = Vector2( 0, -2 )
 frames = SubResource( 3 )
 
-[node name="Sprite" parent="." index="3"]
-visible = false
-texture = ExtResource( 2 )
+[node name="CollisionShape2D" parent="." index="3"]
+position = Vector2( 0, 3.25 )
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]

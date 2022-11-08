@@ -90,7 +90,7 @@ global="*res://game/global.tscn"
 ui="*res://game/ui/ui.tscn"
 chest_ui="*res://game/ui/chest_ui.tscn"
 musicplayer="*res://game/effects/music/musicplayer.tscn"
-dialogue="*res://game/ui/dialogue.tscn"
+dialogue="*res://entities/npc/dialogue.tscn"
 
 [display]
 

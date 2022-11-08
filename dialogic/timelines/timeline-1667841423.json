@@ -1,0 +1,74 @@
+{
+	"events": [
+		{
+			"character": "character-1667572573.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Hello adventurer!"
+		},
+		{
+			"character": "character-1667572573.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "I sell the finest wares in this town."
+		},
+		{
+			"choice": "Ok, I'll be going now.",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"choice": "There aren't any othe merchants here...",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1667572573.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "That does help."
+		},
+		{
+			"choice": "OK, I'll be going now.",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"call_node": {
+				"arguments": [
+
+				],
+				"method_name": "end_dialogue",
+				"target_node_path": "dialogue"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 0.5
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1667841423.json",
+		"name": "wilfred_1"
+	}
+}

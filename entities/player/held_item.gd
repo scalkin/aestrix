@@ -68,18 +68,29 @@ func attack(delta):
 				$Sprite.show()
 
 func calculate_trail_points():
-	#TODO add 2 more points in between middle and ends
 	trail_points = [
 		Vector2(
 			sin(deg2rad(swing_size/2))*item_held_distance+2,
 			-cos(deg2rad(swing_size/2))*item_held_distance-2),
 		Vector2(
+			sin(deg2rad(3*swing_size/8))*item_held_distance+1,
+			-cos(deg2rad(3*swing_size/8))*item_held_distance-1),
+		Vector2(
 			sin(deg2rad(swing_size/4))*item_held_distance,
 			-cos(deg2rad(swing_size/4))*item_held_distance),
-		Vector2(0, -(item_held_distance - 0.5)),
+		Vector2(
+			sin(deg2rad(swing_size/8))*item_held_distance,
+			-cos(deg2rad(swing_size/8))*item_held_distance),
+		Vector2(0, -(item_held_distance - 0.3)),
+		Vector2(
+			-sin(deg2rad(swing_size/8))*item_held_distance,
+			-cos(deg2rad(swing_size/8))*item_held_distance),
 		Vector2(
 			-sin(deg2rad(swing_size/4))*item_held_distance,
 			-cos(deg2rad(swing_size/4))*item_held_distance),
+		Vector2(
+			-sin(deg2rad(3*swing_size/8))*item_held_distance-1,
+			-cos(deg2rad(3*swing_size/8))*item_held_distance-1),
 		Vector2(
 			-sin(deg2rad(swing_size/2))*item_held_distance-2,
 			-cos(deg2rad(swing_size/2))*item_held_distance-2)

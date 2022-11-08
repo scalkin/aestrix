@@ -48,9 +48,13 @@ func load_inventory(item_type):
 		inventory_button.type = item_type
 
 func _on_save_pressed():
+	get_tree().paused = false
+	$TabContainer.visible = false
 	global.save_game(global.save())
 
 func _on_reset_pressed():
+	get_tree().paused = false
+	$TabContainer.visible = false
 	global.save_game(global.reset())
 	global.load_game()
 
