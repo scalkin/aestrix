@@ -7,7 +7,7 @@
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 4 )
-region = Rect2( 27, 9, 1, 6 )
+region = Rect2( 27, 9, 3, 6 )
 
 [node name="ui" type="CanvasLayer"]
 pause_mode = 2
@@ -26,13 +26,16 @@ patch_margin_top = 1
 patch_margin_right = 1
 patch_margin_bottom = 1
 
-[node name="TextureRect" type="TextureRect" parent="NinePatchRect"]
+[node name="TextureRect" type="NinePatchRect" parent="NinePatchRect"]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 11.0
 margin_bottom = 7.0
 texture = SubResource( 1 )
-expand = true
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -52,10 +55,10 @@ tab_align = 0
 [node name="player" type="Tabs" parent="TabContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1.0
-margin_top = 20.0
-margin_right = -1.0
-margin_bottom = -1.0
+margin_left = 6.0
+margin_top = 25.0
+margin_right = -6.0
+margin_bottom = -6.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/player"]
 anchor_right = 1.0
@@ -66,8 +69,8 @@ margin_right = -2.0
 margin_bottom = -2.0
 
 [node name="Panel" type="Panel" parent="TabContainer/player/HBoxContainer"]
-margin_right = 118.0
-margin_bottom = 115.0
+margin_right = 113.0
+margin_bottom = 105.0
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/player/HBoxContainer/Panel"]
@@ -79,8 +82,8 @@ margin_right = -2.0
 margin_bottom = -2.0
 
 [node name="player_icon" type="TextureRect" parent="TabContainer/player/HBoxContainer/Panel/VBoxContainer"]
-margin_right = 114.0
-margin_bottom = 53.0
+margin_right = 109.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 3 )
@@ -88,15 +91,15 @@ expand = true
 stretch_mode = 5
 
 [node name="player_stats" type="Label" parent="TabContainer/player/HBoxContainer/Panel/VBoxContainer"]
-margin_top = 57.0
-margin_right = 114.0
-margin_bottom = 111.0
+margin_top = 52.0
+margin_right = 109.0
+margin_bottom = 101.0
 size_flags_vertical = 7
 
 [node name="ability_points" type="Panel" parent="TabContainer/player/HBoxContainer"]
-margin_left = 122.0
-margin_right = 240.0
-margin_bottom = 115.0
+margin_left = 117.0
+margin_right = 230.0
+margin_bottom = 105.0
 size_flags_horizontal = 3
 
 [node name="ability_points" type="VBoxContainer" parent="TabContainer/player/HBoxContainer/ability_points"]
@@ -108,8 +111,8 @@ margin_right = -2.0
 margin_bottom = -2.0
 
 [node name="Label" type="Label" parent="TabContainer/player/HBoxContainer/ability_points/ability_points"]
-margin_right = 114.0
-margin_bottom = 24.0
+margin_right = 109.0
+margin_bottom = 22.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "Attribute points: 0"
@@ -117,15 +120,15 @@ align = 1
 valign = 1
 
 [node name="strength" type="HBoxContainer" parent="TabContainer/player/HBoxContainer/ability_points/ability_points"]
-margin_top = 28.0
-margin_right = 114.0
-margin_bottom = 53.0
+margin_top = 26.0
+margin_right = 109.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="TabContainer/player/HBoxContainer/ability_points/ability_points/strength"]
 margin_right = 38.0
-margin_bottom = 25.0
+margin_bottom = 22.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "Strength"
@@ -134,23 +137,23 @@ valign = 1
 
 [node name="Button" type="Button" parent="TabContainer/player/HBoxContainer/ability_points/ability_points/strength"]
 margin_left = 42.0
-margin_right = 114.0
-margin_bottom = 25.0
+margin_right = 109.0
+margin_bottom = 22.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 text = "Add point"
 
 [node name="agility" type="HBoxContainer" parent="TabContainer/player/HBoxContainer/ability_points/ability_points"]
-margin_top = 57.0
-margin_right = 114.0
-margin_bottom = 82.0
+margin_top = 52.0
+margin_right = 109.0
+margin_bottom = 74.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="TabContainer/player/HBoxContainer/ability_points/ability_points/agility"]
-margin_right = 36.0
-margin_bottom = 25.0
+margin_right = 35.0
+margin_bottom = 22.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "Agility"
@@ -158,24 +161,24 @@ align = 1
 valign = 1
 
 [node name="Button" type="Button" parent="TabContainer/player/HBoxContainer/ability_points/ability_points/agility"]
-margin_left = 40.0
-margin_right = 114.0
-margin_bottom = 25.0
+margin_left = 39.0
+margin_right = 109.0
+margin_bottom = 22.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 text = "Add point"
 
 [node name="defense" type="HBoxContainer" parent="TabContainer/player/HBoxContainer/ability_points/ability_points"]
-margin_top = 86.0
-margin_right = 114.0
-margin_bottom = 111.0
+margin_top = 78.0
+margin_right = 109.0
+margin_bottom = 101.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="TabContainer/player/HBoxContainer/ability_points/ability_points/defense"]
-margin_right = 36.0
-margin_bottom = 25.0
+margin_right = 35.0
+margin_bottom = 23.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "Defense"
@@ -183,9 +186,9 @@ align = 1
 valign = 1
 
 [node name="Button" type="Button" parent="TabContainer/player/HBoxContainer/ability_points/ability_points/defense"]
-margin_left = 40.0
-margin_right = 114.0
-margin_bottom = 25.0
+margin_left = 39.0
+margin_right = 109.0
+margin_bottom = 23.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0

@@ -65,6 +65,11 @@ location = Vector2( 0, 60 )
 position = Vector2( -2, -7 )
 shape = SubResource( 1 )
 
+[node name="warp2" parent="warps" index="1" instance=ExtResource( 10 )]
+position = Vector2( 274, 64 )
+scene = "res://levels/dungeons/dungeon_1.tscn"
+location = Vector2( 70, -15 )
+
 [node name="objects" type="YSort" parent="YSort" index="1"]
 
 [node name="rat" parent="YSort/objects" index="0" instance=ExtResource( 18 )]

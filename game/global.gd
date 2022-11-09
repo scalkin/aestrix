@@ -14,11 +14,12 @@ export var held_item_id = 1
 #Number represents how many are in inventory
 var weapons_inventory = [
 				0,#Energy sword(unused)
-				1,#Small dagger
+				1,#Small Dagger
 				0,#Medium Dagger
 				0,#Rapier
 				0,#Battleaxe
 				0,#Longsword
+				0,#Lunar dagger
 ]
 var food_inventory = [
 				5,#Bread
@@ -29,8 +30,9 @@ var weapon_desc_list = [
 	"A simple weapon, designed to be easily concealed.\n\n1 Damage\n120 degree swing\n6 pixel blade",
 	"The larger blade on this dagger barely affects anything.\n\n1 Damage\n130 degree swing\n8 pixel blade",
 	"A slim, two-edged sword, with greater damage than a dagger.\n\n2 Damage\n120 degree swing\n13 pixel blade",
-	"A heavy battleaxe such as this allows for great damage, at the cost of speed.\n\n3 Damage\n170degree swing\n12 pixel blade",
-	"It's long and a sword.\n\n3 Damage \n170 degree swing\n28 pixel blade"
+	"A heavy battleaxe such as this allows for great damage, at the cost of speed.\n\n3 Damage\n170 degree swing\n12 pixel blade",
+	"It's long and a sword.\n\n3 Damage \n170 degree swing\n28 pixel blade",
+	"Infused with lunar magic, this dagger is capable of a higher damage output and speed.\n\n2 Damage\n130 degree swing\n 8 pixel blade"
 ]
 var weapon_name_list = [
 	"Energy Sword",
@@ -38,7 +40,8 @@ var weapon_name_list = [
 	"Medium Dagger",
 	"Rapier",
 	"Battleaxe",
-	"Longsword"
+	"Longsword",
+	"Lunar Dagger"
 ]
 var weapon_sprite_list = [
 	load("res://game/items/weapons/energy_sword_1.png"),
@@ -46,7 +49,8 @@ var weapon_sprite_list = [
 	load("res://game/items/weapons/dagger_2.png"),
 	load("res://game/items/weapons/rapier_1.png"),
 	load("res://game/items/weapons/battleaxe.png"),
-	load("res://game/items/weapons/longsword.png")
+	load("res://game/items/weapons/longsword.png"),
+	load("res://game/items/weapons/magic_dagger_1.png")
 ]
 var food_desc_list = [
 	"It's bread.\n\nHeals 5",
@@ -71,8 +75,12 @@ var player_stats = [
 
 var chest_data = [
 	[[0, 5], [0]],
-	[[2, 3], [1]],
+	[[6], [1]],
 ]
+var quests = {
+	"names" : [""]
+}
+
 
 var level_xp_list = [0, 50, 100]
 var level_attribute_points = [0, 1, 0]
@@ -97,6 +105,7 @@ func save():
 		"chest_data" : chest_data,
 		"player_stats" : player_stats,
 		"weapons_inventory" : weapons_inventory,
+		"food_inventory" : food_inventory,
 		"held_item_id" : held_item_id,
 		"player_max_speed" : player_max_speed,
 		"player_accel" : player_accel,
@@ -113,9 +122,10 @@ func reset():
 		"xp" : 0,
 		"level" : 1,
 		"attribute_points" : 0,
-		"chest_data" : [[[2], [0, 0, 0]], [[], [0, 0, 0, 0, 0, 0]]],
+		"chest_data" : [[[0, 5], [0]],[[6], [1]],],
 		"player_stats" : [0, 0, 0],
-		"inventory" : [0, 1, 0, 0, 0],
+		"weapons_inventory" : [0, 1, 0, 0, 0, 0, 0],
+		"food_inventory" : [5, 1],
 		"held_item_id" : 1,
 		"player_max_speed" : 200,
 		"player_accel" : 500,
@@ -126,6 +136,7 @@ func reset():
 	}
 	save_game(save_dict)
 	load_game()
+	print(parse_inventory())
 
 
 func save_game(data):

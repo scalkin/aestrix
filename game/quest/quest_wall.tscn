@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://game/quest/quest_wall.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+resource_local_to_scene = true
+extents = Vector2( 10, 18 )
+
+[node name="quest_wall" type="YSort"]
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": "add monsters or enemies to this guy and once they are all gone, it will queue_free along with the wall."
+}
+
+[node name="wall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall"]
+shape = SubResource( 1 )
