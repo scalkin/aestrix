@@ -11,7 +11,7 @@ __meta__ = {
 }
 item_held_distance = 14
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="weapon" type="Sprite" parent="."]
 texture = ExtResource( 3 )
 
 [node name="hand" type="Sprite" parent="."]

@@ -39,6 +39,9 @@ var item_sprite = 0
 var trail_res = preload("res://game/effects/attack_trail.tscn")
 var hurtbox_res = preload("res://game/detection_boxes/hurtbox.tscn")
 
+onready var weapon_sprite = $weapon
+onready var hand_sprite = $weapon
+
 func attack(delta):
 	var applied_rotation_speed = ((sin((3.14*rotated)/swing_size)*1500)+(attack_speed*0.001))*delta
 	match item_position:
@@ -46,7 +49,7 @@ func attack(delta):
 			rotate(-deg2rad(applied_rotation_speed))
 			rotated += applied_rotation_speed
 			if rotated >= swing_size:
-				$Sprite.hide()
+				weapon_sprite.hide()
 				var prev_rotation = rotation_degrees
 				rotate(deg2rad(rotated/2))
 				calculate_trail_points()
@@ -54,12 +57,12 @@ func attack(delta):
 				emit_signal("attack_finished")
 				flip_item_position()
 				rotation_degrees = prev_rotation
-				$Sprite.show()
+				weapon_sprite.show()
 		UP:
 			rotate(deg2rad(applied_rotation_speed))
 			rotated += applied_rotation_speed
 			if rotated >= swing_size:
-				$Sprite.hide()
+				weapon_sprite.hide()
 				var prev_rotation = rotation_degrees
 				rotate(-deg2rad(rotated/2))
 				calculate_trail_points()
@@ -67,7 +70,7 @@ func attack(delta):
 				emit_signal("attack_finished")
 				flip_item_position()
 				rotation_degrees = prev_rotation
-				$Sprite.show()
+				weapon_sprite.show()
 
 func calculate_trail_points():
 	trail_points = [
@@ -142,17 +145,17 @@ func attack_trail():
 	attack_cooldown = true
 
 func idle():
-	$Sprite.offset.y = -item_held_distance
+	weapon_sprite.offset.y = -item_held_distance
 	match item_position:
 		UP:
-			item_applied_position = -(swing_size/2)
+			item_applied_position = -swing_size/2
 		DOWN:
-			item_applied_position = (swing_size/2)
+			item_applied_position = swing_size/2
 	var relative_mouse_location = get_global_mouse_position() - global_position
 	rotation_degrees = rad2deg(atan2(relative_mouse_location.y, relative_mouse_location.x)) + 90
 	rotate(deg2rad(item_applied_position))
-	$Sprite.flip_h = (item_position == UP)
-	$hand.flip_h = $Sprite.flip_h
+	weapon_sprite.flip_h = (item_position == UP)
+	hand_sprite.flip_h = weapon_sprite.flip_h
 
 func start_attack():
 	attack_trail_generated = false
@@ -170,7 +173,7 @@ func flip_item_position():
 			item_position = UP
 
 func update_item():
-	$Sprite.texture = global.weapon_sprite_list[global.held_item_id]
+	weapon_sprite.texture = global.weapon_sprite_list[global.held_item_id]
 	swing_size = item_swing_size_list[global.held_item_id]
 	item_held_distance = item_held_distance_list[global.held_item_id]
 	attack_speed = item_attack_speed_list[global.held_item_id]

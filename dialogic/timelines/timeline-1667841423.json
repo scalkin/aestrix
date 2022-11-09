@@ -16,6 +16,19 @@
 			"question": "I sell the finest wares in this town."
 		},
 		{
+			"choice": "Do you know of any work I can do?",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1667572573.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "I don't have any, but you could check with the wizards just outside town."
+		},
+		{
 			"choice": "Ok, I'll be going now.",
 			"condition": "",
 			"definition": "",

@@ -1,11 +1,12 @@
 [gd_scene load_steps=2 format=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 5.25 )
+extents = Vector2( 8, 6 )
 
 [node name="base" type="StaticBody2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
+centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

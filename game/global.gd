@@ -78,7 +78,10 @@ var chest_data = [
 	[[6], [1]],
 ]
 var quests = {
-	"names" : [""]
+	"names" : ["rats"],
+	"completed_quests" : [],
+	"completed_objectives" : [],
+	"objectives_in_quest" : [5]
 }
 
 
@@ -114,6 +117,7 @@ func save():
 		"health" : health,
 		"player_position" : [player_position.x, player_position.y],
 		"current_scene" : get_tree().current_scene.filename,
+		"quests" : quests
 	}
 	return save_dict
 
@@ -132,7 +136,8 @@ func reset():
 		"max_health" : 10.0,
 		"health" : 10.0,
 		"player_position" : Vector2(215, -93),
-		"current_scene" : "res://levels/hub.tscn"
+		"current_scene" : "res://levels/hub.tscn",
+		"quests" : {"names" : [""],"completed_quests" : [],"completed_objectives" : []}
 	}
 	save_game(save_dict)
 	load_game()

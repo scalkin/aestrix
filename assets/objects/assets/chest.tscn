@@ -40,11 +40,12 @@ scale = Vector2( 0.309639, 0.362289 )
 shape = SubResource( 4 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="2"]
-position = Vector2( 0, -2 )
+position = Vector2( -9, -14 )
 frames = SubResource( 3 )
+centered = false
 
 [node name="CollisionShape2D" parent="." index="3"]
-position = Vector2( 0, 3.25 )
+position = Vector2( 0, 2 )
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]
