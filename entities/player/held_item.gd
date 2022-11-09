@@ -11,6 +11,7 @@ enum{
 	DOWN
 }
 
+var trail_colors = [Color(1, 1, 1, 1),Color(0.63, 0.89, 0.94, 1),Color(1,1,0.47451,1)]
 var hurtbox
 var attack_cooldown = false
 var attack_direction = RIGHT
@@ -21,11 +22,12 @@ var item_applied_position = 0
 var trail_points = []
 var hurtbox_points = []
 var attack_trail_generated
-var item_swing_size_list = [140, 120, 130, 120, 170, 170]
-var item_held_distance_list = [17, 14, 15, 17, 15, 20]
-var item_attack_speed_list = [2000, 500, 400, 1000, 10, 750]
-var item_blade_length_list = [14, 6, 8, 13, 12, 20]
-var item_damage_list = [5, 1, 1, 2, 3, 3]
+var item_swing_size_list = [140, 120, 130, 120, 170, 170, 130]
+var item_held_distance_list = [17, 14, 15, 17, 15, 20, 14]
+var item_attack_speed_list = [2000, 500, 400, 1000, 10, 750, 5000]
+var item_blade_length_list = [14, 6, 8, 13, 12, 20, 8]
+var item_damage_list = [5, 1, 1, 2, 3, 3, 2]
+var item_trail_color = [0, 0, 0, 0, 0, 0, 1]
 
 export var swing_size = 120
 export var item_held_distance = 13
@@ -125,6 +127,7 @@ func attack_trail():
 	trail.global_position = global_position
 	trail.points = trail_points
 	attack_trail_generated = true
+	trail.default_color = trail_colors[item_trail_color[global.held_item_id]]
 	hurtbox = hurtbox_res.instance()
 	get_parent().get_parent().add_child(hurtbox)
 	var hurtbox_collision_box = CollisionPolygon2D.new()
@@ -133,6 +136,7 @@ func attack_trail():
 	hurtbox_collision_box.global_position = global_position
 	hurtbox_collision_box.polygon = hurtbox_points
 	hurtbox.collision_layer = 8
+	hurtbox.collision_mask = 16
 	hurtbox.damage = damage
 	$hurtbox_timer.start()
 	attack_cooldown = true

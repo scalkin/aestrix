@@ -217,6 +217,7 @@ dialogic_default_action={
 2d_physics/layer_4="player_hurtbox"
 2d_physics/layer_5="enemy_hitbox"
 2d_physics/layer_6="enemy_hurtbox"
+2d_physics/layer_7="soft_collision"
 
 [physics]
 
