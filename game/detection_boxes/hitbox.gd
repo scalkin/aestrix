@@ -18,3 +18,4 @@ func _on_hitbox_area_entered(area):
 func _on_Timer_timeout():
 	set_deferred("monitoring", true)
 	set_deferred("monitorable", true)
+	emit_signal("iframe_ended")

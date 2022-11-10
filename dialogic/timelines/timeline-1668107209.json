@@ -1,0 +1,221 @@
+{
+	"events": [
+		{
+			"character": "character-1668097194.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "It's you."
+		},
+		{
+			"choice": "Something wrong with that?",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1668097194.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "You adventurers are all the same."
+		},
+		{
+			"character": "character-1668097194.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Selfish people, looking for a little extra gold - well you wont get that here."
+		},
+		{
+			"choice": "Who else did you think I would be?",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1668097194.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Anyone important."
+		},
+		{
+			"choice": "What do you mean?",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1668097194.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "We only have so much supplies. You adventurers come through here and take it all from us."
+		},
+		{
+			"character": "character-1668097194.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Even with the gold you bring us, it still takes us time to import more resources."
+		},
+		{
+			"character": "character-1668097194.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Why you don't gather in some place like Olnrith, I can't imagine."
+		},
+		{
+			"choice": "Alright, I'll be going now.",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"choice": "Ok, I'll be going now",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"condition": "",
+			"definition": "1668109058-330",
+			"event_id": "dialogic_012",
+			"value": "False"
+		},
+		{
+			"character": "character-1668097194.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Before you go, I guess there is one thing."
+		},
+		{
+			"choice": "I thought you didn't like adventurers?",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1668097194.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "I don't, but I can't be bothered to do it myself, and Axius is distracted enough as it is."
+		},
+		{
+			"choice": "What do you want?",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1668097194.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "The rats in this town have been getting worse - and I'm going to figure out why."
+		},
+		{
+			"character": "character-1668097194.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "In the basement, there is a magical dagger, if you find it, you can keep it, but you must kill all the rats down there too."
+		},
+		{
+			"choice": "Alright, I'll go do that then.",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "TIP: If your health gets low, open the menu by hitting ESC, navigate to the inventory, click food, and eat."
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"0"
+				],
+				"method_name": "recieve_quest",
+				"target_node_path": "dialogue"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"0",
+					"0"
+				],
+				"method_name": "objective_completed",
+				"target_node_path": "dialogue"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"definition": "1668109058-330",
+			"event_id": "dialogic_014",
+			"operation": "=",
+			"random_upper_limit": 100,
+			"set_random": false,
+			"set_value": "true"
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"call_node": {
+				"arguments": [
+
+				],
+				"method_name": "end_dialogue",
+				"target_node_path": "dialogue"
+			},
+			"event_id": "dialogic_042"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1668107209.json",
+		"name": "ozin_1"
+	}
+}

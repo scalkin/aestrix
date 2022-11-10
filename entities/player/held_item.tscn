@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://entities/player/held_item.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/hand.png" type="Texture" id=2]
 [ext_resource path="res://game/items/weapons/dagger_1.png" type="Texture" id=3]
+[ext_resource path="res://game/ui/assets/arrow.png" type="Texture" id=4]
 
 [node name="held_item" type="Node2D"]
 script = ExtResource( 1 )
@@ -21,5 +22,12 @@ texture = ExtResource( 2 )
 [node name="hurtbox_timer" type="Timer" parent="."]
 wait_time = 0.25
 one_shot = true
+
+[node name="arrow" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite" type="Sprite" parent="arrow"]
+position = Vector2( 0, -26 )
+texture = ExtResource( 4 )
 
 [connection signal="timeout" from="hurtbox_timer" to="." method="_on_hitbox_timer_timeout"]

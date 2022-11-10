@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://levels/root.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/objects/rocks/small_rock.tscn" type="PackedScene" id=2]
@@ -23,6 +23,8 @@
 [sub_resource type="RectangleShape2D" id=1]
 resource_local_to_scene = true
 extents = Vector2( 6, 8 )
+
+[sub_resource type="CircleShape2D" id=2]
 
 [node name="root" instance=ExtResource( 1 )]
 
@@ -75,6 +77,15 @@ shape = SubResource( 1 )
 position = Vector2( 274, 64 )
 scene = "res://levels/dungeons/dungeon_1.tscn"
 location = Vector2( 70, -15 )
+
+[node name="warp3" parent="warps" index="2" instance=ExtResource( 10 )]
+position = Vector2( 425, -213 )
+scene = "res://levels/buildings/wizard_tower_1.tscn"
+location = Vector2( 0, 55 )
+
+[node name="CollisionShape2D" parent="warps/warp3" index="0"]
+position = Vector2( -4, -4 )
+shape = SubResource( 2 )
 
 [node name="objects" type="YSort" parent="YSort" index="1"]
 
@@ -365,6 +376,7 @@ position = Vector2( 190, -202 )
 position = Vector2( -96, -141 )
 
 [editable path="warps/warp"]
+[editable path="warps/warp3"]
 [editable path="YSort/objects/building"]
 [editable path="YSort/objects/building2"]
 [editable path="YSort/objects/building3"]

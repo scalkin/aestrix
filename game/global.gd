@@ -5,8 +5,8 @@ enum{
 	CONTROLLER
 }
 
-export var health = 10.0 setget set_health
-export var max_health = 10.0
+export var health = 5.0 setget set_health
+export var max_health = 5.0
 var start_location = Vector2.ZERO #used for travelling between scenes
 var player_accel = 500
 var player_max_speed = 200
@@ -29,7 +29,7 @@ var weapon_desc_list = [
 	"A more civilized weapon.\n\n5 Damage\n140 degree swing\n14 pixel blade",
 	"A simple weapon, designed to be easily concealed.\n\n1 Damage\n120 degree swing\n6 pixel blade",
 	"The larger blade on this dagger barely affects anything.\n\n1 Damage\n130 degree swing\n8 pixel blade",
-	"A slim, two-edged sword, with greater damage than a dagger.\n\n2 Damage\n120 degree swing\n13 pixel blade",
+	"A slim, two-edged sword, with greater damage than a dagger.\n\n1 Damage\n120 degree swing\n13 pixel blade",
 	"A heavy battleaxe such as this allows for great damage, at the cost of speed.\n\n3 Damage\n170 degree swing\n12 pixel blade",
 	"It's long and a sword.\n\n3 Damage \n170 degree swing\n28 pixel blade",
 	"Infused with lunar magic, this dagger is capable of a higher damage output and speed.\n\n2 Damage\n130 degree swing\n 8 pixel blade"
@@ -74,14 +74,15 @@ var player_stats = [
 ]
 
 var chest_data = [
-	[[0, 5], [0]],
+	[[], [0, 0, 0]],
 	[[6], [1]],
 ]
 var quests = {
 	"names" : ["rats"],
 	"completed_quests" : [],
-	"completed_objectives" : [],
-	"objectives_in_quest" : [5]
+	"completed_objectives" : [[], []],
+	"objectives_in_quest" : [5],
+	"quests_recieved" : []
 }
 
 
@@ -126,19 +127,21 @@ func reset():
 		"xp" : 0,
 		"level" : 1,
 		"attribute_points" : 0,
-		"chest_data" : [[[0, 5], [0]],[[6], [1]],],
+		"chest_data" : [[[], [0, 0, 0]],[[6], [1]]],
 		"player_stats" : [0, 0, 0],
 		"weapons_inventory" : [0, 1, 0, 0, 0, 0, 0],
 		"food_inventory" : [5, 1],
 		"held_item_id" : 1,
 		"player_max_speed" : 200,
 		"player_accel" : 500,
-		"max_health" : 10.0,
-		"health" : 10.0,
+		"max_health" : 5.0,
+		"health" : 5.0,
 		"player_position" : Vector2(215, -93),
 		"current_scene" : "res://levels/hub.tscn",
-		"quests" : {"names" : [""],"completed_quests" : [],"completed_objectives" : []}
+		"quests" : {"names" : [""],"completed_quests" : [],"completed_objectives" : [[],[]], "objectives_in_quest" : [5],
+	"quests_recieved" : []}
 	}
+	Dialogic.reset_saves()
 	save_game(save_dict)
 	load_game()
 	print(parse_inventory())
@@ -170,6 +173,7 @@ func load_game():
 						OS.window_fullscreen = node_data[i]
 					"player_position":
 						player_position = Vector2(node_data[i][0], node_data[i][1])
+	Dialogic.load()
 	save_game.close()
 	print("\nhello\n")
 	print(player_position)

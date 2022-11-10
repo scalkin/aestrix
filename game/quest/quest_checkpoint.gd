@@ -11,6 +11,6 @@ func _ready():
 
 func _on_quest_checkpoint_area_entered(_area):
 	emit_signal("completed")
-	global.quests["completed_objectives"].append(objective_id)
+	global.quests["completed_objectives"][quest_id].append(objective_id)
 	global.save_game(global.save())
 	queue_free()

@@ -61,6 +61,7 @@ shape = SubResource( 7 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="1"]
 position = Vector2( -12, -9 )
 frames = SubResource( 6 )
+frame = 1
 playing = true
 centered = false
 
@@ -95,7 +96,7 @@ shape = SubResource( 10 )
 one_shot = true
 
 [node name="sprite_timer" type="Timer" parent="." index="8"]
-wait_time = 0.5
+wait_time = 0.1
 autostart = true
 
 [node name="soft_collision" type="Area2D" parent="." index="9"]

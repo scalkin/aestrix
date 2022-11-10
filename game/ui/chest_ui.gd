@@ -23,7 +23,12 @@ func _process(_delta):
 
 func open_chest(id):
 	selected_chest = id
-	selected_item = global.chest_data[selected_chest][0][0]
+	if global.chest_data[selected_chest][0] != []:
+		selected_item = global.chest_data[selected_chest][0][0]
+		selected_item_type = WEAPON
+	else:
+		selected_item = global.chest_data[selected_chest][1][0]
+		selected_item_type = FOOD
 	for x in get_children():
 		x.visible = true
 	get_tree().paused = true

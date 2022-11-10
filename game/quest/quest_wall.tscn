@@ -9,7 +9,10 @@ extents = Vector2( 10, 18 )
 [node name="quest_wall" type="YSort"]
 script = ExtResource( 1 )
 __meta__ = {
-"_editor_description_": "add monsters or enemies to this guy and once they are all gone, it will queue_free along with the wall."
+"_editor_description_": "mode 0:
+add monsters or enemies to this guy and once they are all gone, it will queue_free along with the wall.
+mode 1:
+it will wait until objective_id is completed"
 }
 
 [node name="wall" type="StaticBody2D" parent="."]

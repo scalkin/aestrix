@@ -11,6 +11,7 @@ enum{
 	DOWN
 }
 
+var attacking = false
 var trail_colors = [Color(1, 1, 1, 1),Color(0.63, 0.89, 0.94, 1),Color(1,1,0.47451,1)]
 var hurtbox
 var attack_cooldown = false
@@ -26,7 +27,7 @@ var item_swing_size_list = [140, 120, 130, 120, 170, 170, 130]
 var item_held_distance_list = [17, 14, 15, 17, 15, 20, 14]
 var item_attack_speed_list = [2000, 500, 400, 1000, 10, 750, 5000]
 var item_blade_length_list = [14, 6, 8, 13, 12, 20, 8]
-var item_damage_list = [5, 1, 1, 2, 3, 3, 2]
+var item_damage_list = [5, 1, 1, 1, 3, 3, 2]
 var item_trail_color = [0, 0, 0, 0, 0, 0, 1]
 
 export var swing_size = 120
@@ -58,6 +59,7 @@ func attack(delta):
 				flip_item_position()
 				rotation_degrees = prev_rotation
 				weapon_sprite.show()
+				attacking = false
 		UP:
 			rotate(deg2rad(applied_rotation_speed))
 			rotated += applied_rotation_speed
@@ -71,6 +73,7 @@ func attack(delta):
 				flip_item_position()
 				rotation_degrees = prev_rotation
 				weapon_sprite.show()
+				attacking = false
 
 func calculate_trail_points():
 	trail_points = [
@@ -158,6 +161,7 @@ func idle():
 	hand_sprite.flip_h = weapon_sprite.flip_h
 
 func start_attack():
+	attacking = true
 	attack_trail_generated = false
 	rotated = 0
 	if (rotation_degrees < 0 or rotation_degrees > 180):
@@ -182,7 +186,7 @@ func update_item():
 
 func _physics_process(_delta):
 	update_item()
-	if rotation_degrees > 90 or rotation_degrees < -180:
+	if rotation_degrees > 90 or rotation_degrees < -90:
 		z_index = 1
 	else:
 		z_index = 0

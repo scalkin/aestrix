@@ -1,11 +1,11 @@
 {
-	"color": "#ff622461",
-	"description": "A merchant in the simple town where our player lives.",
+	"color": "#ff93388f",
+	"description": "A stuck up wizard who will rely on the player without showing any respect to him.",
 	"display_name": "",
 	"display_name_bool": false,
-	"id": "character-1667572573.json",
+	"id": "character-1668097194.json",
 	"mirror_portraits": false,
-	"name": "Wilfred",
+	"name": "Ozin",
 	"nickname": "",
 	"nickname_bool": false,
 	"offset_x": 0,
@@ -13,7 +13,7 @@
 	"portraits": [
 		{
 			"name": "Default",
-			"path": "res://icon.png"
+			"path": ""
 		}
 	],
 	"scale": 100,

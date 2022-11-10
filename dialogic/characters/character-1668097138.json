@@ -1,11 +1,11 @@
 {
-	"color": "#ff622461",
-	"description": "A merchant in the simple town where our player lives.",
+	"color": "#ff0069aa",
+	"description": "A less powerful wizard who will be more friendly to the player.",
 	"display_name": "",
 	"display_name_bool": false,
-	"id": "character-1667572573.json",
+	"id": "character-1668097138.json",
 	"mirror_portraits": false,
-	"name": "Wilfred",
+	"name": "Axius",
 	"nickname": "",
 	"nickname_bool": false,
 	"offset_x": 0,
@@ -13,7 +13,7 @@
 	"portraits": [
 		{
 			"name": "Default",
-			"path": "res://icon.png"
+			"path": ""
 		}
 	],
 	"scale": 100,

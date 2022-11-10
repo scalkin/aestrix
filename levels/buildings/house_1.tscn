@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://game/detection_boxes/warp.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/root.tscn" type="PackedScene" id=2]
@@ -6,8 +6,9 @@
 [ext_resource path="res://assets/objects/buildings/interiors/assets/door.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/objects/assets/chest.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/objects/assets/crate.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/objects/assets/weapon_rack.png" type="Texture" id=7]
+[ext_resource path="res://assets/objects/assets/weapon_rack.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/objects/assets/bed.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/objects/assets/fireplace.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 resource_local_to_scene = true
@@ -49,23 +50,25 @@ position = Vector2( -88, 0 )
 
 [node name="objects" type="YSort" parent="YSort" index="6"]
 
-[node name="WeaponRack" type="Sprite" parent="YSort/objects" index="0"]
-position = Vector2( -12, -67 )
-texture = ExtResource( 7 )
-
-[node name="crate3" parent="YSort/objects" index="1" instance=ExtResource( 6 )]
+[node name="crate3" parent="YSort/objects" index="0" instance=ExtResource( 6 )]
 position = Vector2( 57, 37 )
 
 [node name="chest" parent="YSort/objects/crate3" index="2" instance=ExtResource( 5 )]
 position = Vector2( 0, -5 )
 
-[node name="crate" parent="YSort/objects" index="2" instance=ExtResource( 6 )]
+[node name="crate" parent="YSort/objects" index="1" instance=ExtResource( 6 )]
 position = Vector2( 104, 40 )
 
 [node name="crate2" parent="YSort/objects/crate" index="2" instance=ExtResource( 6 )]
 position = Vector2( 0, -8 )
 
-[node name="bed" parent="YSort/objects" index="3" instance=ExtResource( 8 )]
+[node name="bed" parent="YSort/objects" index="2" instance=ExtResource( 8 )]
 position = Vector2( -57, 31 )
+
+[node name="fireplace" parent="YSort/objects" index="3" instance=ExtResource( 9 )]
+position = Vector2( -81, -53 )
+
+[node name="weapon_rack" parent="YSort/objects" index="4" instance=ExtResource( 7 )]
+position = Vector2( -7, -59 )
 
 [editable path="warp"]

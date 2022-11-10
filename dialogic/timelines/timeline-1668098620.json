@@ -1,0 +1,156 @@
+{
+	"events": [
+		{
+			"character": "character-1668097138.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Oh hey there! Sorry, I'm focusing on studying right now, but I'm sure Ozin would be willing to talk to you."
+		},
+		{
+			"choice": "Alright, I'll be going now",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"choice": "Ozin?",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1668097138.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Oh, sorry. Ozin's the real wizard here. I'm just a student"
+		},
+		{
+			"character": "character-1668097138.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "You're looking for a wizard, right?"
+		},
+		{
+			"choice": "No, just exploring.",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1668097138.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Alright then, I should get back to studying"
+		},
+		{
+			"choice": "Yes",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1668097138.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Alright, well Ozin's up there."
+		},
+		{
+			"choice": "Wilfred said I could look here for some work.",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1668097138.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Oh, Wilfred sent you? You must be the new adventurer in town."
+		},
+		{
+			"character": "character-1668097138.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Loads of adventurers come through here. Ozin says that they are going to use up all the town's supplies."
+		},
+		{
+			"choice": "Do you think the adventurers are bad?",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1668097138.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "No, I'm training so that I can be an adventurer too some day."
+		},
+		{
+			"character": "character-1668097138.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Don't tell Ozin I said that."
+		},
+		{
+			"character": "character-1668097138.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "I should get back to studying now."
+		},
+		{
+			"choice": "Ok, I'll go see him then.",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1668097138.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Good luck."
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"call_node": {
+				"arguments": [
+
+				],
+				"method_name": "end_dialogue",
+				"target_node_path": "dialogue"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 1
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1668098620.json",
+		"name": "axius_1"
+	}
+}
