@@ -8,7 +8,9 @@ func _on_hitbox_area_entered(area):
 	health -= area.damage
 	if health <= 0:
 		emit_signal("death")
-	set("shader_param/active", true)
+	$Sprite.get("material").set("shader_param/active", true)
+	$AnimatedSprite.get("material").set("shader_param/active", true)
 
 func _on_hitbox_iframe_ended():
-	set("shader_param/active", false)
+	$Sprite.get("material").set("shader_param/active", false)
+	$AnimatedSprite.get("material").set("shader_param/active", false)

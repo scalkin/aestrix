@@ -1,17 +1,17 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://entities/not_player/entity.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/not_player/assets/dummy.png" type="Texture" id=2]
 [ext_resource path="res://entities/not_player/non_mobile/dummy.gd" type="Script" id=3]
 [ext_resource path="res://game/effects/shadow/9x5.png" type="Texture" id=4]
+[ext_resource path="res://entities/blink.gdshader" type="Shader" id=5]
+
+[sub_resource type="ShaderMaterial" id=5]
+resource_local_to_scene = true
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 1.00001
 height = 9.99998
-
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 2.0
-height = 14.0
 
 [sub_resource type="Animation" id=3]
 length = 0.001
@@ -68,7 +68,17 @@ tracks/1/keys = {
 "values": [ -15.0, 10.0, -5.0, 0.0 ]
 }
 
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 2.0
+height = 14.0
+
+[sub_resource type="ShaderMaterial" id=6]
+resource_local_to_scene = true
+shader = ExtResource( 5 )
+shader_param/active = false
+
 [node name="dummy" instance=ExtResource( 1 )]
+material = SubResource( 5 )
 script = ExtResource( 3 )
 
 [node name="shadow" type="Sprite" parent="." index="0"]
@@ -86,13 +96,16 @@ shape = SubResource( 1 )
 position = Vector2( 0, -9 )
 texture = ExtResource( 2 )
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+anims/RESET = SubResource( 3 )
+anims/hit = SubResource( 4 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" index="0"]
 visible = false
 position = Vector2( 0, -9 )
 shape = SubResource( 2 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
-anims/RESET = SubResource( 3 )
-anims/hit = SubResource( 4 )
+[node name="AnimatedSprite" parent="." index="6"]
+material = SubResource( 6 )
 
 [connection signal="hit" from="hitbox" to="." method="_on_hitbox_hit"]

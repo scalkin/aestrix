@@ -1,45 +1,51 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://entities/not_player/entity.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/not_player/monsters/base.gd" type="Script" id=2]
 [ext_resource path="res://entities/not_player/monsters/assets/rat.png" type="Texture" id=3]
 [ext_resource path="res://game/detection_boxes/hurtbox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://entities/blink.gdshader" type="Shader" id=5]
 
 [sub_resource type="CapsuleShape2D" id=7]
 radius = 2.00001
 height = 16.0
 
+[sub_resource type="CapsuleShape2D" id=8]
+radius = 4.00001
+height = 7.99998
+
+[sub_resource type="ShaderMaterial" id=12]
+resource_local_to_scene = true
+shader = ExtResource( 5 )
+shader_param/active = false
+
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 19, 9 )
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 3 )
 region = Rect2( 19, 0, 19, 9 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 3 )
 region = Rect2( 38, 0, 19, 9 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 3 )
 region = Rect2( 57, 0, 19, 9 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=17]
 atlas = ExtResource( 3 )
 region = Rect2( 76, 0, 19, 9 )
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"frames": [ SubResource( 1 ), SubResource( 13 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
 "loop": true,
 "name": "default",
 "speed": 10.0
 } ]
-
-[sub_resource type="CapsuleShape2D" id=8]
-radius = 4.00001
-height = 7.99998
 
 [sub_resource type="CircleShape2D" id=9]
 radius = 52.0096
@@ -50,6 +56,7 @@ radius = 52.0096
 radius = 6.0
 
 [node name="base" instance=ExtResource( 1 )]
+material = null
 collision_layer = 0
 script = ExtResource( 2 )
 
@@ -58,12 +65,11 @@ position = Vector2( 0, -2 )
 rotation = 1.57079
 shape = SubResource( 7 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="1"]
-position = Vector2( -12, -9 )
-frames = SubResource( 6 )
-frame = 1
-playing = true
-centered = false
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" index="0"]
+visible = false
+position = Vector2( 0, -4 )
+rotation = 1.57079
+shape = SubResource( 8 )
 
 [node name="world_detect" type="Area2D" parent="." index="3"]
 collision_layer = 0
@@ -71,11 +77,10 @@ collision_layer = 0
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="world_detect" index="0"]
 polygon = PoolVector2Array( 1, 1, 10, 22, -10, 22, -1, 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" index="0"]
-visible = false
-position = Vector2( 0, -4 )
-rotation = 1.57079
-shape = SubResource( 8 )
+[node name="AnimatedSprite" parent="." index="4"]
+material = SubResource( 12 )
+frames = SubResource( 6 )
+frame = 3
 
 [node name="player_detect" type="Area2D" parent="." index="5"]
 visible = false
@@ -107,6 +112,7 @@ collision_mask = 64
 position = Vector2( 0, -3 )
 shape = SubResource( 11 )
 
+[connection signal="hit" from="hitbox" to="." method="_on_hitbox_hit"]
 [connection signal="area_entered" from="player_detect" to="." method="_on_player_detect_area_entered"]
 [connection signal="area_exited" from="player_detect" to="." method="_on_player_detect_area_exited"]
 [connection signal="hit" from="hurtbox" to="." method="_on_hurtbox_hit"]

@@ -57,3 +57,8 @@ func save_player_position():
 
 func _on_hitbox_area_entered(area):
 	global.health -= area.damage
+	$Sprite.get("material").set("shader_param/active", true)
+
+
+func _on_hitbox_iframe_ended():
+	$Sprite.get("material").set("shader_param/active", false)

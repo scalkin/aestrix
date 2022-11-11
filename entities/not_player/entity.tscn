@@ -1,10 +1,18 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://game/detection_boxes/hitbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/not_player/entity.gd" type="Script" id=2]
 [ext_resource path="res://entities/blink.gdshader" type="Shader" id=3]
 
 [sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+
+[sub_resource type="ShaderMaterial" id=9]
+shader = ExtResource( 3 )
+shader_param/active = false
+
+[sub_resource type="ShaderMaterial" id=6]
+resource_local_to_scene = true
 shader = ExtResource( 3 )
 shader_param/active = false
 
@@ -15,8 +23,15 @@ script = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 9 )
 
 [node name="hitbox" parent="." instance=ExtResource( 1 )]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+material = SubResource( 6 )
+position = Vector2( -12, -9 )
+playing = true
+centered = false
 
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="iframe_ended" from="hitbox" to="." method="_on_hitbox_iframe_ended"]

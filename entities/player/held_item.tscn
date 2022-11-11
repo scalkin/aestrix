@@ -20,7 +20,7 @@ position = Vector2( 0, -9 )
 texture = ExtResource( 2 )
 
 [node name="hurtbox_timer" type="Timer" parent="."]
-wait_time = 0.25
+wait_time = 0.1
 one_shot = true
 
 [node name="arrow" type="Node2D" parent="."]
