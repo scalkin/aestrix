@@ -14,6 +14,7 @@ onready var state_machine = $AnimationTree.get("parameters/playback")
 onready var held_item = $held_item
 
 func _ready():
+	$Sprite.get("material").set("shader_param/active", false)
 # warning-ignore:return_value_discarded
 	global.connect("game_saved", self, "save_player_position")
 	global_position = global.start_location
