@@ -37,6 +37,10 @@ var volume = 7
 
 onready var music = $AudioStreamPlayer
 
+func _ready():
+	shuffle_tracks()
+	_on_AudioStreamPlayer_finished()
+
 func shuffle_tracks():
 	for x in track_list:
 		x.shuffle()

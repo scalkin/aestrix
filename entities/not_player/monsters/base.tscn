@@ -80,7 +80,6 @@ polygon = PoolVector2Array( 1, 1, 10, 22, -10, 22, -1, 1 )
 [node name="AnimatedSprite" parent="." index="4"]
 material = SubResource( 12 )
 frames = SubResource( 6 )
-frame = 1
 
 [node name="player_detect" type="Area2D" parent="." index="5"]
 visible = false
