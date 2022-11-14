@@ -8,6 +8,18 @@
 			"name": "ozin_quest",
 			"type": 0,
 			"value": "False"
+		},
+		{
+			"id": "1668287132-487",
+			"name": "ozin_quest_completed",
+			"type": 0,
+			"value": "False"
+		},
+		{
+			"id": "1668287176-423",
+			"name": "ozin_dagger_acquired",
+			"type": 0,
+			"value": "False"
 		}
 	]
 }

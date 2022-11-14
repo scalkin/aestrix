@@ -12,7 +12,9 @@ __meta__ = {
 "_editor_description_": "mode 0:
 add monsters or enemies to this guy and once they are all gone, it will queue_free along with the wall.
 mode 1:
-it will wait until objective_id is completed"
+it will wait until objective_id is completed
+mode 2:
+blocks path after objective_id until _objective_id_2"
 }
 
 [node name="wall" type="StaticBody2D" parent="."]

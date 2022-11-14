@@ -3,9 +3,18 @@ extends Area2D
 signal hit
 signal iframe_ended
 
+var blood_res = preload("res://game/effects/particles/blood.tscn")
 var number_res = preload("res://game/effects/number_effect.tscn")
 
+export var blood = false
+
 func _on_hitbox_area_entered(area):
+	if blood:
+		for x in area.damage:
+			var blood = blood_res.instance()
+			get_parent().add_child(blood)
+			blood.global_position = (area.global_position + global_position)/2
+			blood.emitting = true
 	emit_signal("hit")
 	var number_effect = number_res.instance()
 	get_parent().get_parent().add_child(number_effect)

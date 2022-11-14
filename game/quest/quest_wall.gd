@@ -2,11 +2,12 @@ extends YSort
 
 export var quest_id = 0
 export var objective_id = 0
+export var objective_id_2 = 0
 export var mode = 0
 signal completed
 
 func _ready():
-	if objective_id in global.quests["completed_objectives"][quest_id]:
+	if objective_id in global.quests["completed_objectives"][quest_id] and mode !=2:
 		queue_free()
 
 func _process(_delta):
@@ -22,3 +23,13 @@ func _process(_delta):
 				emit_signal("completed")
 				global.save_game(global.save())
 				queue_free()
+		2:
+			if not objective_id in global.quests["completed_objectives"][quest_id]:
+				print(global.quests["completed_objectives"][quest_id])
+				queue_free()
+			else:
+				if objective_id_2 in global.quests["completed_objectives"][quest_id]:
+					emit_signal("completed")
+					global.save_game(global.save())
+					print(global.quests["completed_objectives"][quest_id])
+					queue_free()

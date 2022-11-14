@@ -1,6 +1,68 @@
 {
 	"events": [
 		{
+			"condition": "",
+			"definition": "1668287176-423",
+			"event_id": "dialogic_012",
+			"value": "True"
+		},
+		{
+			"condition": "==",
+			"definition": "1668287132-487",
+			"event_id": "dialogic_012",
+			"value": "False"
+		},
+		{
+			"character": "character-1668097194.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Don't think I'm going to like you just because you helped me."
+		},
+		{
+			"definition": "1668287132-487",
+			"event_id": "dialogic_014",
+			"operation": "=",
+			"random_upper_limit": 100,
+			"set_random": false,
+			"set_value": "True"
+		},
+		{
+			"custom_slot": "",
+			"event_id": "dialogic_026",
+			"use_default_slot": true
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"0",
+					"5"
+				],
+				"method_name": "objective_completed",
+				"target_node_path": "dialogue"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"call_node": {
+				"arguments": [
+
+				],
+				"method_name": "end_dialogue",
+				"target_node_path": "dialogue"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 1
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
 			"character": "character-1668097194.json",
 			"event_id": "dialogic_010",
 			"options": [
@@ -10,7 +72,7 @@
 			"question": "It's you."
 		},
 		{
-			"choice": "Something wrong with that?",
+			"choice": "What do you mean?",
 			"condition": "",
 			"definition": "",
 			"event_id": "dialogic_011",
@@ -84,13 +146,6 @@
 		},
 		{
 			"event_id": "dialogic_013"
-		},
-		{
-			"choice": "Ok, I'll be going now",
-			"condition": "",
-			"definition": "",
-			"event_id": "dialogic_011",
-			"value": ""
 		},
 		{
 			"event_id": "dialogic_013"
@@ -211,6 +266,10 @@
 				"target_node_path": "dialogue"
 			},
 			"event_id": "dialogic_042"
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 1
 		}
 	],
 	"metadata": {

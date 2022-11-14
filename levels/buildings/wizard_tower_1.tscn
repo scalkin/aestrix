@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/floors/wood_planks.png" type="Texture" id=1]
 [ext_resource path="res://game/effects/shadow/16x8gradient.png" type="Texture" id=2]
@@ -6,6 +6,10 @@
 [ext_resource path="res://levels/root.tscn" type="PackedScene" id=4]
 [ext_resource path="res://game/detection_boxes/warp.tscn" type="PackedScene" id=5]
 [ext_resource path="res://game/quest/quest_wall.tscn" type="PackedScene" id=6]
+[ext_resource path="res://game/detection_boxes/not_yet.tscn" type="PackedScene" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 22, 10 )
 
 [node name="root" instance=ExtResource( 4 )]
 
@@ -21,11 +25,16 @@ tile_data = PoolIntArray( -983062, 1, 0, -983061, 1, 0, -983060, 1, 0, -983059, 
 [node name="warps" type="Node2D" parent="." index="5"]
 
 [node name="warp" parent="warps" index="0" instance=ExtResource( 5 )]
-position = Vector2( 50, -23 )
+position = Vector2( 52, -26 )
 scene = "res://levels/buildings/wizard_tower_2.tscn"
 location = Vector2( 40, -25 )
 
-[node name="warp2" parent="warps" index="1" instance=ExtResource( 5 )]
+[node name="warp3" parent="warps" index="1" instance=ExtResource( 5 )]
+position = Vector2( -50, 33 )
+scene = "res://levels/dungeons/dungeon_1.tscn"
+location = Vector2( 67, -15 )
+
+[node name="warp2" parent="warps" index="2" instance=ExtResource( 5 )]
 position = Vector2( -1, 72 )
 scene = "res://levels/hub.tscn"
 location = Vector2( 415, -197 )
@@ -92,3 +101,17 @@ polygon = PoolVector2Array( 29, 16, 30, 16, 30, -17, 29, -17 )
 [node name="quest_wall" parent="." index="10" instance=ExtResource( 6 )]
 position = Vector2( -42, 21 )
 mode = 1
+
+[node name="quest_wall2" parent="." index="11" instance=ExtResource( 6 )]
+position = Vector2( 2, 74 )
+objective_id_2 = 5
+mode = 2
+
+[node name="CollisionShape2D" parent="quest_wall2/wall" index="0"]
+position = Vector2( -2, -5 )
+shape = SubResource( 1 )
+
+[node name="not_yet" parent="quest_wall2" index="1" instance=ExtResource( 7 )]
+position = Vector2( -1, -8 )
+
+[editable path="quest_wall2"]

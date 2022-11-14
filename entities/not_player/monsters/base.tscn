@@ -65,6 +65,9 @@ position = Vector2( 0, -2 )
 rotation = 1.57079
 shape = SubResource( 7 )
 
+[node name="hitbox" parent="." index="2"]
+blood = true
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" index="0"]
 visible = false
 position = Vector2( 0, -4 )
@@ -80,6 +83,7 @@ polygon = PoolVector2Array( 1, 1, 10, 22, -10, 22, -1, 1 )
 [node name="AnimatedSprite" parent="." index="4"]
 material = SubResource( 12 )
 frames = SubResource( 6 )
+frame = 4
 
 [node name="player_detect" type="Area2D" parent="." index="5"]
 visible = false
