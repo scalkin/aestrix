@@ -23,7 +23,8 @@ func _physics_process(delta):
 	input_vector = Input.get_vector("left", "right", "up", "down")
 	input_vector = input_vector.normalized()
 	if input_vector:
-		prev_input_vector= input_vector
+		prev_input_vector = input_vector
+		global.player_direction = prev_input_vector
 		state_machine.travel("Walk")
 		$AnimationTree.set("parameters/Idle/blend_position", input_vector)
 		$AnimationTree.set("parameters/Walk/blend_position", input_vector)

@@ -27,7 +27,7 @@ var item_swing_size_list = [140, 120, 130, 120, 170, 170, 130]
 var item_held_distance_list = [17, 14, 15, 17, 15, 20, 14]
 var item_attack_speed_list = [2000, 500, 400, 1000, 10, 750, 5000]
 var item_blade_length_list = [14, 6, 8, 13, 12, 20, 8]
-var item_damage_list = [5, 1, 1, 1, 3, 3, 2]
+var item_damage_list = [5, 2, 2, 2, 3, 3, 3]
 var item_trail_color = [0, 0, 0, 0, 0, 0, 1]
 
 export var swing_size = 120
@@ -41,7 +41,7 @@ var trail_res = preload("res://game/effects/attack_trail.tscn")
 var hurtbox_res = preload("res://game/detection_boxes/hurtbox.tscn")
 
 onready var weapon_sprite = $weapon
-onready var hand_sprite = $weapon
+onready var hand_sprite = $hand
 
 func attack(delta):
 	var applied_rotation_speed = ((sin((3.14*rotated)/swing_size)*1500)+(attack_speed*0.001))*delta

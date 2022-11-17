@@ -21,7 +21,7 @@ extents = Vector2( 10.5, 18 )
 extents = Vector2( 16.75, 10 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 10, 17.5 )
+extents = Vector2( 11, 10 )
 
 [node name="root" instance=ExtResource( 1 )]
 
@@ -113,7 +113,7 @@ position = Vector2( 5, -8 )
 
 [node name="quest_wall" parent="YSort" index="2" instance=ExtResource( 6 )]
 position = Vector2( -192, -15 )
-objective_id = 2
+objective_id = 1
 
 [node name="CollisionShape2D" parent="YSort/quest_wall/wall" index="0"]
 shape = SubResource( 2 )
@@ -126,7 +126,7 @@ position = Vector2( 46, -15 )
 
 [node name="quest_wall3" parent="YSort" index="3" instance=ExtResource( 6 )]
 position = Vector2( -192, -15 )
-objective_id_2 = 4
+objective_id_2 = 3
 
 [node name="CollisionShape2D" parent="YSort/quest_wall3/wall" index="0"]
 position = Vector2( 285, 0 )
@@ -134,7 +134,7 @@ shape = SubResource( 2 )
 
 [node name="quest_wall2" parent="YSort" index="4" instance=ExtResource( 6 )]
 position = Vector2( -316, -24 )
-objective_id = 3
+objective_id = 2
 
 [node name="CollisionShape2D" parent="YSort/quest_wall2/wall" index="0"]
 position = Vector2( 12.25, 40 )
@@ -148,10 +148,10 @@ position = Vector2( 35, -33 )
 
 [node name="quest_checkpoint" parent="YSort" index="5" instance=ExtResource( 8 )]
 position = Vector2( -271, 48 )
-objective_id = 4
+objective_id = 3
 
 [node name="CollisionShape2D" parent="YSort/quest_checkpoint" index="0"]
-position = Vector2( 13, 1 )
+position = Vector2( 14, 0 )
 shape = SubResource( 4 )
 
 [editable path="warp"]

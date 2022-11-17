@@ -42,7 +42,8 @@ animations = [ {
 } ]
 
 [node name="rat" instance=ExtResource( 1 )]
-health = 2
+health = 3
+max_speed = 100
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2( -3, -2 )
@@ -53,7 +54,7 @@ material = SubResource( 19 )
 [node name="AnimatedSprite" parent="." index="4"]
 material = SubResource( 14 )
 frames = SubResource( 18 )
-frame = 4
+frame = 3
 
 [node name="CollisionShape2D" parent="hurtbox" index="0"]
 visible = false

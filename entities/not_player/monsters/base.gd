@@ -3,9 +3,9 @@ extends "res://entities/not_player/entity.gd"
 var target_location = Vector2.ZERO
 var start_location = Vector2.ZERO
 var player_detected = false
-var velocity = Vector2.ZERO
 var state = WALK
 var target_vector = Vector2.ZERO
+var velocity = Vector2.ZERO
 
 export var damage = 1
 export var max_speed = 125
@@ -44,7 +44,7 @@ func _physics_process(delta):
 		target_location = global_position + Vector2(
 				rand_range(-wander_distance/2, wander_distance/2),
 				rand_range(-wander_distance/2, wander_distance/2))
-	$world_detect.rotation = atan2(velocity.y, velocity.x) - 1.570796
+	$world_detect.rotation = atan2(velocity.y, velocity.x) - deg2rad(90)
 	target_vector = (target_location - global_position).normalized()*state
 	$AnimatedSprite.playing = state == WALK
 	if player_detected:
@@ -79,3 +79,7 @@ func _on_state_timer_timeout():
 func _on_sprite_timer_timeout():
 	if velocity:
 		$AnimatedSprite.flip_h = velocity.x < 0
+
+
+func _on_hitbox_hit():
+	velocity = move_and_slide((global.player_stats[5]+1)*50*(get_viewport().get_mouse_position()-get_viewport().size/8).normalized()*global.player_stats[5])

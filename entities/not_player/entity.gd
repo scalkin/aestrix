@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 export var health = 5
+export var knockback = true
 
 signal death
 

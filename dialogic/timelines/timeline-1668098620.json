@@ -1,6 +1,12 @@
 {
 	"events": [
 		{
+			"condition": "!=",
+			"definition": "1668287132-487",
+			"event_id": "dialogic_012",
+			"value": "True"
+		},
+		{
 			"character": "character-1668097138.json",
 			"event_id": "dialogic_010",
 			"options": [
@@ -126,6 +132,43 @@
 		},
 		{
 			"event_id": "dialogic_013"
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"condition": "!=",
+			"definition": "1668287132-487",
+			"event_id": "dialogic_012",
+			"value": "False"
+		},
+		{
+			"character": "character-1668097138.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Did Ozin give you that dagger?"
+		},
+		{
+			"choice": "No, I got it from the basement.",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1668097138.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "You'll make a great adventurer with such a powerful weapon!"
 		},
 		{
 			"event_id": "dialogic_013"

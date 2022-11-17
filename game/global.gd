@@ -5,8 +5,8 @@ enum{
 	CONTROLLER
 }
 
-export var health = 5.0 setget set_health
-export var max_health = 5.0
+export var health = 10.0 setget set_health
+export var max_health = 10.0
 var start_location = Vector2.ZERO #used for travelling between scenes
 var player_accel = 500
 var player_max_speed = 200
@@ -67,38 +67,78 @@ var food_sprite_list = [
 	load("res://game/items/food/baked_potato.png"),
 	load("res://icon.png")
 ]
-var player_stats = [
+export var player_stats = [
 	0,#strength
 	0,#agility
-	0#defense
-]
+	0,#defense
+	0,#attack speed
+	0,#walk speed
+	0#knockback
+] setget set_player_stats
 
 var chest_data = [
 	[[], [0, 0, 0]],
 	[[6], [1]],
 ]
 var quests = {
-	"names" : ["rats"],
+	"names" : [""],
+	"objective_decriptions" : [["Ozin has requested that you deal with the rats in his basement. If you complete the task, you can keep the magical dagger in the basement.", "You've killed half the rats in the basement so far. Remember that if you are low on health, you can eat food by switching to the backpack tab and clicking the 'food' button, selecting some food, and hitting 'equip/use'.", "You've killed all the rats in the basement, you should grab the dagger from that chest now.", "You've cleared the basement, now go tell Ozin about your success.", "Quest completed."]],
 	"completed_quests" : [],
 	"completed_objectives" : [[], []],
-	"objectives_in_quest" : [5],
+	"objectives_in_quest" : [4],
 	"quests_recieved" : []
-}
+} setget update_quests
 
-
-var level_xp_list = [0, 50, 100]
 var level_attribute_points = [0, 1, 0]
-var xp = 0
-var xp_to_next_level = 0
+var xp = 0 setget set_xp
 var level = 1
 var target_mode = MOUSE
 var last_mouse_pos = Vector2.ZERO
 var attribute_points = 0
 var player_position = Vector2(215, -93)
 var current_scene
+var player_direction
 
 signal game_loaded
 signal game_saved
+
+func current_quests():
+	var result = []
+	for x in global.quests["quests_recieved"]:
+		if not x in global.quests["completed_quests"]:
+			result.append(x)
+	return result
+
+func quest_objective(id):
+	var result = 0
+	for x in quests["completed_objectives"][id]:
+		if x > result:
+			result = x
+	return result
+
+func update_quests(value):
+	if value["completed_objectives"] != quests["completed_objectives"]:
+		var index = 0
+		for x in value["completed_objectives"]:
+			if not index in quests["completed_quests"]:
+				for y in x:
+					if y == quests["objectives_in_quest"][index]:
+						value["completed_quests"].append(index)
+			index += 1
+	quests = value
+
+func set_player_stats(value):
+	player_stats = value
+	player_max_speed = (player_stats[4]*50)+ 200
+
+func set_xp(value):
+	xp = value
+	if xp >= xp_to_next_level(level):
+		xp -= xp_to_next_level(level)
+		xp = xp
+
+func xp_to_next_level(cur_level:float):
+	return 15*round(((cur_level*cur_level)/(sqrt(cur_level))))
 
 func save():
 	emit_signal("game_saved")
@@ -124,22 +164,24 @@ func save():
 
 func reset():
 	var save_dict = {
+		"current_quests" : [],
 		"xp" : 0,
 		"level" : 1,
 		"attribute_points" : 0,
 		"chest_data" : [[[], [0, 0, 0]],[[6], [1]]],
-		"player_stats" : [0, 0, 0],
+		"player_stats" : [0, 0, 0, 0, 0, 0],
 		"weapons_inventory" : [0, 1, 0, 0, 0, 0, 0],
 		"food_inventory" : [5, 1],
 		"held_item_id" : 1,
 		"player_max_speed" : 200,
 		"player_accel" : 500,
-		"max_health" : 5.0,
-		"health" : 5.0,
+		"max_health" : 10.0,
+		"health" : 10.0,
 		"player_position" : Vector2(215, -93),
 		"current_scene" : "res://levels/hub.tscn",
-		"quests" : {"names" : [""],"completed_quests" : [],"completed_objectives" : [[],[]], "objectives_in_quest" : [5],
-	"quests_recieved" : []}
+		"quests" : {"names" : [""],
+		"objective_decriptions" : [["Ozin has requested that you deal with the rats in his basement. If you complete the task, you can keep the magical dagger in the basement.", "You've killed half the rats in the basement so far. Remember that if you are low on health, you can eat food by switching to the backpack tab and clicking the 'food' button, selecting some food, and hitting 'equip/use'.", "You've killed all the rats in the basement, you should grab the dagger from that chest now.", "You've cleared the basement, now go tell Ozin about your success.", "Quest completed."]],"completed_quests" : [],"completed_objectives" : [[],[]], "objectives_in_quest" : [4],
+		"quests_recieved" : []}
 	}
 	Dialogic.reset_saves()
 	save_game(save_dict)
@@ -192,7 +234,6 @@ func _process(delta):
 	if (not get_tree().paused) and health < max_health:
 		health += delta*0.25
 		health = clamp(health, 0, 10)
-	xp_to_next_level = level_xp_list[level]
 	var controller_input_vector = Vector2.ZERO
 	controller_input_vector.x = Input.get_axis("target_left", "target_right")
 	controller_input_vector.y = Input.get_axis("target_up", "target_down")

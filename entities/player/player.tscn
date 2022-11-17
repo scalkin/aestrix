@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://entities/player/player_sprite.png" type="Texture" id=1]
 [ext_resource path="res://entities/player/player.gd" type="Script" id=2]
@@ -232,6 +232,9 @@ start_node = "Idle"
 [sub_resource type="CircleShape2D" id=26]
 radius = 3.0
 
+[sub_resource type="CircleShape2D" id=28]
+radius = 4.0
+
 [node name="player" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 2 )
@@ -292,11 +295,18 @@ parameters/Walk/blend_position = Vector2( 0, 0 )
 [node name="hitbox" parent="." instance=ExtResource( 5 )]
 collision_layer = 4
 collision_mask = 32
-blood = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 position = Vector2( 0, -2 )
 shape = SubResource( 26 )
+
+[node name="soft_collision" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="soft_collision"]
+position = Vector2( 0, -2 )
+shape = SubResource( 28 )
 
 [connection signal="attack_finished" from="held_item" to="." method="_on_held_item_attack_finished"]
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
