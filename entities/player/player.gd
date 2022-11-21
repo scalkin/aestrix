@@ -17,7 +17,15 @@ func _ready():
 	$Sprite.get("material").set("shader_param/active", false)
 # warning-ignore:return_value_discarded
 	global.connect("game_saved", self, "save_player_position")
+# warning-ignore:return_value_discarded
+	global.connect("player_position_updated", self, "set_player_position")
 	global_position = global.start_location
+
+func set_player_position():
+	print("reached")
+	print(global.player_position)
+	global_position = global.player_position
+	print(global_position)
 
 func _physics_process(delta):
 	input_vector = Input.get_vector("left", "right", "up", "down")
@@ -58,7 +66,7 @@ func save_player_position():
 	global.player_position = global_position
 
 func _on_hitbox_area_entered(area):
-	global.health -= area.damage
+	global.health -= area.damage*(((global.player_stats[2]*-9)+90)/100)
 	$Sprite.get("material").set("shader_param/active", true)
 
 

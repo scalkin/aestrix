@@ -11,6 +11,7 @@ export var damage = 1
 export var max_speed = 125
 export var accel = 500
 export var wander_distance = 75
+export var xp = 5
 
 signal player_detected
 
@@ -27,6 +28,7 @@ func _ready():
 	target_location = start_location
 
 func on_death():
+	global.xp += xp
 	queue_free()
 
 func _physics_process(delta):

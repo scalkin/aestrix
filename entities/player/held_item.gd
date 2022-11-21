@@ -44,7 +44,7 @@ onready var weapon_sprite = $weapon
 onready var hand_sprite = $hand
 
 func attack(delta):
-	var applied_rotation_speed = ((sin((3.14*rotated)/swing_size)*1500)+(attack_speed*0.001))*delta
+	var applied_rotation_speed = ((sin((3.14*rotated)/swing_size)*1500)+(attack_speed*(0.001*((global.player_stats[4]*50)+1))))*delta
 	match item_position:
 		DOWN:
 			rotate(-deg2rad(applied_rotation_speed))
@@ -143,7 +143,7 @@ func attack_trail():
 	hurtbox_collision_box.polygon = hurtbox_points
 	hurtbox.collision_layer = 8
 	hurtbox.collision_mask = 16
-	hurtbox.damage = damage
+	hurtbox.damage = damage*(((global.player_stats[0]*9)/100)+1)
 	$hurtbox_timer.start()
 	attack_cooldown = true
 

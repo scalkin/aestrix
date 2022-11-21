@@ -5,3 +5,4 @@
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="."]
+centered = false

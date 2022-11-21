@@ -1,18 +1,14 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://game/ui/ui.gd" type="Script" id=1]
 [ext_resource path="res://game/ui/assets/ui_theme.tres" type="Theme" id=2]
 [ext_resource path="res://entities/player/player_icon.png" type="Texture" id=3]
 [ext_resource path="res://game/ui/assets/ui_textures.png" type="Texture" id=4]
-[ext_resource path="res://game/ui/assets/attack_speed_upgrade_silver.png" type="Texture" id=5]
+[ext_resource path="res://game/ui/assets/strength_upgrade_bronze.png" type="Texture" id=5]
 [ext_resource path="res://game/ui/assets/attack_speed_upgrade_bronze.png" type="Texture" id=6]
-[ext_resource path="res://game/ui/assets/attack_speed_upgrade_gold.png" type="Texture" id=7]
+[ext_resource path="res://game/ui/assets/defense_upgrade_bronze.png" type="Texture" id=7]
 [ext_resource path="res://game/ui/assets/speed_upgrade_bronze.png" type="Texture" id=8]
-[ext_resource path="res://game/ui/assets/speed_upgrade_silver.png" type="Texture" id=9]
-[ext_resource path="res://game/ui/assets/speed_upgrade_gold.png" type="Texture" id=10]
-[ext_resource path="res://game/ui/assets/knockback_upgrade_silver.png" type="Texture" id=11]
 [ext_resource path="res://game/ui/assets/knockback_upgrade_bronze.png" type="Texture" id=12]
-[ext_resource path="res://game/ui/assets/knockback_upgrade_gold.png" type="Texture" id=13]
 [ext_resource path="res://game/ui/assets/ThaleahFat.ttf" type="DynamicFontData" id=14]
 
 [sub_resource type="AtlasTexture" id=1]
@@ -29,6 +25,9 @@ font_data = ExtResource( 14 )
 pause_mode = 2
 layer = 2
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [ 35.0, 71.0, 262.0, 264.0, 197.0, 268.0, 247.0, 250.0, 265.0, 217.0, 265.0, 202.0, 291.0, 286.0, 239.0, 224.0, 304.0 ]
+}
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 margin_left = 4.0
@@ -76,16 +75,11 @@ color = Color( 0, 0, 0, 0.392157 )
 [node name="TabContainer" type="TabContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 5.0
-margin_top = 5.0
-margin_right = -5.0
-margin_bottom = -5.0
 theme = ExtResource( 2 )
 tab_align = 0
 drag_to_rearrange_enabled = true
 
 [node name="player" type="Tabs" parent="TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 6.0
@@ -102,11 +96,11 @@ margin_right = -2.0
 margin_bottom = -2.0
 
 [node name="Panel" type="Panel" parent="TabContainer/player/HBoxContainer"]
-margin_right = 113.0
-margin_bottom = 105.0
+margin_right = 240.0
+margin_bottom = 115.0
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/player/HBoxContainer/Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/player/HBoxContainer/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 2.0
@@ -114,120 +108,48 @@ margin_top = 2.0
 margin_right = -2.0
 margin_bottom = -2.0
 
-[node name="player_icon" type="TextureRect" parent="TabContainer/player/HBoxContainer/Panel/VBoxContainer"]
-margin_right = 109.0
-margin_bottom = 48.0
+[node name="player_icon" type="TextureRect" parent="TabContainer/player/HBoxContainer/Panel/HBoxContainer"]
+margin_right = 116.0
+margin_bottom = 111.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 3 )
 expand = true
 stretch_mode = 5
 
-[node name="player_stats" type="Label" parent="TabContainer/player/HBoxContainer/Panel/VBoxContainer"]
-margin_top = 52.0
-margin_right = 109.0
-margin_bottom = 101.0
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/player/HBoxContainer/Panel/HBoxContainer"]
+margin_left = 120.0
+margin_right = 236.0
+margin_bottom = 111.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="player_stats" type="Label" parent="TabContainer/player/HBoxContainer/Panel/HBoxContainer/VBoxContainer"]
+margin_right = 116.0
+margin_bottom = 88.0
+size_flags_horizontal = 3
 size_flags_vertical = 7
 
-[node name="ability_points" type="Panel" parent="TabContainer/player/HBoxContainer"]
-margin_left = 117.0
-margin_right = 230.0
-margin_bottom = 105.0
-size_flags_horizontal = 3
+[node name="plus xp" type="HBoxContainer" parent="TabContainer/player/HBoxContainer/Panel/HBoxContainer/VBoxContainer"]
+margin_top = 92.0
+margin_right = 116.0
+margin_bottom = 111.0
 
-[node name="ability_points" type="VBoxContainer" parent="TabContainer/player/HBoxContainer/ability_points"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 2.0
-margin_top = 2.0
-margin_right = -2.0
-margin_bottom = -2.0
-
-[node name="Label" type="Label" parent="TabContainer/player/HBoxContainer/ability_points/ability_points"]
-margin_right = 109.0
-margin_bottom = 22.0
+[node name="plus xp" type="Button" parent="TabContainer/player/HBoxContainer/Panel/HBoxContainer/VBoxContainer/plus xp"]
+margin_right = 56.0
+margin_bottom = 19.0
 size_flags_horizontal = 3
-size_flags_vertical = 7
-text = "Attribute points: 0"
-align = 1
-valign = 1
+text = "addxp"
 
-[node name="strength" type="HBoxContainer" parent="TabContainer/player/HBoxContainer/ability_points/ability_points"]
-margin_top = 26.0
-margin_right = 109.0
-margin_bottom = 48.0
+[node name="LineEdit" type="LineEdit" parent="TabContainer/player/HBoxContainer/Panel/HBoxContainer/VBoxContainer/plus xp"]
+margin_left = 60.0
+margin_right = 116.0
+margin_bottom = 19.0
 size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="TabContainer/player/HBoxContainer/ability_points/ability_points/strength"]
-margin_right = 38.0
-margin_bottom = 22.0
-size_flags_horizontal = 3
-size_flags_vertical = 7
-text = "Strength"
-align = 1
-valign = 1
-
-[node name="Button" type="Button" parent="TabContainer/player/HBoxContainer/ability_points/ability_points/strength"]
-margin_left = 42.0
-margin_right = 109.0
-margin_bottom = 22.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-size_flags_stretch_ratio = 2.0
-text = "Add point"
-
-[node name="agility" type="HBoxContainer" parent="TabContainer/player/HBoxContainer/ability_points/ability_points"]
-margin_top = 52.0
-margin_right = 109.0
-margin_bottom = 74.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="TabContainer/player/HBoxContainer/ability_points/ability_points/agility"]
-margin_right = 35.0
-margin_bottom = 22.0
-size_flags_horizontal = 3
-size_flags_vertical = 7
-text = "Agility"
-align = 1
-valign = 1
-
-[node name="Button" type="Button" parent="TabContainer/player/HBoxContainer/ability_points/ability_points/agility"]
-margin_left = 39.0
-margin_right = 109.0
-margin_bottom = 22.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-size_flags_stretch_ratio = 2.0
-text = "Add point"
-
-[node name="defense" type="HBoxContainer" parent="TabContainer/player/HBoxContainer/ability_points/ability_points"]
-margin_top = 78.0
-margin_right = 109.0
-margin_bottom = 101.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="TabContainer/player/HBoxContainer/ability_points/ability_points/defense"]
-margin_right = 35.0
-margin_bottom = 23.0
-size_flags_horizontal = 3
-size_flags_vertical = 7
-text = "Defense"
-align = 1
-valign = 1
-
-[node name="Button" type="Button" parent="TabContainer/player/HBoxContainer/ability_points/ability_points/defense"]
-margin_left = 39.0
-margin_right = 109.0
-margin_bottom = 23.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-size_flags_stretch_ratio = 2.0
-text = "Add point"
+text = "5"
 
 [node name="quests" type="Tabs" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 6.0
@@ -240,8 +162,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Panel2" type="Panel" parent="TabContainer/quests/HBoxContainer"]
-margin_right = 115.0
-margin_bottom = 109.0
+margin_right = 120.0
+margin_bottom = 119.0
 size_flags_horizontal = 3
 
 [node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/quests/HBoxContainer/Panel2"]
@@ -256,11 +178,15 @@ size_flags_vertical = 3
 scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/quests/HBoxContainer/Panel2/ScrollContainer"]
+margin_right = 116.0
+margin_bottom = 115.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Panel" type="Panel" parent="TabContainer/quests/HBoxContainer"]
-margin_left = 119.0
-margin_right = 234.0
-margin_bottom = 109.0
+margin_left = 124.0
+margin_right = 244.0
+margin_bottom = 119.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="TabContainer/quests/HBoxContainer/Panel"]
@@ -283,17 +209,22 @@ margin_top = 25.0
 margin_right = -6.0
 margin_bottom = -6.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/upgrades"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/upgrades"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = -57.0
 
-[node name="attack_speed" type="Panel" parent="TabContainer/upgrades/HBoxContainer"]
-margin_right = 75.0
-margin_bottom = 52.0
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/upgrades/VBoxContainer"]
+margin_right = 244.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="strength" type="Panel" parent="TabContainer/upgrades/VBoxContainer/HBoxContainer"]
+margin_right = 78.0
+margin_bottom = 57.0
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/upgrades/HBoxContainer/attack_speed"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/upgrades/VBoxContainer/HBoxContainer/strength"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 2.0
@@ -302,48 +233,136 @@ margin_right = -2.0
 margin_bottom = -2.0
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="TabContainer/upgrades/HBoxContainer/attack_speed/VBoxContainer"]
-margin_right = 71.0
+[node name="Label" type="Label" parent="TabContainer/upgrades/VBoxContainer/HBoxContainer/strength/VBoxContainer"]
+margin_right = 74.0
+margin_bottom = 9.0
+text = "Strength"
+align = 1
+
+[node name="st1" type="Button" parent="TabContainer/upgrades/VBoxContainer/HBoxContainer/strength/VBoxContainer"]
+margin_top = 13.0
+margin_right = 74.0
+margin_bottom = 53.0
+size_flags_vertical = 3
+text = "I"
+icon = ExtResource( 5 )
+expand_icon = true
+
+[node name="info" type="Panel" parent="TabContainer/upgrades/VBoxContainer/HBoxContainer"]
+margin_left = 82.0
+margin_right = 161.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/upgrades/VBoxContainer/HBoxContainer/info"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = -2.0
+size_flags_horizontal = 3
+
+[node name="header" type="Label" parent="TabContainer/upgrades/VBoxContainer/HBoxContainer/info/VBoxContainer"]
+margin_right = 75.0
+margin_bottom = 9.0
+text = "Upgrade points"
+align = 1
+
+[node name="info" type="ScrollContainer" parent="TabContainer/upgrades/VBoxContainer/HBoxContainer/info/VBoxContainer"]
+margin_top = 13.0
+margin_right = 75.0
+margin_bottom = 34.0
+size_flags_vertical = 3
+
+[node name="info" type="Label" parent="TabContainer/upgrades/VBoxContainer/HBoxContainer/info/VBoxContainer/info"]
+margin_right = 75.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+align = 1
+valign = 1
+autowrap = true
+
+[node name="attrpt" type="Button" parent="TabContainer/upgrades/VBoxContainer/HBoxContainer/info/VBoxContainer"]
+margin_top = 38.0
+margin_right = 75.0
+margin_bottom = 53.0
+text = "plus point!"
+
+[node name="defense" type="Panel" parent="TabContainer/upgrades/VBoxContainer/HBoxContainer"]
+margin_left = 165.0
+margin_right = 244.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/upgrades/VBoxContainer/HBoxContainer/defense"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = -2.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="TabContainer/upgrades/VBoxContainer/HBoxContainer/defense/VBoxContainer"]
+margin_right = 75.0
+margin_bottom = 9.0
+text = "defense"
+align = 1
+
+[node name="d1" type="Button" parent="TabContainer/upgrades/VBoxContainer/HBoxContainer/defense/VBoxContainer"]
+margin_top = 13.0
+margin_right = 75.0
+margin_bottom = 53.0
+size_flags_vertical = 3
+text = "I"
+icon = ExtResource( 7 )
+expand_icon = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/upgrades/VBoxContainer"]
+margin_top = 61.0
+margin_right = 244.0
+margin_bottom = 119.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="attack_speed" type="Panel" parent="TabContainer/upgrades/VBoxContainer/HBoxContainer2"]
+margin_right = 78.0
+margin_bottom = 58.0
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/upgrades/VBoxContainer/HBoxContainer2/attack_speed"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = -2.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="TabContainer/upgrades/VBoxContainer/HBoxContainer2/attack_speed/VBoxContainer"]
+margin_right = 74.0
 margin_bottom = 9.0
 text = "Attack Speed"
 align = 1
 
-[node name="as1" type="Button" parent="TabContainer/upgrades/HBoxContainer/attack_speed/VBoxContainer"]
+[node name="as1" type="Button" parent="TabContainer/upgrades/VBoxContainer/HBoxContainer2/attack_speed/VBoxContainer"]
 margin_top = 13.0
-margin_right = 71.0
-margin_bottom = 48.0
+margin_right = 74.0
+margin_bottom = 54.0
 size_flags_vertical = 3
 text = "I"
 icon = ExtResource( 6 )
 expand_icon = true
 
-[node name="as2" type="Button" parent="TabContainer/upgrades/HBoxContainer/attack_speed/VBoxContainer"]
-visible = false
-margin_top = 43.0
-margin_right = 71.0
-margin_bottom = 70.0
-size_flags_vertical = 3
-text = "II"
-icon = ExtResource( 5 )
-expand_icon = true
-
-[node name="as3" type="Button" parent="TabContainer/upgrades/HBoxContainer/attack_speed/VBoxContainer"]
-visible = false
-margin_top = 59.0
-margin_right = 71.0
-margin_bottom = 101.0
-size_flags_vertical = 3
-text = "III"
-icon = ExtResource( 7 )
-expand_icon = true
-
-[node name="walk_speed" type="Panel" parent="TabContainer/upgrades/HBoxContainer"]
-margin_left = 79.0
-margin_right = 154.0
-margin_bottom = 52.0
+[node name="walk_speed" type="Panel" parent="TabContainer/upgrades/VBoxContainer/HBoxContainer2"]
+margin_left = 82.0
+margin_right = 161.0
+margin_bottom = 58.0
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/upgrades/HBoxContainer/walk_speed"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/upgrades/VBoxContainer/HBoxContainer2/walk_speed"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 2.0
@@ -352,48 +371,28 @@ margin_right = -2.0
 margin_bottom = -2.0
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="TabContainer/upgrades/HBoxContainer/walk_speed/VBoxContainer"]
-margin_right = 71.0
+[node name="Label" type="Label" parent="TabContainer/upgrades/VBoxContainer/HBoxContainer2/walk_speed/VBoxContainer"]
+margin_right = 75.0
 margin_bottom = 9.0
 text = "Walk Speed"
 align = 1
 
-[node name="s1" type="Button" parent="TabContainer/upgrades/HBoxContainer/walk_speed/VBoxContainer"]
+[node name="s1" type="Button" parent="TabContainer/upgrades/VBoxContainer/HBoxContainer2/walk_speed/VBoxContainer"]
 margin_top = 13.0
-margin_right = 71.0
-margin_bottom = 48.0
+margin_right = 75.0
+margin_bottom = 54.0
 size_flags_vertical = 3
 text = "I"
 icon = ExtResource( 8 )
 expand_icon = true
 
-[node name="s2" type="Button" parent="TabContainer/upgrades/HBoxContainer/walk_speed/VBoxContainer"]
-visible = false
-margin_top = 45.0
-margin_right = 71.0
-margin_bottom = 73.0
-size_flags_vertical = 3
-text = "II"
-icon = ExtResource( 9 )
-expand_icon = true
-
-[node name="s3" type="Button" parent="TabContainer/upgrades/HBoxContainer/walk_speed/VBoxContainer"]
-visible = false
-margin_top = 61.0
-margin_right = 71.0
-margin_bottom = 105.0
-size_flags_vertical = 3
-text = "III"
-icon = ExtResource( 10 )
-expand_icon = true
-
-[node name="knockback" type="Panel" parent="TabContainer/upgrades/HBoxContainer"]
-margin_left = 158.0
-margin_right = 234.0
-margin_bottom = 52.0
+[node name="knockback" type="Panel" parent="TabContainer/upgrades/VBoxContainer/HBoxContainer2"]
+margin_left = 165.0
+margin_right = 244.0
+margin_bottom = 58.0
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/upgrades/HBoxContainer/knockback"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/upgrades/VBoxContainer/HBoxContainer2/knockback"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 2.0
@@ -402,39 +401,19 @@ margin_right = -2.0
 margin_bottom = -2.0
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="TabContainer/upgrades/HBoxContainer/knockback/VBoxContainer"]
-margin_right = 72.0
+[node name="Label" type="Label" parent="TabContainer/upgrades/VBoxContainer/HBoxContainer2/knockback/VBoxContainer"]
+margin_right = 75.0
 margin_bottom = 9.0
 text = "knockback"
 align = 1
 
-[node name="k1" type="Button" parent="TabContainer/upgrades/HBoxContainer/knockback/VBoxContainer"]
+[node name="k1" type="Button" parent="TabContainer/upgrades/VBoxContainer/HBoxContainer2/knockback/VBoxContainer"]
 margin_top = 13.0
-margin_right = 72.0
-margin_bottom = 48.0
+margin_right = 75.0
+margin_bottom = 54.0
 size_flags_vertical = 3
 text = "I"
 icon = ExtResource( 12 )
-expand_icon = true
-
-[node name="k2" type="Button" parent="TabContainer/upgrades/HBoxContainer/knockback/VBoxContainer"]
-visible = false
-margin_top = 45.0
-margin_right = 72.0
-margin_bottom = 73.0
-size_flags_vertical = 3
-text = "II"
-icon = ExtResource( 11 )
-expand_icon = true
-
-[node name="k3" type="Button" parent="TabContainer/upgrades/HBoxContainer/knockback/VBoxContainer"]
-visible = false
-margin_top = 61.0
-margin_right = 72.0
-margin_bottom = 105.0
-size_flags_vertical = 3
-text = "III"
-icon = ExtResource( 13 )
 expand_icon = true
 
 [node name="Label" type="Label" parent="TabContainer/upgrades"]
@@ -450,10 +429,10 @@ autowrap = true
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1.0
-margin_top = 20.0
-margin_right = -1.0
-margin_bottom = -1.0
+margin_left = 6.0
+margin_top = 25.0
+margin_right = -6.0
+margin_bottom = -6.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/backpack"]
 anchor_right = 1.0
@@ -552,10 +531,10 @@ color = Color( 1, 1, 1, 0 )
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1.0
-margin_top = 20.0
-margin_right = -1.0
-margin_bottom = -1.0
+margin_left = 6.0
+margin_top = 25.0
+margin_right = -6.0
+margin_bottom = -6.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/menu"]
 anchor_right = 1.0
@@ -647,6 +626,13 @@ margin_bottom = 51.0
 max_value = 10.0
 value = 8.0
 
+[connection signal="pressed" from="TabContainer/player/HBoxContainer/Panel/HBoxContainer/VBoxContainer/plus xp/plus xp" to="." method="_on_plus_xp_pressed"]
+[connection signal="pressed" from="TabContainer/upgrades/VBoxContainer/HBoxContainer/strength/VBoxContainer/st1" to="." method="_on_attribute_button_pressed" binds= [ 0 ]]
+[connection signal="pressed" from="TabContainer/upgrades/VBoxContainer/HBoxContainer/info/VBoxContainer/attrpt" to="." method="_on_attrpt_pressed"]
+[connection signal="pressed" from="TabContainer/upgrades/VBoxContainer/HBoxContainer/defense/VBoxContainer/d1" to="." method="_on_attribute_button_pressed" binds= [ 2 ]]
+[connection signal="pressed" from="TabContainer/upgrades/VBoxContainer/HBoxContainer2/attack_speed/VBoxContainer/as1" to="." method="_on_attribute_button_pressed" binds= [ 3 ]]
+[connection signal="pressed" from="TabContainer/upgrades/VBoxContainer/HBoxContainer2/walk_speed/VBoxContainer/s1" to="." method="_on_attribute_button_pressed" binds= [ 4 ]]
+[connection signal="pressed" from="TabContainer/upgrades/VBoxContainer/HBoxContainer2/knockback/VBoxContainer/k1" to="." method="_on_attribute_button_pressed" binds= [ 5 ]]
 [connection signal="pressed" from="TabContainer/backpack/VBoxContainer/HBoxContainer/Panel2/VBoxContainer/use_button" to="." method="_on_use_button_pressed"]
 [connection signal="pressed" from="TabContainer/backpack/VBoxContainer/HBoxContainer2/weapon_button" to="." method="_on_weapon_button_pressed"]
 [connection signal="pressed" from="TabContainer/backpack/VBoxContainer/HBoxContainer2/food_button" to="." method="_on_food_button_pressed"]

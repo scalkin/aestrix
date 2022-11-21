@@ -11,6 +11,29 @@ var start_location = Vector2.ZERO #used for travelling between scenes
 var player_accel = 500
 var player_max_speed = 200
 export var held_item_id = 1
+var numeral = [
+	"",
+	"I",
+	"II",
+	"III",
+	"IV",
+	"V",
+	"VI",
+	"VII",
+	"VIII",
+	"IX",
+	"X",
+	"XI",
+	"XII",
+	"XIII",
+	"XIV",
+	"XV",
+	"XVI",
+	"XVII",
+	"XVIII",
+	"XIX",
+	"XX",
+]
 #Number represents how many are in inventory
 var weapons_inventory = [
 				0,#Energy sword(unused)
@@ -81,7 +104,7 @@ var chest_data = [
 	[[6], [1]],
 ]
 var quests = {
-	"names" : [""],
+	"names" : ["Once upon a time..."],
 	"objective_decriptions" : [["Ozin has requested that you deal with the rats in his basement. If you complete the task, you can keep the magical dagger in the basement.", "You've killed half the rats in the basement so far. Remember that if you are low on health, you can eat food by switching to the backpack tab and clicking the 'food' button, selecting some food, and hitting 'equip/use'.", "You've killed all the rats in the basement, you should grab the dagger from that chest now.", "You've cleared the basement, now go tell Ozin about your success.", "Quest completed."]],
 	"completed_quests" : [],
 	"completed_objectives" : [[], []],
@@ -95,12 +118,23 @@ var level = 1
 var target_mode = MOUSE
 var last_mouse_pos = Vector2.ZERO
 var attribute_points = 0
-var player_position = Vector2(215, -93)
+var player_position = Vector2(135, -67) setget set_player_position
 var current_scene
 var player_direction
 
 signal game_loaded
 signal game_saved
+signal player_position_updated
+
+func set_player_position(value):
+	print("set player position to " + str(value))
+	player_position = value
+	emit_signal("player_position_updated")
+
+func max_upgrade_level(cur_level):
+	if cur_level > 20:
+		return 5
+	return ceil(cur_level/5)+1
 
 func current_quests():
 	var result = []
@@ -134,11 +168,19 @@ func set_player_stats(value):
 func set_xp(value):
 	xp = value
 	if xp >= xp_to_next_level(level):
-		xp -= xp_to_next_level(level)
-		xp = xp
+		while xp >= xp_to_next_level(level):
+			xp -= xp_to_next_level(level)
+			level += 1
+			max_health += 5
+			health = max_health
+			if not level < 3:
+				attribute_points += 1
 
 func xp_to_next_level(cur_level:float):
 	return 15*round(((cur_level*cur_level)/(sqrt(cur_level))))
+
+func health_at_level(cur_level:float):
+	return 10*round(((cur_level*cur_level)/(sqrt(cur_level))))
 
 func save():
 	emit_signal("game_saved")
@@ -177,9 +219,9 @@ func reset():
 		"player_accel" : 500,
 		"max_health" : 10.0,
 		"health" : 10.0,
-		"player_position" : Vector2(215, -93),
+		"player_position" : Vector2(135, -67),
 		"current_scene" : "res://levels/hub.tscn",
-		"quests" : {"names" : [""],
+		"quests" : {"names" : ["Once upon a time..."],
 		"objective_decriptions" : [["Ozin has requested that you deal with the rats in his basement. If you complete the task, you can keep the magical dagger in the basement.", "You've killed half the rats in the basement so far. Remember that if you are low on health, you can eat food by switching to the backpack tab and clicking the 'food' button, selecting some food, and hitting 'equip/use'.", "You've killed all the rats in the basement, you should grab the dagger from that chest now.", "You've cleared the basement, now go tell Ozin about your success.", "Quest completed."]],"completed_quests" : [],"completed_objectives" : [[],[]], "objectives_in_quest" : [4],
 		"quests_recieved" : []}
 	}
@@ -187,6 +229,8 @@ func reset():
 	save_game(save_dict)
 	load_game()
 	print(parse_inventory())
+	self.player_position = Vector2(135, -67)
+	start_location = player_position
 
 
 func save_game(data):
@@ -214,7 +258,7 @@ func load_game():
 					"fullscreen":
 						OS.window_fullscreen = node_data[i]
 					"player_position":
-						player_position = Vector2(node_data[i][0], node_data[i][1])
+						self.player_position = Vector2(node_data[i][0], node_data[i][1])
 	Dialogic.load()
 	save_game.close()
 	print("\nhello\n")
@@ -307,3 +351,7 @@ func set_health(value):
 		get_tree().reload_current_scene()
 		travel_scene("res://levels/hub.tscn", Vector2.ZERO, false)
 		global.save_game(global.save())
+
+
+func _on_Node_player_position_updated():
+	print("ack")

@@ -104,7 +104,7 @@ mode = 1
 
 [node name="quest_wall2" parent="." index="11" instance=ExtResource( 6 )]
 position = Vector2( 2, 74 )
-objective_id_2 = 5
+objective_id_2 = 4
 mode = 2
 
 [node name="CollisionShape2D" parent="quest_wall2/wall" index="0"]
