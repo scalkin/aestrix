@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://entities/npc/npc.tscn" type="PackedScene" id=1]
+[ext_resource path="res://entities/npc/assets/wilfred_merchant.png" type="Texture" id=2]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends StaticBody2D
@@ -9,5 +10,32 @@ func _on_Area2D_area_entered(_area):
 	dialogue.start(\"wilfred_1\")
 "
 
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 25, 26 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 25, 0, 25, 26 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 50, 0, 25, 26 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 75, 0, 25, 26 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [node name="wilfred" instance=ExtResource( 1 )]
 script = SubResource( 1 )
+
+[node name="AnimatedSprite" parent="." index="0"]
+frames = SubResource( 6 )

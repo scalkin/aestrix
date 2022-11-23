@@ -277,7 +277,6 @@ func _process(delta):
 	OS.window_size.x = clamp(OS.window_size.x, OS.window_size.y, OS.window_size.y*2)
 	if (not get_tree().paused) and health < max_health:
 		health += delta*0.25
-		health = clamp(health, 0, 10)
 	var controller_input_vector = Vector2.ZERO
 	controller_input_vector.x = Input.get_axis("target_left", "target_right")
 	controller_input_vector.y = Input.get_axis("target_up", "target_down")
@@ -351,7 +350,3 @@ func set_health(value):
 		get_tree().reload_current_scene()
 		travel_scene("res://levels/hub.tscn", Vector2.ZERO, false)
 		global.save_game(global.save())
-
-
-func _on_Node_player_position_updated():
-	print("ack")

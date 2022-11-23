@@ -1,0 +1,92 @@
+{
+	"events": [
+		{
+			"character": "character-1669046076.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Aye! What're you doin' in 'ere?"
+		},
+		{
+			"character": "character-1669046076.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "The townfolk migh' take nicely to yer kind, bu't i won'."
+		},
+		{
+			"choice": "Ozin didn't exactly like me either",
+			"condition": "!=",
+			"definition": "1668109058-330",
+			"event_id": "dialogic_011",
+			"value": "False"
+		},
+		{
+			"character": "character-1669046076.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Ye act surprised, as if ye folk are anythin' more than charla'ans."
+		},
+		{
+			"character": "character-1669046076.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Ye barely do onythin in this town, and expec' us te pay ye as if yer a bleedin' 'ero!"
+		},
+		{
+			"character": "character-1669046076.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "There's another town jus' south of 'ere why don' ye head o'er there, maybe they'll take mare kindly to yer folk."
+		},
+		{
+			"choice": "I'm just looking for some work",
+			"condition": "",
+			"definition": "1668109058-330",
+			"event_id": "dialogic_011",
+			"value": "False"
+		},
+		{
+			"character": "character-1669046076.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Of course ye are, yer an adventurer."
+		},
+		{
+			"character": "character-1669046076.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Look, if it'll get you off me back, I hear the folks in the wizard tower jus' ou' o town need some 'elp."
+		},
+		{
+			"choice": "Look, I'll be going now",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"call_node": {
+				"arguments": [
+
+				],
+				"method_name": "end_dialogue",
+				"target_node_path": "dialogue"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 1
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1669046073.json",
+		"name": "innkeeper_1"
+	}
+}

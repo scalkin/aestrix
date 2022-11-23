@@ -39,7 +39,7 @@ extents = Vector2( 18.5, 8 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="1"]
 position = Vector2( -18, -27 )
 frames = SubResource( 6 )
-frame = 1
+frame = 3
 playing = true
 centered = false
 

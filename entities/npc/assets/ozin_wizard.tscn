@@ -40,3 +40,4 @@ dialogic_timeline = "ozin_1"
 
 [node name="AnimatedSprite" parent="." index="0"]
 frames = SubResource( 7 )
+frame = 3

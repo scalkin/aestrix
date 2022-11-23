@@ -5,5 +5,3 @@
 [node name="Node" type="Node2D"]
 pause_mode = 2
 script = ExtResource( 1 )
-
-[connection signal="player_position_updated" from="." to="." method="_on_Node_player_position_updated"]
