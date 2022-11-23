@@ -124,9 +124,17 @@ position = Vector2( 135, -67 )
 
 [node name="rat" parent="YSort/objects" index="0" instance=ExtResource( 18 )]
 position = Vector2( 504, -132 )
+damage = 1
+accel = 500
+wander_distance = 75
+xp = 5
 
 [node name="rat2" parent="YSort/objects" index="1" instance=ExtResource( 18 )]
 position = Vector2( 661, -14 )
+damage = 1
+accel = 500
+wander_distance = 75
+xp = 5
 
 [node name="rock" parent="YSort/objects" index="2" instance=ExtResource( 2 )]
 position = Vector2( 61, -91 )
