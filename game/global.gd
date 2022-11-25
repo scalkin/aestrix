@@ -4,7 +4,6 @@ enum{
 	MOUSE
 	CONTROLLER
 }
-
 export var health = 10.0 setget set_health
 export var max_health = 10.0
 var start_location = Vector2.ZERO #used for travelling between scenes
@@ -104,13 +103,16 @@ var chest_data = [
 	[[6], [1]],
 ]
 var quests = {
-	"names" : ["Once upon a time..."],
-	"objective_decriptions" : [["Ozin has requested that you deal with the rats in his basement. If you complete the task, you can keep the magical dagger in the basement.", "You've killed half the rats in the basement so far. Remember that if you are low on health, you can eat food by switching to the backpack tab and clicking the 'food' button, selecting some food, and hitting 'equip/use'.", "You've killed all the rats in the basement, you should grab the dagger from that chest now.", "You've cleared the basement, now go tell Ozin about your success.", "Quest completed."]],
 	"completed_quests" : [],
 	"completed_objectives" : [[], []],
-	"objectives_in_quest" : [4],
 	"quests_recieved" : []
 } setget update_quests
+
+var quest_data = {
+	"names" : ["Once upon a time..."],
+	"objective_decriptions" : [["Ozin has requested that you deal with the rats in his basement. If you complete the task, you can keep the magical dagger in the basement.", "You've killed half the rats in the basement so far. Remember that if you are low on health, you can eat food by switching to the backpack tab and clicking the 'food' button, selecting some food, and hitting 'equip/use'.", "You've killed all the rats in the basement, you should grab the dagger from that chest now.", "You've cleared the basement, now go tell Ozin about your success.", "Quest completed."]],
+	"objectives_in_quest" : [4],
+}
 
 var level_attribute_points = [0, 1, 0]
 var xp = 0 setget set_xp
@@ -221,9 +223,7 @@ func reset():
 		"health" : 10.0,
 		"player_position" : Vector2(135, -67),
 		"current_scene" : "res://levels/hub.tscn",
-		"quests" : {"names" : ["Once upon a time..."],
-		"objective_decriptions" : [["Ozin has requested that you deal with the rats in his basement. If you complete the task, you can keep the magical dagger in the basement.", "You've killed half the rats in the basement so far. Remember that if you are low on health, you can eat food by switching to the backpack tab and clicking the 'food' button, selecting some food, and hitting 'equip/use'.", "You've killed all the rats in the basement, you should grab the dagger from that chest now.", "You've cleared the basement, now go tell Ozin about your success.", "Quest completed."]],"completed_quests" : [],"completed_objectives" : [[],[]], "objectives_in_quest" : [4],
-		"quests_recieved" : []}
+		quests = {"completed_quests" : [],	"completed_objectives" : [[], []],	"quests_recieved" : []}
 	}
 	Dialogic.reset_saves()
 	save_game(save_dict)
@@ -236,15 +236,15 @@ func reset():
 func save_game(data):
 	print(data)
 	var save_game = File.new()
-	save_game.open("user://savegame.save", File.WRITE)
+	save_game.open("user://aestrix_save.json", File.WRITE)
 	save_game.store_line(to_json(data))
 	save_game.close()
 
 func load_game():
 	var save_game = File.new()
-	if not save_game.file_exists("user://savegame.save"):
+	if not save_game.file_exists("user://aestrix_save.json"):
 		return false
-	save_game.open("user://savegame.save", File.READ)
+	save_game.open("user://aestrix_save.json", File.READ)
 	while save_game.get_position() < save_game.get_len():
 		var node_data = parse_json(save_game.get_line())
 		if node_data == null:
@@ -259,10 +259,10 @@ func load_game():
 						OS.window_fullscreen = node_data[i]
 					"player_position":
 						self.player_position = Vector2(node_data[i][0], node_data[i][1])
+						print(player_position)
 	Dialogic.load()
 	save_game.close()
 	print("\nhello\n")
-	print(player_position)
 	travel_scene(current_scene, player_position, false)
 	emit_signal("game_loaded")
 	return true
@@ -337,7 +337,10 @@ func travel_scene(scene: String, location: Vector2, save: bool):
 # warning-ignore:return_value_discarded
 	get_tree().change_scene(scene)
 	if save:
-		save_game(save())
+		var save_data = save()
+		save_data["current_scene"] = scene
+		save_data["player_position"] = location
+		save_game(save_data)
 
 func set_health(value):
 	health = value

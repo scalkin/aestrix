@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float pixel_factor : hint_range(0, 10) = 5;
+
+void fragment(){
+	vec2 pixelated_uv = round(UV * pixel_factor) / pixel_factor;
+	vec4 new_color = texture(TEXTURE, pixelated_uv);
+	COLOR = new_color;
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/pixel_factor = 5.0

@@ -155,7 +155,8 @@ func idle():
 		DOWN:
 			item_applied_position = swing_size/2
 	var relative_mouse_location = get_global_mouse_position() - global_position
-	rotation_degrees = rad2deg(atan2(relative_mouse_location.y, relative_mouse_location.x)) + 90
+	var target_rotation_degrees = rad2deg(atan2(relative_mouse_location.y, relative_mouse_location.x)) + 90
+	rotation_degrees = target_rotation_degrees
 	rotate(deg2rad(item_applied_position))
 	weapon_sprite.flip_h = (item_position == UP)
 	hand_sprite.flip_h = weapon_sprite.flip_h
