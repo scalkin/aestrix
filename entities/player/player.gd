@@ -93,6 +93,7 @@ func _on_held_item_attack_finished():
 
 func save_player_position():
 	global.player_position = global_position
+	OS.alert("Set global player position to " + str(global_position))
 
 func _on_hitbox_area_entered(area):
 	global.health -= area.damage*(((global.player_stats[2]*-9)+90)/100)

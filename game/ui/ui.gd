@@ -69,7 +69,7 @@ func _physics_process(_delta):
 		FOOD:
 			$TabContainer/backpack/VBoxContainer/HBoxContainer/Panel2/VBoxContainer/ScrollContainer/Label.text = global.food_name_list[selected_item] + "\n" + global.food_desc_list[selected_item] + "\n\n" + str(global.food_inventory[selected_item]) + " in inventory"
 	if global.current_quests() != []:
-		$TabContainer/quests/HBoxContainer/Panel/Label.text = global.quests["objective_decriptions"][selected_quest][global.quest_objective(selected_quest)]
+		$TabContainer/quests/HBoxContainer/Panel/Label.text = global.quest_data["objective_decriptions"][selected_quest][global.quest_objective(selected_quest)]
 	else:
 		$TabContainer/quests/HBoxContainer/Panel/Label.text = "There are no quests here."
 	$NinePatchRect/TextureRect.rect_size.x = int((global.health/global.max_health)*46)

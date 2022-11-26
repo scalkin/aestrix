@@ -10,6 +10,7 @@ var start_location = Vector2.ZERO #used for travelling between scenes
 var player_accel = 500
 var player_max_speed = 200
 export var held_item_id = 1
+var loaded = false
 var numeral = [
 	"",
 	"I",
@@ -128,7 +129,7 @@ signal game_loaded
 signal game_saved
 signal player_position_updated
 
-func set_player_position(value):
+func set_player_position(value : Vector2):
 	print("set player position to " + str(value))
 	player_position = value
 	emit_signal("player_position_updated")
@@ -158,7 +159,7 @@ func update_quests(value):
 		for x in value["completed_objectives"]:
 			if not index in quests["completed_quests"]:
 				for y in x:
-					if y == quests["objectives_in_quest"][index]:
+					if y == quest_data["objectives_in_quest"][index]:
 						value["completed_quests"].append(index)
 			index += 1
 	quests = value
@@ -200,7 +201,8 @@ func save():
 		"fullscreen" : OS.window_fullscreen,
 		"max_health" : max_health,
 		"health" : health,
-		"player_position" : [player_position.x, player_position.y],
+		"player_position_x" : player_position.x,
+		"player_position_y" : player_position.y,
 		"current_scene" : get_tree().current_scene.filename,
 		"quests" : quests
 	}
@@ -221,7 +223,8 @@ func reset():
 		"player_accel" : 500,
 		"max_health" : 10.0,
 		"health" : 10.0,
-		"player_position" : Vector2(135, -67),
+		"player_position_x" : 135,
+		"player_position_y" : -67,
 		"current_scene" : "res://levels/hub.tscn",
 		quests = {"completed_quests" : [],	"completed_objectives" : [[], []],	"quests_recieved" : []}
 	}
@@ -241,6 +244,7 @@ func save_game(data):
 	save_game.close()
 
 func load_game():
+	loaded = false
 	var save_game = File.new()
 	if not save_game.file_exists("user://aestrix_save.json"):
 		return false
@@ -251,18 +255,19 @@ func load_game():
 			return false
 		print(node_data.keys())
 		for i in node_data.keys():
-			if not i in ["fullscreen", "player_position"]:
+			if not i in ["fullscreen", "player_position_x", "player_position_y"]:
 				set(i, node_data[i])
 			else:
 				match i:
 					"fullscreen":
 						OS.window_fullscreen = node_data[i]
-					"player_position":
-						self.player_position = Vector2(node_data[i][0], node_data[i][1])
-						print(player_position)
+					"player_position_x":
+						self.player_position.x = int(node_data[i])
+					"player_position_y":
+						self.player_position.y = int(node_data[i])
 	Dialogic.load()
 	save_game.close()
-	print("\nhello\n")
+	print("Player position passed to travel scene function: " + str(player_position))
 	travel_scene(current_scene, player_position, false)
 	emit_signal("game_loaded")
 	return true
@@ -339,8 +344,9 @@ func travel_scene(scene: String, location: Vector2, save: bool):
 	if save:
 		var save_data = save()
 		save_data["current_scene"] = scene
-		save_data["player_position"] = location
-		save_game(save_data)
+		save_data["player_position_x"] = location.x
+		save_data["player_position_y"] = location.y
+		call_deferred("save_game", save_data)
 
 func set_health(value):
 	health = value
