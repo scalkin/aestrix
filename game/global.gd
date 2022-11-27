@@ -10,7 +10,8 @@ var start_location = Vector2.ZERO #used for travelling between scenes
 var player_accel = 500
 var player_max_speed = 200
 export var held_item_id = 1
-var loaded = false
+var loaded = false #is false while loading
+var vignette = true
 var numeral = [
 	"",
 	"I",
@@ -44,10 +45,12 @@ var weapons_inventory = [
 				0,#Longsword
 				0,#Lunar dagger
 ]
+#Just like the weapons inventory
 var food_inventory = [
 				5,#Bread
 				1,#Baked potato
 ]
+#This one should be obvious
 var weapon_desc_list = [
 	"A more civilized weapon.\n\n5 Damage\n140 degree swing\n14 pixel blade",
 	"A simple weapon, designed to be easily concealed.\n\n1 Damage\n120 degree swing\n6 pixel blade",
@@ -66,6 +69,7 @@ var weapon_name_list = [
 	"Longsword",
 	"Lunar Dagger"
 ]
+#list of sprites for different weapons
 var weapon_sprite_list = [
 	load("res://game/items/weapons/energy_sword_1.png"),
 	load("res://game/items/weapons/dagger_1.png"),
@@ -84,6 +88,7 @@ var food_name_list = [
 	"Baked potato",
 	"error"
 ]
+#how much health the item heals
 var food_stats = [5, 10]
 var food_sprite_list = [
 	load("res://game/items/food/bread.png"),
@@ -98,7 +103,7 @@ export var player_stats = [
 	0,#walk speed
 	0#knockback
 ] setget set_player_stats
-
+#its a list of lists. for example, chest_data[0] would return [[], [0, 0, 0]], and the first list would be the weapons, and the second is the food
 var chest_data = [
 	[[], [0, 0, 0]],
 	[[6], [1]],
@@ -108,44 +113,48 @@ var quests = {
 	"completed_objectives" : [[], []],
 	"quests_recieved" : []
 } setget update_quests
-
+#just some data about the quests that doesn't change
 var quest_data = {
 	"names" : ["Once upon a time..."],
 	"objective_decriptions" : [["Ozin has requested that you deal with the rats in his basement. If you complete the task, you can keep the magical dagger in the basement.", "You've killed half the rats in the basement so far. Remember that if you are low on health, you can eat food by switching to the backpack tab and clicking the 'food' button, selecting some food, and hitting 'equip/use'.", "You've killed all the rats in the basement, you should grab the dagger from that chest now.", "You've cleared the basement, now go tell Ozin about your success.", "Quest completed."]],
 	"objectives_in_quest" : [4],
 }
 
-var level_attribute_points = [0, 1, 0]
 var xp = 0 setget set_xp
 var level = 1
+#used to determine if the player iss using a mouse or controller
 var target_mode = MOUSE
+#also used for mouse/controller detection
 var last_mouse_pos = Vector2.ZERO
+#how many points we have to spend on upgrades
 var attribute_points = 0
+#player's global_position; updated on save
 var player_position = Vector2(135, -67) setget set_player_position
 var current_scene
 var player_direction
 
 signal game_loaded
 signal game_saved
+#used to notify player script that the player_position variable has been updated and to update global_position accordingly
 signal player_position_updated
 
 func set_player_position(value : Vector2):
 	print("set player position to " + str(value))
 	player_position = value
 	emit_signal("player_position_updated")
-
+#returns the maximum level upgrades available at current level
 func max_upgrade_level(cur_level):
 	if cur_level > 20:
 		return 5
 	return ceil(cur_level/5)+1
-
+#compares recieved and completed quests to determine what quests the player currently has
 func current_quests():
 	var result = []
 	for x in global.quests["quests_recieved"]:
 		if not x in global.quests["completed_quests"]:
 			result.append(x)
 	return result
-
+#ierates over the list of completed objectives for a particular quest id to find the highest one
 func quest_objective(id):
 	var result = 0
 	for x in quests["completed_objectives"][id]:
@@ -279,6 +288,7 @@ func _ready():
 		save_game(reset())
 
 func _process(delta):
+	$CanvasLayer/TextureRect.visible = vignette
 	OS.window_size.x = clamp(OS.window_size.x, OS.window_size.y, OS.window_size.y*2)
 	if (not get_tree().paused) and health < max_health:
 		health += delta*0.25

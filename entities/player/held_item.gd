@@ -45,35 +45,25 @@ onready var hand_sprite = $hand
 
 func attack(delta):
 	var applied_rotation_speed = ((sin((3.14*rotated)/swing_size)*1500)+(attack_speed*(0.001*((global.player_stats[4]*50)+1))))*delta
+	var direction_modifier = 1
 	match item_position:
 		DOWN:
-			rotate(-deg2rad(applied_rotation_speed))
-			rotated += applied_rotation_speed
-			if rotated >= swing_size:
-				weapon_sprite.hide()
-				var prev_rotation = rotation_degrees
-				rotate(deg2rad(rotated/2))
-				calculate_trail_points()
-				attack_trail()
-				emit_signal("attack_finished")
-				flip_item_position()
-				rotation_degrees = prev_rotation
-				weapon_sprite.show()
-				attacking = false
+			direction_modifier = -1
 		UP:
-			rotate(deg2rad(applied_rotation_speed))
-			rotated += applied_rotation_speed
-			if rotated >= swing_size:
-				weapon_sprite.hide()
-				var prev_rotation = rotation_degrees
-				rotate(-deg2rad(rotated/2))
-				calculate_trail_points()
-				attack_trail()
-				emit_signal("attack_finished")
-				flip_item_position()
-				rotation_degrees = prev_rotation
-				weapon_sprite.show()
-				attacking = false
+			direction_modifier = 1
+	rotate(direction_modifier*deg2rad(applied_rotation_speed))
+	rotated += applied_rotation_speed
+	if rotated >= swing_size:
+		weapon_sprite.hide()
+		var prev_rotation = rotation_degrees
+		rotate(-direction_modifier*deg2rad(rotated/2))
+		calculate_trail_points()
+		attack_trail()
+		emit_signal("attack_finished")
+		flip_item_position()
+		rotation_degrees = prev_rotation
+		weapon_sprite.show()
+		attacking = false
 
 func calculate_trail_points():
 	trail_points = [

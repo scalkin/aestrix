@@ -38,6 +38,6 @@ animations = [ {
 [node name="ozin" instance=ExtResource( 1 )]
 dialogic_timeline = "ozin_1"
 
-[node name="AnimatedSprite" parent="." index="0"]
+[node name="AnimatedSprite" parent="." index="2"]
+position = Vector2( 0, -7 )
 frames = SubResource( 7 )
-frame = 3

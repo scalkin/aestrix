@@ -43,7 +43,11 @@ animations = [ {
 
 [node name="rat" instance=ExtResource( 1 )]
 health = 3
+damage = 1
 max_speed = 100
+accel = 500
+wander_distance = 75
+xp = 5
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2( -3, -2 )

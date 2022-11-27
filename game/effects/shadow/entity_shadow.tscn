@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://game/effects/shadow/12x8.png" type="Texture" id=1]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+void fragment(){
+	vec4 new_color = texture(SCREEN_TEXTURE, SCREEN_UV)*texture(TEXTURE, UV);
+	new_color.a = texture(TEXTURE, UV).a/3.0;
+	COLOR = new_color;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+
+[node name="shadow" type="Sprite"]
+material = SubResource( 2 )
+texture = ExtResource( 1 )

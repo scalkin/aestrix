@@ -44,6 +44,7 @@ func upgrade_icon(type: String, id: int):
 	return upgrade_icons[type][id]
 
 func _ready():
+	$TabContainer/menu/HBoxContainer/Panel/settings/VBoxContainer/vignette.pressed = global.vignette
 	if not OS.is_debug_build():
 		$TabContainer/backpack/VBoxContainer/HBoxContainer/Panel2/VBoxContainer/use_button.queue_free()
 		$"TabContainer/player/HBoxContainer/Panel/HBoxContainer/VBoxContainer/plus xp".queue_free()
@@ -52,6 +53,7 @@ func _ready():
 	$TabContainer.visible = false
 
 func _physics_process(_delta):
+	global.vignette = $TabContainer/menu/HBoxContainer/Panel/settings/VBoxContainer/vignette.pressed
 	$NinePatchRect/health_label.text = str(int(global.health)) + "/" + str(int(global.max_health))
 	process_settings()
 	$TabContainer/player/HBoxContainer/Panel/HBoxContainer/VBoxContainer/player_stats.text = "Level " + str(global.level) + "    XP: " + str(global.xp) + "/" + str(global.xp_to_next_level(global.level))

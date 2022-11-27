@@ -1,7 +1,58 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://game/global.gd" type="Script" id=1]
+[ext_resource path="res://game/effects/shadow/vignette.png" type="Texture" id=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float threshold = 1.0;
+
+void fragment(){
+	if (UV.x > threshold){
+		COLOR.a = 0.5;
+	}
+	if (1.0-UV.x > threshold){
+		COLOR.a = 0.5;
+	}
+	if (UV.y > threshold){
+		COLOR.a = 0.5;
+	}
+	if (1.0-UV.y > threshold){
+		COLOR.a = 0.5;
+	}
+	if (COLOR.a == 0.5){
+		COLOR.a = 1.0;
+	}
+	else{
+		COLOR.a = 0.0;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/threshold = 1.026
 
 [node name="Node" type="Node2D"]
 pause_mode = 2
 script = ExtResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+modulate = Color( 1, 1, 1, 0.431373 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 1
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2"]
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )

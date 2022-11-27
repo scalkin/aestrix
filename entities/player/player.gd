@@ -34,6 +34,9 @@ func set_player_position():
 	print(global_position)
 
 func _physics_process(delta):
+	$run_effect.emitting = velocity.length() > 100
+	$run_effect.process_material.initial_velocity = velocity.length()/50
+	$run_effect.process_material.direction= Vector3(-input_vector.x, -input_vector.y, 0)
 	$AnimationTree.active = !free_cam
 	if OS.is_debug_build():
 		var zoom =  (Input.get_action_strength("zoom_out") - Input.get_action_strength("zoom_in")) / 50
@@ -52,7 +55,7 @@ func _physics_process(delta):
 			camera.smoothing_speed = 0
 		else:
 			last_camera_location = camera.global_position
-			camera.smoothing_speed = 10
+			camera.smoothing_speed = 7
 	global_position = Vector2(round(global_position.x), round(global_position.y))
 	input_vector = Input.get_vector("left", "right", "up", "down")
 	input_vector = input_vector.normalized()

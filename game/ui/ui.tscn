@@ -80,6 +80,7 @@ tab_align = 0
 drag_to_rearrange_enabled = true
 
 [node name="player" type="Tabs" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 6.0
@@ -528,7 +529,6 @@ size_flags_stretch_ratio = 2.0
 color = Color( 1, 1, 1, 0 )
 
 [node name="menu" type="Tabs" parent="TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 6.0
@@ -612,17 +612,24 @@ margin_bottom = 28.0
 text = "fullscreen"
 align = 1
 
-[node name="Label2" type="Label" parent="TabContainer/menu/HBoxContainer/Panel/settings/VBoxContainer"]
+[node name="vignette" type="CheckButton" parent="TabContainer/menu/HBoxContainer/Panel/settings/VBoxContainer"]
 margin_top = 32.0
 margin_right = 143.0
-margin_bottom = 41.0
+margin_bottom = 47.0
+text = "vignette"
+align = 1
+
+[node name="Label2" type="Label" parent="TabContainer/menu/HBoxContainer/Panel/settings/VBoxContainer"]
+margin_top = 51.0
+margin_right = 143.0
+margin_bottom = 60.0
 size_flags_stretch_ratio = 0.0
 text = "volume"
 
 [node name="volume" type="HSlider" parent="TabContainer/menu/HBoxContainer/Panel/settings/VBoxContainer"]
-margin_top = 45.0
+margin_top = 64.0
 margin_right = 143.0
-margin_bottom = 51.0
+margin_bottom = 70.0
 max_value = 10.0
 value = 8.0
 
