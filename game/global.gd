@@ -342,12 +342,9 @@ func load_game():
 								quests["completed_quests"][index_x][index] = int(y)
 								index += 1
 							index_x += 1
-						index_x = 0
 						for x in quests["quests_recieved"]:
 							var index = 0 
-							for y in x:
-								quests["quests_recieved"][index_x][index] = int(y)
-								index += 1
+							quests["quests_recieved"][index] = int(index)
 							index_x += 1
 	Dialogic.load()
 	loaded = true
