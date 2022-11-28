@@ -29,9 +29,14 @@ func _ready():
 
 func on_death():
 	global.xp += xp
+	$hurtbox.queue_free()
 	queue_free()
 
 func _physics_process(delta):
+	if $death_timer.time_left != 0:
+		print($death_timer.time_left)
+		velocity = move_and_slide(velocity)
+		return
 	if not $AnimatedSprite.playing:
 		$AnimatedSprite.frame = 0
 	if player_detected:
@@ -84,4 +89,8 @@ func _on_sprite_timer_timeout():
 
 
 func _on_hitbox_hit():
-	velocity = move_and_slide((global.player_stats[5]+1)*50*(get_viewport().get_mouse_position()-get_viewport().size/8).normalized()*global.player_stats[5])
+	velocity = global.player_direction * global.player_stats[5] * 100
+
+
+func _on_death_timer_timeout():
+	queue_free()

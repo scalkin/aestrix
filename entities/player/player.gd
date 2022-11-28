@@ -14,6 +14,8 @@ var free_cam = false
 var free_cam_toggle = false
 var stationary_cam = false
 var last_camera_location = Vector2.ZERO
+var max_speed = 150
+var prev_location = Vector2.ZERO
 
 onready var state_machine = $AnimationTree.get("parameters/playback")
 onready var held_item = $held_item
@@ -34,7 +36,11 @@ func set_player_position():
 	print(global_position)
 
 func _physics_process(delta):
-	$run_effect.emitting = velocity.length() > 100
+	if Input.is_action_pressed("run"):
+		max_speed = global.player_max_run_speed
+	else:
+		max_speed = global.player_max_speed
+	$run_effect.emitting = velocity.length() > 175
 	$run_effect.process_material.initial_velocity = velocity.length()/50
 	$run_effect.process_material.direction= Vector3(-input_vector.x, -input_vector.y, 0)
 	$AnimationTree.active = !free_cam
@@ -56,12 +62,10 @@ func _physics_process(delta):
 		else:
 			last_camera_location = camera.global_position
 			camera.smoothing_speed = 7
-	global_position = Vector2(round(global_position.x), round(global_position.y))
 	input_vector = Input.get_vector("left", "right", "up", "down")
 	input_vector = input_vector.normalized()
 	if input_vector:
 		prev_input_vector = input_vector
-		global.player_direction = prev_input_vector
 		state_machine.travel("Walk")
 		$AnimationTree.set("parameters/Idle/blend_position", input_vector)
 		$AnimationTree.set("parameters/Walk/blend_position", input_vector)
@@ -85,7 +89,7 @@ func attack():
 	pass
 
 func move(delta):
-	velocity = velocity.move_toward(input_vector * global.player_max_speed, global.player_accel * delta)
+	velocity = velocity.move_toward(input_vector * max_speed, global.player_accel * delta)
 	if free_cam:
 		camera.global_position += velocity/50
 	else:
@@ -96,12 +100,16 @@ func _on_held_item_attack_finished():
 
 func save_player_position():
 	global.player_position = global_position
-	OS.alert("Set global player position to " + str(global_position))
+	#OS.alert("Set global player position to " + str(global_position))
 
 func _on_hitbox_area_entered(area):
-	global.health -= area.damage*(((global.player_stats[2]*-9)+90)/100)
+	global.health -= area.damage*((10-global.player_stats[2])/10)
 	$Sprite.get("material").set("shader_param/active", true)
 
 
 func _on_hitbox_iframe_ended():
 	$Sprite.get("material").set("shader_param/active", false)
+
+
+func _on_Timer_timeout():
+	camera.smoothing_enabled = true

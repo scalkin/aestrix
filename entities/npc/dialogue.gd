@@ -19,5 +19,6 @@ func recieve_quest(id):
 		global.save_game(global.save())
 
 func objective_completed(quest_id, objective_id):
-	global.quests["completed_objectives"][int(quest_id)].append(int(objective_id))
-	global.save_game(global.save())
+	if not objective_id in global.quests["completed_objectives"][int(quest_id)]:
+		global.quests["completed_objectives"][int(quest_id)].append(int(objective_id))
+		global.save_game(global.save())

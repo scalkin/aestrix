@@ -25,11 +25,9 @@ func _process(_delta):
 				queue_free()
 		2:
 			if not objective_id in global.quests["completed_objectives"][quest_id]:
-				print(global.quests["completed_objectives"][quest_id])
 				queue_free()
 			else:
 				if objective_id_2 in global.quests["completed_objectives"][quest_id]:
 					emit_signal("completed")
 					global.save_game(global.save())
-					print(global.quests["completed_objectives"][quest_id])
 					queue_free()

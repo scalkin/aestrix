@@ -4,14 +4,20 @@ enum{
 	MOUSE
 	CONTROLLER
 }
+onready var transition_effect = $CanvasLayer2/ColorRect
 export var health = 10.0 setget set_health
 export var max_health = 10.0
 var start_location = Vector2.ZERO #used for travelling between scenes
 var player_accel = 500
-var player_max_speed = 200
+var player_max_speed = 150
+var player_max_run_speed = 225
 export var held_item_id = 1
 var loaded = false #is false while loading
+var loaded2 = false #is false until loaded at least once
 var vignette = true
+var weapon_swing_size_list = [140, 120, 130, 120, 170, 170, 130]
+var weapon_blade_length_list = [14, 6, 8, 13, 12, 20, 8]
+var weapon_damage_list = [5, 2, 0, 2, 3, 3, 3]
 var numeral = [
 	"",
 	"I",
@@ -52,13 +58,32 @@ var food_inventory = [
 ]
 #This one should be obvious
 var weapon_desc_list = [
-	"A more civilized weapon.\n\n5 Damage\n140 degree swing\n14 pixel blade",
-	"A simple weapon, designed to be easily concealed.\n\n1 Damage\n120 degree swing\n6 pixel blade",
-	"The larger blade on this dagger barely affects anything.\n\n1 Damage\n130 degree swing\n8 pixel blade",
-	"A slim, two-edged sword, with greater damage than a dagger.\n\n1 Damage\n120 degree swing\n13 pixel blade",
-	"A heavy battleaxe such as this allows for great damage, at the cost of speed.\n\n3 Damage\n170 degree swing\n12 pixel blade",
-	"It's long and a sword.\n\n3 Damage \n170 degree swing\n28 pixel blade",
-	"Infused with lunar magic, this dagger is capable of a higher damage output and speed.\n\n2 Damage\n130 degree swing\n 8 pixel blade"
+	"A more civilized weapon.\n\n" + \
+	str(weapon_damage_list[0]) + " Damage\n" + \
+	str(weapon_blade_length_list[0]) + " degree swing\n" + str(weapon_swing_size_list[0]) + " pixel blade",
+	"A simple weapon, designed to be easily concealed.\n\n" + \
+	str(weapon_damage_list[1]) + " Damage\n" + \
+	str(weapon_blade_length_list[1]) + " degree swing\n" + \
+	str(weapon_swing_size_list[1]) + " pixel blade",
+	"The larger blade on this dagger barely affects anything.\n\n" + \
+	str(weapon_damage_list[2]) + " Damage\n" + \
+	str(weapon_blade_length_list[2]) + " degree swing\n" + \
+	str(weapon_swing_size_list[2]) + " pixel blade",
+	"A slim, two-edged sword, with greater damage than a dagger.\n\n" + str(weapon_damage_list[3]) + " Damage\n" + \
+	str(weapon_blade_length_list[3]) + " degree swing\n" + \
+	str(weapon_swing_size_list[3]) + " pixel blade",
+	"A heavy battleaxe such as this allows for great damage, at the cost of speed.\n\n" + \
+	str(weapon_damage_list[4]) + " Damage\n" + \
+	str(weapon_blade_length_list[4]) + " degree swing\n" + \
+	str(weapon_swing_size_list[4]) + " pixel blade",
+	"It's long and a sword.\n\n" + \
+	str(weapon_damage_list[5]) + " Damage\n" + \
+	str(weapon_blade_length_list[5]) + " degree swing\n" + \
+	str(weapon_swing_size_list[5]) + " pixel blade",
+	"Infused with lunar magic, this dagger is capable of a higher damage output and speed.\n\n" + \
+	str(weapon_damage_list[6]) + " Damage\n" + \
+	str(weapon_blade_length_list[6]) + " degree swing\n" + \
+	str(weapon_swing_size_list[6]) + " pixel blade"
 ]
 var weapon_name_list = [
 	"Energy Sword",
@@ -115,9 +140,9 @@ var quests = {
 } setget update_quests
 #just some data about the quests that doesn't change
 var quest_data = {
-	"names" : ["Once upon a time..."],
-	"objective_decriptions" : [["Ozin has requested that you deal with the rats in his basement. If you complete the task, you can keep the magical dagger in the basement.", "You've killed half the rats in the basement so far. Remember that if you are low on health, you can eat food by switching to the backpack tab and clicking the 'food' button, selecting some food, and hitting 'equip/use'.", "You've killed all the rats in the basement, you should grab the dagger from that chest now.", "You've cleared the basement, now go tell Ozin about your success.", "Quest completed."]],
-	"objectives_in_quest" : [4],
+	"names" : ["Once upon a time...", "To new lands!"],
+	"objective_decriptions" : [["Ozin has requested that you deal with the rats in his basement. If you complete the task, you can keep the magical dagger in the basement.", "You've killed half the rats in the basement so far. Remember that if you are low on health, you can eat food by switching to the backpack tab and clicking the 'food' button, selecting some food, and hitting 'equip/use'.", "You've killed all the rats in the basement, you should grab the dagger from that chest now.", "You've cleared the basement, now go tell Ozin about your success.", "Quest completed."], ["Wilfred has advised that you travel to Axehithe, south through the forest."]],
+	"objectives_in_quest" : [4, 2],
 }
 
 var xp = 0 setget set_xp
@@ -146,7 +171,15 @@ func set_player_position(value : Vector2):
 func max_upgrade_level(cur_level):
 	if cur_level > 20:
 		return 5
-	return ceil(cur_level/5)+1
+	if cur_level > 15:
+		return 4
+	if cur_level > 10:
+		return 3
+	if cur_level > 5:
+		return 2
+	else:
+		return 1
+	
 #compares recieved and completed quests to determine what quests the player currently has
 func current_quests():
 	var result = []
@@ -163,7 +196,26 @@ func quest_objective(id):
 	return result
 
 func update_quests(value):
+	if value["completed_quests"] != quests["completed_quests"]:
+		for x in value["completed_quests"]:
+			var index = 0
+			var parsed_ids = []
+			for y in x:
+				y = int(y)
+				if y in parsed_ids:
+					x.pop_at(index)
+				parsed_ids.append(y)
+				index += 1
 	if value["completed_objectives"] != quests["completed_objectives"]:
+		for x in value["completed_objectives"]:
+			var index = 0
+			var parsed_ids = []
+			for y in x:
+				y = int(y)
+				if y in parsed_ids:
+					x.pop_at(index)
+				parsed_ids.append(y)
+				index += 1
 		var index = 0
 		for x in value["completed_objectives"]:
 			if not index in quests["completed_quests"]:
@@ -175,7 +227,7 @@ func update_quests(value):
 
 func set_player_stats(value):
 	player_stats = value
-	player_max_speed = (player_stats[4]*50)+ 200
+	player_max_run_speed = (player_stats[4]*50)+ 225
 
 func set_xp(value):
 	xp = value
@@ -183,16 +235,13 @@ func set_xp(value):
 		while xp >= xp_to_next_level(level):
 			xp -= xp_to_next_level(level)
 			level += 1
-			max_health += 5
-			health = max_health
+			max_health += 1
+			health += 1
 			if not level < 3:
 				attribute_points += 1
 
 func xp_to_next_level(cur_level:float):
 	return 15*round(((cur_level*cur_level)/(sqrt(cur_level))))
-
-func health_at_level(cur_level:float):
-	return 10*round(((cur_level*cur_level)/(sqrt(cur_level))))
 
 func save():
 	emit_signal("game_saved")
@@ -216,8 +265,10 @@ func save():
 		"quests" : quests
 	}
 	return save_dict
+	
 
 func reset():
+	loaded2 = false
 	var save_dict = {
 		"current_quests" : [],
 		"xp" : 0,
@@ -228,7 +279,8 @@ func reset():
 		"weapons_inventory" : [0, 1, 0, 0, 0, 0, 0],
 		"food_inventory" : [5, 1],
 		"held_item_id" : 1,
-		"player_max_speed" : 200,
+		"player_max_speed" : 150,
+		"player_max_run_speed" : 225,
 		"player_accel" : 500,
 		"max_health" : 10.0,
 		"health" : 10.0,
@@ -264,7 +316,7 @@ func load_game():
 			return false
 		print(node_data.keys())
 		for i in node_data.keys():
-			if not i in ["fullscreen", "player_position_x", "player_position_y"]:
+			if not i in ["fullscreen", "player_position_x", "player_position_y", "quests"]:
 				set(i, node_data[i])
 			else:
 				match i:
@@ -274,7 +326,32 @@ func load_game():
 						self.player_position.x = int(node_data[i])
 					"player_position_y":
 						self.player_position.y = int(node_data[i])
+					"quests":
+						self.quests = node_data[i]
+						var index_x = 0
+						for x in quests["completed_objectives"]:
+							var index = 0 
+							for y in x:
+								quests["completed_objectives"][index_x][index] = int(y)
+								index += 1
+							index_x += 1
+						index_x = 0
+						for x in quests["completed_quests"]:
+							var index = 0 
+							for y in x:
+								quests["completed_quests"][index_x][index] = int(y)
+								index += 1
+							index_x += 1
+						index_x = 0
+						for x in quests["quests_recieved"]:
+							var index = 0 
+							for y in x:
+								quests["quests_recieved"][index_x][index] = int(y)
+								index += 1
+							index_x += 1
 	Dialogic.load()
+	loaded = true
+	loaded2 = true
 	save_game.close()
 	print("Player position passed to travel scene function: " + str(player_position))
 	travel_scene(current_scene, player_position, false)
@@ -282,6 +359,7 @@ func load_game():
 	return true
 
 func _ready():
+	$AnimationPlayer.play("open")
 	randomize()
 	print(get_tree().current_scene.filename)
 	if not load_game():
@@ -291,7 +369,7 @@ func _process(delta):
 	$CanvasLayer/TextureRect.visible = vignette
 	OS.window_size.x = clamp(OS.window_size.x, OS.window_size.y, OS.window_size.y*2)
 	if (not get_tree().paused) and health < max_health:
-		health += delta*0.25
+		health += (delta*0.25)*(max_health/10)
 	var controller_input_vector = Vector2.ZERO
 	controller_input_vector.x = Input.get_axis("target_left", "target_right")
 	controller_input_vector.y = Input.get_axis("target_up", "target_down")
@@ -349,8 +427,14 @@ func give_food(id):
 func travel_scene(scene: String, location: Vector2, save: bool):
 	print(str(scene) + "\n" + str(location) + "\n")
 	start_location = location
+	print(loaded2)
+	if not loaded2:
 # warning-ignore:return_value_discarded
-	get_tree().change_scene(scene)
+		get_tree().change_scene(scene)
+		return
+	current_scene = scene
+	get_tree().paused = true
+	$AnimationPlayer.play("close")
 	if save:
 		var save_data = save()
 		save_data["current_scene"] = scene
@@ -369,3 +453,10 @@ func set_health(value):
 		get_tree().reload_current_scene()
 		travel_scene("res://levels/hub.tscn", Vector2.ZERO, false)
 		global.save_game(global.save())
+
+
+func transition_closed():
+# warning-ignore:return_value_discarded
+	get_tree().change_scene(current_scene)
+	$AnimationPlayer.play("open")
+	get_tree().paused = false

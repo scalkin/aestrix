@@ -1,0 +1,56 @@
+{
+	"events": [
+		{
+			"character": "character-1667572573.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "I would advise you to leave this town. Ozin isn't too happy with you, and we don't really need an adventurer anyway."
+		},
+		{
+			"character": "character-1667572573.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "You could travel south of here, through that forest to Axehithe. It's a bigger town, and they could absolutely use the help of an adventurer like you. "
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"1"
+				],
+				"method_name": "recieve_quest",
+				"target_node_path": "dialogue"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"1",
+					"0"
+				],
+				"method_name": "objective_completed",
+				"target_node_path": "dialogue"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"call_node": {
+				"arguments": [
+
+				],
+				"method_name": "end_dialogue",
+				"target_node_path": "dialogue"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 1
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1669616418.json",
+		"name": "wilfred_2"
+	}
+}

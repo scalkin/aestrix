@@ -59,6 +59,11 @@ radius = 6.0
 material = null
 collision_layer = 0
 script = ExtResource( 2 )
+damage = 1
+max_speed = 125
+accel = 500
+wander_distance = 75
+xp = 5
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2( 0, -2 )
@@ -83,7 +88,6 @@ polygon = PoolVector2Array( 1, 1, 10, 22, -10, 22, -1, 1 )
 [node name="AnimatedSprite" parent="." index="4"]
 material = SubResource( 12 )
 frames = SubResource( 6 )
-frame = 2
 
 [node name="player_detect" type="Area2D" parent="." index="5"]
 visible = false
@@ -115,9 +119,13 @@ collision_mask = 64
 position = Vector2( 0, -3 )
 shape = SubResource( 11 )
 
+[node name="death_timer" type="Timer" parent="." index="10"]
+wait_time = 0.5
+
 [connection signal="hit" from="hitbox" to="." method="_on_hitbox_hit"]
 [connection signal="area_entered" from="player_detect" to="." method="_on_player_detect_area_entered"]
 [connection signal="area_exited" from="player_detect" to="." method="_on_player_detect_area_exited"]
 [connection signal="hit" from="hurtbox" to="." method="_on_hurtbox_hit"]
 [connection signal="timeout" from="state_timer" to="." method="_on_state_timer_timeout"]
 [connection signal="timeout" from="sprite_timer" to="." method="_on_sprite_timer_timeout"]
+[connection signal="timeout" from="death_timer" to="." method="_on_death_timer_timeout"]

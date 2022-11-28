@@ -37,5 +37,6 @@ animations = [ {
 [node name="wilfred" instance=ExtResource( 1 )]
 script = SubResource( 1 )
 
-[node name="AnimatedSprite" parent="." index="0"]
+[node name="AnimatedSprite" parent="." index="2"]
 frames = SubResource( 6 )
+frame = 2

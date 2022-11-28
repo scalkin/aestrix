@@ -23,11 +23,8 @@ var item_applied_position = 0
 var trail_points = []
 var hurtbox_points = []
 var attack_trail_generated
-var item_swing_size_list = [140, 120, 130, 120, 170, 170, 130]
 var item_held_distance_list = [17, 14, 15, 17, 15, 20, 14]
 var item_attack_speed_list = [2000, 500, 400, 1000, 10, 750, 5000]
-var item_blade_length_list = [14, 6, 8, 13, 12, 20, 8]
-var item_damage_list = [5, 2, 2, 2, 3, 3, 3]
 var item_trail_color = [0, 0, 0, 0, 0, 0, 1]
 
 export var swing_size = 120
@@ -44,7 +41,7 @@ onready var weapon_sprite = $weapon
 onready var hand_sprite = $hand
 
 func attack(delta):
-	var applied_rotation_speed = ((sin((3.14*rotated)/swing_size)*1500)+(attack_speed*(0.001*((global.player_stats[4]*50)+1))))*delta
+	var applied_rotation_speed = ((sin((3.14*rotated)/swing_size)*1500)+(attack_speed*(0.001)))*delta*((global.player_stats[3]/5)+1)
 	var direction_modifier = 1
 	match item_position:
 		DOWN:
@@ -148,6 +145,10 @@ func idle():
 	var target_rotation_degrees = rad2deg(atan2(relative_mouse_location.y, relative_mouse_location.x)) + 90
 	rotation_degrees = target_rotation_degrees
 	rotate(deg2rad(item_applied_position))
+	global.player_direction = Vector2(
+		cos(deg2rad(rotation_degrees)),
+		sin(deg2rad(rotation_degrees))
+	)
 	weapon_sprite.flip_h = (item_position == UP)
 	hand_sprite.flip_h = weapon_sprite.flip_h
 
@@ -169,11 +170,11 @@ func flip_item_position():
 
 func update_item():
 	weapon_sprite.texture = global.weapon_sprite_list[global.held_item_id]
-	swing_size = item_swing_size_list[global.held_item_id]
+	swing_size = global.weapon_swing_size_list[global.held_item_id]
 	item_held_distance = item_held_distance_list[global.held_item_id]
 	attack_speed = item_attack_speed_list[global.held_item_id]
-	blade_length = item_blade_length_list[global.held_item_id]
-	damage = item_damage_list[global.held_item_id]
+	blade_length = global.weapon_blade_length_list[global.held_item_id]
+	damage = global.weapon_damage_list[global.held_item_id]
 
 func _physics_process(_delta):
 	update_item()

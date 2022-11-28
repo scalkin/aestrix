@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://levels/root.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/environment/rocks/small_rock.tscn" type="PackedScene" id=2]
@@ -26,12 +26,21 @@
 [ext_resource path="res://game/effects/shadow/16x8gradient.png" type="Texture" id=24]
 [ext_resource path="res://assets/objects/buildings/assets/bakery_1.png" type="Texture" id=25]
 [ext_resource path="res://assets/objects/assets/well.tscn" type="PackedScene" id=26]
+[ext_resource path="res://entities/npc/assets/wilfred_2.tscn" type="PackedScene" id=27]
 
 [sub_resource type="RectangleShape2D" id=1]
 resource_local_to_scene = true
 extents = Vector2( 6, 8 )
 
 [sub_resource type="CircleShape2D" id=2]
+
+[sub_resource type="RectangleShape2D" id=5]
+resource_local_to_scene = true
+extents = Vector2( 10, 18 )
+
+[sub_resource type="RectangleShape2D" id=4]
+resource_local_to_scene = true
+extents = Vector2( 10, 18 )
 
 [sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
@@ -451,7 +460,7 @@ position = Vector2( 468, -242 )
 position = Vector2( 524, -137 )
 
 [node name="tree45" parent="YSort/objects" index="100" instance=ExtResource( 3 )]
-position = Vector2( 489, -231 )
+position = Vector2( 478, -270 )
 
 [node name="tree46" parent="YSort/objects" index="101" instance=ExtResource( 3 )]
 position = Vector2( 478, -214 )
@@ -818,14 +827,37 @@ position = Vector2( 163, -201 )
 material = null
 position = Vector2( 190, -202 )
 
-[node name="wilfred" parent="YSort" index="4" instance=ExtResource( 12 )]
-position = Vector2( -96, -141 )
+[node name="quest_wall3" parent="YSort" index="4" instance=ExtResource( 21 )]
+position = Vector2( 388, -191 )
+objective_id = 4
+objective_id_2 = 6
+mode = 2
 
-[node name="base" parent="YSort" index="5" instance=ExtResource( 20 )]
+[node name="CollisionShape2D" parent="YSort/quest_wall3/wall" index="0"]
+position = Vector2( 24, 6 )
+shape = SubResource( 5 )
+disabled = true
+
+[node name="wilfred_2" parent="YSort/quest_wall3" index="1" instance=ExtResource( 27 )]
+position = Vector2( -1, 1 )
+dialogic_timeline = "wilfred_2"
+
+[node name="quest_wall2" parent="YSort" index="5" instance=ExtResource( 21 )]
+position = Vector2( -96, -142 )
+objective_id = 4
+mode = 1
+
+[node name="CollisionShape2D" parent="YSort/quest_wall2/wall" index="0"]
+shape = SubResource( 4 )
+disabled = true
+
+[node name="wilfred" parent="YSort/quest_wall2" index="1" instance=ExtResource( 12 )]
+
+[node name="base" parent="YSort" index="6" instance=ExtResource( 20 )]
 material = SubResource( 3 )
 position = Vector2( 255, -172 )
 
-[node name="quest_wall" parent="YSort" index="6" instance=ExtResource( 21 )]
+[node name="quest_wall" parent="YSort" index="7" instance=ExtResource( 21 )]
 position = Vector2( 405, 254 )
 rotation = -0.785082
 objective_id = 4
@@ -844,3 +876,5 @@ scale = Vector2( 1.198, 1.48087 )
 [editable path="YSort/objects/building3"]
 [editable path="YSort/objects/building4"]
 [editable path="YSort/objects/building5"]
+[editable path="YSort/quest_wall3"]
+[editable path="YSort/quest_wall2"]

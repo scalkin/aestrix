@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://game/global.gd" type="Script" id=1]
 [ext_resource path="res://game/effects/shadow/vignette.png" type="Texture" id=2]
@@ -9,29 +9,77 @@ code = "shader_type canvas_item;
 uniform float threshold = 1.0;
 
 void fragment(){
-	if (UV.x > threshold){
-		COLOR.a = 0.5;
-	}
-	if (1.0-UV.x > threshold){
-		COLOR.a = 0.5;
-	}
-	if (UV.y > threshold){
-		COLOR.a = 0.5;
-	}
-	if (1.0-UV.y > threshold){
-		COLOR.a = 0.5;
-	}
-	if (COLOR.a == 0.5){
-		COLOR.a = 1.0;
-	}
-	else{
-		COLOR.a = 0.0;
+	vec2 coordinates = (UV-vec2(0.5))/SCREEN_PIXEL_SIZE;
+	float center_distance = sqrt(coordinates.x*coordinates.x + coordinates.y*coordinates.y);
+	if (center_distance < (1.0-threshold)*(1.0/SCREEN_PIXEL_SIZE.x)){
+		COLOR.a = 0.0
 	}
 }"
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
-shader_param/threshold = 1.026
+shader_param/threshold = 1.0
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer2/ColorRect:material:shader_param/threshold")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "close"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer2/ColorRect:material:shader_param/threshold")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.4, 1.0 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "transition_closed"
+} ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "open"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer2/ColorRect:material:shader_param/threshold")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.4 ]
+}
 
 [node name="Node" type="Node2D"]
 pause_mode = 2
@@ -47,8 +95,6 @@ texture = ExtResource( 2 )
 expand = true
 stretch_mode = 1
 
-[node name="Tween" type="Tween" parent="."]
-
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer2"]
@@ -56,3 +102,8 @@ material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 3 )
+anims/close = SubResource( 4 )
+anims/open = SubResource( 5 )

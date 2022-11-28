@@ -10,12 +10,11 @@ export var blood = false
 
 func _on_hitbox_area_entered(area):
 	if blood:
-		print("blood particles")
 		var blood_particles = blood_res.instance()
 		get_parent().add_child(blood_particles)
 		blood_particles.global_position = global_position
 		blood_particles.emitting = true
-		blood_particles.amount = 8*area.damage
+		blood_particles.amount = (8*(area.damage+1))
 	emit_signal("hit")
 	var number_effect = number_res.instance()
 	get_parent().get_parent().add_child(number_effect)

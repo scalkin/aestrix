@@ -4,14 +4,14 @@
 [ext_resource path="res://assets/objects/assets/bar.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 17, 7 )
+extents = Vector2( 17, 6 )
 
 [node name="bar" instance=ExtResource( 1 )]
 
-[node name="Sprite" parent="." index="0"]
+[node name="Sprite" parent="." index="1"]
 position = Vector2( -18, -12 )
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" parent="." index="1"]
-position = Vector2( -1, -2 )
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2( -1, -1 )
 shape = SubResource( 1 )

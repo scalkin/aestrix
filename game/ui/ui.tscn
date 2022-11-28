@@ -80,7 +80,6 @@ tab_align = 0
 drag_to_rearrange_enabled = true
 
 [node name="player" type="Tabs" parent="TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 6.0
@@ -375,7 +374,7 @@ size_flags_horizontal = 3
 [node name="Label" type="Label" parent="TabContainer/upgrades/VBoxContainer/HBoxContainer2/walk_speed/VBoxContainer"]
 margin_right = 75.0
 margin_bottom = 9.0
-text = "Walk Speed"
+text = "Run Speed"
 align = 1
 
 [node name="s1" type="Button" parent="TabContainer/upgrades/VBoxContainer/HBoxContainer2/walk_speed/VBoxContainer"]
@@ -529,6 +528,7 @@ size_flags_stretch_ratio = 2.0
 color = Color( 1, 1, 1, 0 )
 
 [node name="menu" type="Tabs" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 6.0
@@ -629,7 +629,7 @@ text = "volume"
 [node name="volume" type="HSlider" parent="TabContainer/menu/HBoxContainer/Panel/settings/VBoxContainer"]
 margin_top = 64.0
 margin_right = 143.0
-margin_bottom = 70.0
+margin_bottom = 72.0
 max_value = 10.0
 value = 8.0
 
