@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://assets/floors/wood_planks.png" type="Texture" id=1]
 [ext_resource path="res://game/effects/shadow/16x8gradient.png" type="Texture" id=2]
@@ -13,8 +13,13 @@
 [ext_resource path="res://assets/objects/assets/bed.png" type="Texture" id=11]
 [ext_resource path="res://assets/objects/assets/junk_pile_2_cut.png" type="Texture" id=12]
 [ext_resource path="res://assets/objects/assets/circular_rug_2.png" type="Texture" id=13]
+[ext_resource path="res://game/effects/lights/circular_glow32x32.png" type="Texture" id=14]
+[ext_resource path="res://game/effects/lights/circular_glow_white32x32.png" type="Texture" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
+
+[sub_resource type="OccluderPolygon2D" id=5]
+polygon = PoolVector2Array( 9, 5, -9, 5, -9, -8, 9, -8 )
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 6.00002
@@ -25,6 +30,12 @@ extents = Vector2( 9, 16.5 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 14, 9 )
+
+[sub_resource type="OccluderPolygon2D" id=6]
+polygon = PoolVector2Array( -7, -12, -7, -6, -3, -6, -3, -3, -8, -5, -8, -12 )
+
+[sub_resource type="OccluderPolygon2D" id=7]
+polygon = PoolVector2Array( -3, -3, 3, -3, -3, -2 )
 
 [node name="root" instance=ExtResource( 4 )]
 
@@ -146,13 +157,19 @@ position = Vector2( -40, -23 )
 [node name="bookshelf" parent="YSort" index="1" instance=ExtResource( 6 )]
 position = Vector2( 18, -25 )
 
-[node name="bookshelf2" parent="YSort" index="2" instance=ExtResource( 6 )]
-position = Vector2( 1, -25 )
+[node name="bookshelf3" parent="YSort" index="2" instance=ExtResource( 6 )]
+position = Vector2( -19, 5 )
 
-[node name="ozin" parent="YSort" index="3" instance=ExtResource( 5 )]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="YSort/bookshelf3" index="3"]
+occluder = SubResource( 5 )
+
+[node name="bookshelf2" parent="YSort" index="3" instance=ExtResource( 6 )]
+position = Vector2( 1, -24 )
+
+[node name="ozin" parent="YSort" index="4" instance=ExtResource( 5 )]
 position = Vector2( 8, -12 )
 
-[node name="telescope" type="StaticBody2D" parent="YSort" index="4"]
+[node name="telescope" type="StaticBody2D" parent="YSort" index="5"]
 position = Vector2( 30, 2 )
 
 [node name="Sprite" type="Sprite" parent="YSort/telescope" index="0"]
@@ -172,7 +189,7 @@ position = Vector2( 4, -1 )
 rotation = 1.57079
 shape = SubResource( 2 )
 
-[node name="bed" type="StaticBody2D" parent="YSort" index="5"]
+[node name="bed" type="StaticBody2D" parent="YSort" index="6"]
 position = Vector2( 39, 33 )
 
 [node name="Bed" type="Sprite" parent="YSort/bed" index="0"]
@@ -183,7 +200,7 @@ texture = ExtResource( 11 )
 position = Vector2( 1, -15.5 )
 shape = SubResource( 3 )
 
-[node name="junk_pile" type="StaticBody2D" parent="YSort" index="6"]
+[node name="junk_pile" type="StaticBody2D" parent="YSort" index="7"]
 position = Vector2( -16, 31 )
 
 [node name="Sprite2" type="Sprite" parent="YSort/junk_pile" index="0"]
@@ -199,5 +216,24 @@ texture = ExtResource( 12 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/junk_pile" index="2"]
 position = Vector2( 0, -2 )
 shape = SubResource( 4 )
+
+[node name="Light2D" type="Light2D" parent="YSort/junk_pile" index="3"]
+position = Vector2( 1, -15 )
+texture = ExtResource( 14 )
+energy = 0.75
+shadow_enabled = true
+
+[node name="Light2D2" type="Light2D" parent="YSort/junk_pile" index="4"]
+position = Vector2( 10, -10 )
+texture = ExtResource( 15 )
+color = Color( 0, 0.972549, 1, 1 )
+energy = 1.25
+shadow_enabled = true
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="YSort/junk_pile" index="5"]
+occluder = SubResource( 6 )
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="YSort/junk_pile" index="6"]
+occluder = SubResource( 7 )
 
 [editable path="warps/warp"]

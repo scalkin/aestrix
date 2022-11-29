@@ -141,7 +141,7 @@ var quests = {
 #just some data about the quests that doesn't change
 var quest_data = {
 	"names" : ["Once upon a time...", "To new lands!"],
-	"objective_decriptions" : [["Ozin has requested that you deal with the rats in his basement. If you complete the task, you can keep the magical dagger in the basement.", "You've killed half the rats in the basement so far. Remember that if you are low on health, you can eat food by switching to the backpack tab and clicking the 'food' button, selecting some food, and hitting 'equip/use'.", "You've killed all the rats in the basement, you should grab the dagger from that chest now.", "You've cleared the basement, now go tell Ozin about your success.", "Quest completed."], ["Wilfred has advised that you travel to Axehithe, south through the forest."]],
+	"objective_decriptions" : [["Ozin has requested that you deal with the rats in his basement. If you complete the task, you can keep the magical dagger in the basement.", "You've killed half the rats in the basement so far. Remember that if you are low on health, you can eat food by switching to the backpack tab and clicking the 'food' button, selecting some food, and hitting 'equip/use'.", "You've killed all the rats in the basement, you should grab the dagger from that chest now.", "You've cleared the basement, now go tell Ozin about your success.", "Please select a quest to view more information."], ["Wilfred has advised that you travel to Axehithe, south through the forest."]],
 	"objectives_in_quest" : [4, 2],
 }
 
@@ -196,34 +196,38 @@ func quest_objective(id):
 	return result
 
 func update_quests(value):
-	if value["completed_quests"] != quests["completed_quests"]:
-		for x in value["completed_quests"]:
-			var index = 0
-			var parsed_ids = []
-			for y in x:
-				y = int(y)
-				if y in parsed_ids:
-					x.pop_at(index)
-				parsed_ids.append(y)
-				index += 1
-	if value["completed_objectives"] != quests["completed_objectives"]:
-		for x in value["completed_objectives"]:
-			var index = 0
-			var parsed_ids = []
-			for y in x:
-				y = int(y)
-				if y in parsed_ids:
-					x.pop_at(index)
-				parsed_ids.append(y)
-				index += 1
-		var index = 0
-		for x in value["completed_objectives"]:
-			if not index in quests["completed_quests"]:
-				for y in x:
-					if y == quest_data["objectives_in_quest"][index]:
-						value["completed_quests"].append(index)
-			index += 1
 	quests = value
+	var index = 0
+	var parsed_ids = []
+	for x in quests["completed_quests"]:
+		x = float(x)
+		if x in parsed_ids:
+			quests["completed_quests"].pop_at(index)
+		parsed_ids.append(x)
+		index += 1
+	index = 0
+	for x in quests["quests_recieved"]:
+		x = float(x)
+		if x in parsed_ids:
+			quests["quests_recieved"].pop_at(index)
+		parsed_ids.append(x)
+		index += 1
+	for x in quests["completed_objectives"]:
+		parsed_ids = []
+		index = 0
+		for y in x:
+			if y in parsed_ids:
+				x.pop_at(index)
+			y = int(y)
+			parsed_ids.append(y)
+			index += 1
+	index = 0
+	for x in quests["completed_objectives"]:
+		if not index in quests["completed_quests"]:
+			for y in x:
+				if y == quest_data["objectives_in_quest"][index]:
+					quests["completed_quests"].append(index)
+		index += 1
 
 func set_player_stats(value):
 	player_stats = value

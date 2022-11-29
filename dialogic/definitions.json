@@ -2,18 +2,18 @@
 	"glossary": [
 		{
 			"extra": "",
-			"id": "1669605526-918",
-			"name": "Axehithe",
-			"text": "Axehithe is a river city  that primarily relies on trade, and has multiple docks for boats passing through.",
-			"title": "Axehithe",
-			"type": 1
-		},
-		{
-			"extra": "",
 			"id": "1669605453-146",
 			"name": "Olnrith",
 			"text": "Olnrith is the capital city of Aestrix.",
 			"title": "Olnrith",
+			"type": 1
+		},
+		{
+			"extra": "",
+			"id": "1669605526-918",
+			"name": "Axehithe",
+			"text": "Axehithe is a river city  that primarily relies on trade, and has many docks for boats passing through.",
+			"title": "Axehithe",
 			"type": 1
 		}
 	],

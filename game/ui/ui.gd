@@ -112,6 +112,7 @@ func load_quests():
 			if not x in global.quests["completed_quests"]:
 				var quest_button = quest_button_res.instance()
 				$TabContainer/quests/HBoxContainer/Panel2/ScrollContainer/VBoxContainer.add_child(quest_button)
+				quest_button.id = x
 
 func _on_save_pressed():
 	get_tree().paused = false
