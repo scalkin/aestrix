@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://game/effects/lights/circular_glow32x32.png" type="Texture" id=1]
+[ext_resource path="res://game/effects/particles/particle.png" type="Texture" id=2]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.137681, 0.337838, 0.533784, 0.844595, 1 )
+colors = PoolColorArray( 0.945098, 0.85098, 0.270588, 0, 0.954105, 0.733848, 0.233264, 1, 0.991322, 0.138753, 0.0441045, 1, 0.376471, 0.376471, 0.376471, 0.74902, 0.313726, 0.313726, 0.313726, 0.666667, 0.0581055, 0.0581055, 0.0581055, 0 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.246044, 1 ), 0.00649647, 0.00649647, 0, 0, Vector2( 0.996044, 0 ), -3.87146, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+lifetime_randomness = 0.34
+emission_shape = 1
+emission_sphere_radius = 2.0
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 15.0
+flatness = 1.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 2.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 2.0
+angle = 720.0
+angle_random = 1.0
+scale = 4.0
+scale_random = 1.0
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 3 )
+
+[node name="fire_particles" type="Particles2D"]
+material = SubResource( 1 )
+amount = 32
+lifetime = 6.0
+preprocess = 2.0
+process_material = SubResource( 6 )
+texture = ExtResource( 2 )
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 1 )
+color = Color( 1, 0.686275, 0.27451, 1 )
+energy = 0.75

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://levels/root.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/environment/rocks/small_rock.tscn" type="PackedScene" id=2]
@@ -27,6 +27,7 @@
 [ext_resource path="res://assets/objects/buildings/assets/bakery_1.png" type="Texture" id=25]
 [ext_resource path="res://assets/objects/assets/well.tscn" type="PackedScene" id=26]
 [ext_resource path="res://entities/npc/assets/wilfred_2.tscn" type="PackedScene" id=27]
+[ext_resource path="res://assets/objects/assets/campfire.tscn" type="PackedScene" id=28]
 
 [sub_resource type="RectangleShape2D" id=1]
 resource_local_to_scene = true
@@ -871,6 +872,9 @@ mode = 1
 position = Vector2( 1.41418, -0.000457764 )
 rotation = 1.57079
 scale = Vector2( 1.198, 1.48087 )
+
+[node name="campfire" parent="." index="13" instance=ExtResource( 28 )]
+position = Vector2( 237, 22 )
 
 [editable path="warps/warp"]
 [editable path="warps/warp3"]
