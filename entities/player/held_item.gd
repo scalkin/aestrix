@@ -179,9 +179,9 @@ func update_item():
 func _physics_process(_delta):
 	update_item()
 	if rotation_degrees > 90 or rotation_degrees < -90:
-		z_index = 1
+		show_behind_parent = false
 	else:
-		z_index = 0
+		show_behind_parent = true
 
 func _on_hitbox_timer_timeout():
 	attack_cooldown = false

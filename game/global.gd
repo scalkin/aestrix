@@ -283,7 +283,7 @@ func reset():
 		"weapons_inventory" : [0, 1, 0, 0, 0, 0, 0],
 		"food_inventory" : [5, 1],
 		"held_item_id" : 1,
-		"player_max_speed" : 150,
+		"player_max_speed" : 100,
 		"player_max_run_speed" : 225,
 		"player_accel" : 500,
 		"max_health" : 10.0,

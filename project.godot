@@ -105,7 +105,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/dialogic/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/Project-Map-main/addons/project_map/plugin.cfg", "res://addons/dialogic/plugin.cfg" )
 
 [global]
 

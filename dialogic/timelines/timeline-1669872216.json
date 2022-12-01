@@ -1,0 +1,47 @@
+{
+	"events": [
+		{
+			"character": "character-1669872168.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Hold it there, kid. You're coming with us."
+		},
+		{
+			"character": "character-1669872200.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Look at that dagger he's got."
+		},
+		{
+			"character": "character-1669872168.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Where'd you get that dagger? Ozin give it to you?"
+		},
+		{
+			"character": "character-1669872168.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Heh, you won't need that where you're going."
+		},
+		{
+			"call_node": {
+				"arguments": [
+
+				],
+				"method_name": "end_dialogue",
+				"target_node_path": "dialogue"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 1
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1669872216.json",
+		"name": "kidnapped_1"
+	}
+}

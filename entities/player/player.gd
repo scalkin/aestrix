@@ -14,7 +14,7 @@ var free_cam = false
 var free_cam_toggle = false
 var stationary_cam = false
 var last_camera_location = Vector2.ZERO
-var max_speed = 150
+var max_speed = 100
 var prev_location = Vector2.ZERO
 
 onready var state_machine = $AnimationTree.get("parameters/playback")
