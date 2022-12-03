@@ -37,12 +37,13 @@ func set_player_position():
 
 func _physics_process(delta):
 	if Input.is_action_pressed("run"):
-		max_speed = global.player_max_run_speed
+		max_speed = global.max_run_speed()
 	else:
 		max_speed = global.player_max_speed
-	$run_effect.emitting = velocity.length() > 175
+	$run_effect.emitting = velocity.length() > 149
 	$run_effect.process_material.initial_velocity = velocity.length()/50
 	$run_effect.process_material.direction= Vector3(-input_vector.x, -input_vector.y, 0)
+	$run_effect.amount = (global.player_stats[4]*4)+4
 	$AnimationTree.active = !free_cam
 	if OS.is_debug_build():
 		var zoom =  (Input.get_action_strength("zoom_out") - Input.get_action_strength("zoom_in")) / 50

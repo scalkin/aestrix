@@ -1,13 +1,13 @@
-[gd_scene load_steps=118 format=2]
+[gd_scene load_steps=136 format=2]
 
 [ext_resource path="res://assets/environment/grass.png" type="Texture" id=1]
 [ext_resource path="res://entities/player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/paths/dirt_path.png" type="Texture" id=3]
-[ext_resource path="res://assets/objects/buildings/interiors/walls/dungeon_wall.png" type="Texture" id=4]
+[ext_resource path="res://assets/objects/walls/dungeon_wall.png" type="Texture" id=4]
 [ext_resource path="res://game/effects/shadow/shadow_tileset.png" type="Texture" id=5]
 [ext_resource path="res://game/effects/shadow/16x16black.png" type="Texture" id=6]
 [ext_resource path="res://assets/paths/dungeon_path.png" type="Texture" id=7]
-[ext_resource path="res://assets/objects/buildings/interiors/walls/wooden_wall.png" type="Texture" id=8]
+[ext_resource path="res://assets/objects/walls/wooden_wall.png" type="Texture" id=8]
 [ext_resource path="res://assets/environment/water_tiles.tres" type="Texture" id=9]
 [ext_resource path="res://assets/environment/cliff_wall.png" type="Texture" id=10]
 [ext_resource path="res://assets/environment/grass2.png" type="Texture" id=11]
@@ -15,6 +15,8 @@
 [ext_resource path="res://game/effects/shadow/16x16xblack.png" type="Texture" id=13]
 [ext_resource path="res://game/effects/shadow/shadow.png" type="Texture" id=14]
 [ext_resource path="res://assets/paths/dark_dirt_path.png" type="Texture" id=15]
+[ext_resource path="res://assets/objects/walls/cave_wall_1.png" type="Texture" id=16]
+[ext_resource path="res://game/effects/shadow/ambient occlusion tilemap.png" type="Texture" id=17]
 
 [sub_resource type="TileSet" id=100]
 0/name = "shadow.png 0"
@@ -796,6 +798,51 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 8, 16, 8 )
 [sub_resource type="ConvexPolygonShape2D" id=114]
 points = PoolVector2Array( 16, 8, 16, 16, 0, 16, 0, 8, 16, 8 )
 
+[sub_resource type="ConvexPolygonShape2D" id=119]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=120]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=121]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=122]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=123]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=124]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=125]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=126]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=127]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=128]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=129]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=130]
+points = PoolVector2Array( 0, 8, 16, 8, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=131]
+points = PoolVector2Array( 0, 8, 16, 8, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=132]
+points = PoolVector2Array( 0, 8, 16, 8, 16, 16, 0, 16, 0, 8 )
+
+[sub_resource type="ConvexPolygonShape2D" id=133]
+points = PoolVector2Array( 0, 8, 16, 8, 16, 16, 0, 16, 0, 8, 0, 8 )
+
 [sub_resource type="TileSet" id=2]
 0/name = "dungeon_wall.png 0"
 0/texture = ExtResource( 4 )
@@ -931,7 +978,7 @@ points = PoolVector2Array( 16, 8, 16, 16, 0, 16, 0, 8, 16, 8 )
 1/autotile/occluder_map = [  ]
 1/autotile/navpoly_map = [  ]
 1/autotile/priority_map = [  ]
-1/autotile/z_index_map = [ Vector3( 0, 0, 1 ), Vector3( 1, 0, 1 ), Vector3( 2, 0, 1 ), Vector3( 2, 1, 1 ), Vector3( 3, 1, 1 ), Vector3( 4, 1, 1 ), Vector3( 5, 1, 1 ) ]
+1/autotile/z_index_map = [ Vector3( 0, 0, 1 ), Vector3( 1, 0, 1 ), Vector3( 1, 1, 1 ), Vector3( 2, 0, 1 ), Vector3( 2, 1, 1 ), Vector3( 3, 1, 1 ), Vector3( 4, 1, 1 ), Vector3( 5, 1, 1 ) ]
 1/occluder_offset = Vector2( 0, 0 )
 1/navigation_offset = Vector2( 0, 0 )
 1/shape_offset = Vector2( 0, 0 )
@@ -1151,6 +1198,120 @@ points = PoolVector2Array( 16, 8, 16, 16, 0, 16, 0, 8, 16, 8 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 2/z_index = 0
+3/name = "cave_wall_1.png 3"
+3/texture = ExtResource( 16 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 0, 0, 96, 48 )
+3/tile_mode = 1
+3/autotile/bitmask_mode = 1
+3/autotile/bitmask_flags = [ Vector2( 0, 0 ), 432, Vector2( 0, 1 ), 438, Vector2( 0, 2 ), 54, Vector2( 1, 0 ), 504, Vector2( 1, 1 ), 511, Vector2( 1, 2 ), 63, Vector2( 2, 0 ), 216, Vector2( 2, 1 ), 219, Vector2( 2, 2 ), 27, Vector2( 3, 0 ), 255, Vector2( 3, 1 ), 507, Vector2( 4, 0 ), 63, Vector2( 4, 1 ), 504, Vector2( 5, 0 ), 447, Vector2( 5, 1 ), 510 ]
+3/autotile/icon_coordinate = Vector2( 1, 2 )
+3/autotile/tile_size = Vector2( 16, 16 )
+3/autotile/spacing = 0
+3/autotile/occluder_map = [  ]
+3/autotile/navpoly_map = [  ]
+3/autotile/priority_map = [  ]
+3/autotile/z_index_map = [ Vector3( 0, 0, 1 ), Vector3( 1, 0, 1 ), Vector3( 1, 1, 1 ), Vector3( 2, 0, 1 ), Vector3( 4, 1, 1 ) ]
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape = SubResource( 119 )
+3/shape_one_way = false
+3/shape_one_way_margin = 1.0
+3/shapes = [ {
+"autotile_coord": Vector2( 0, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 119 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 120 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 121 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 122 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 123 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 124 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 3, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 125 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 3, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 126 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 4, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 127 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 5, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 128 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 5, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 129 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 130 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 131 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 132 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 4, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 133 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+3/z_index = 0
 
 [sub_resource type="TileSet" id=18]
 0/name = "shadow_tileset.png 0"
@@ -1225,6 +1386,54 @@ points = PoolVector2Array( 16, 8, 16, 16, 0, 16, 0, 8, 16, 8 )
 3/shape_one_way_margin = 0.0
 3/shapes = [  ]
 3/z_index = 0
+4/name = "ambient occlusion tilemap.png 4"
+4/texture = ExtResource( 17 )
+4/tex_offset = Vector2( 0, 0 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 0, 0, 176, 80 )
+4/tile_mode = 1
+4/autotile/bitmask_mode = 1
+4/autotile/bitmask_flags = [ Vector2( 0, 0 ), 432, Vector2( 0, 1 ), 438, Vector2( 0, 2 ), 54, Vector2( 0, 3 ), 48, Vector2( 1, 0 ), 504, Vector2( 1, 1 ), 511, Vector2( 1, 2 ), 63, Vector2( 1, 3 ), 56, Vector2( 2, 0 ), 216, Vector2( 2, 1 ), 219, Vector2( 2, 2 ), 27, Vector2( 2, 3 ), 24, Vector2( 3, 0 ), 144, Vector2( 3, 1 ), 146, Vector2( 3, 2 ), 18, Vector2( 3, 3 ), 16, Vector2( 4, 0 ), 184, Vector2( 4, 1 ), 191, Vector2( 4, 2 ), 506, Vector2( 4, 3 ), 58, Vector2( 4, 4 ), 186, Vector2( 5, 0 ), 176, Vector2( 5, 1 ), 182, Vector2( 5, 2 ), 434, Vector2( 5, 3 ), 50, Vector2( 5, 4 ), 178, Vector2( 6, 0 ), 248, Vector2( 6, 1 ), 255, Vector2( 6, 2 ), 507, Vector2( 6, 3 ), 59, Vector2( 6, 4 ), 251, Vector2( 7, 0 ), 440, Vector2( 7, 1 ), 447, Vector2( 7, 2 ), 510, Vector2( 7, 3 ), 62, Vector2( 7, 4 ), 446, Vector2( 8, 0 ), 152, Vector2( 8, 1 ), 155, Vector2( 8, 2 ), 218, Vector2( 8, 3 ), 26, Vector2( 8, 4 ), 154, Vector2( 9, 0 ), 254, Vector2( 9, 1 ), 443, Vector2( 9, 2 ), 442, Vector2( 9, 3 ), 190, Vector2( 10, 2 ), 250, Vector2( 10, 3 ), 187 ]
+4/autotile/icon_coordinate = Vector2( 3, 3 )
+4/autotile/tile_size = Vector2( 16, 16 )
+4/autotile/spacing = 0
+4/autotile/occluder_map = [  ]
+4/autotile/navpoly_map = [  ]
+4/autotile/priority_map = [  ]
+4/autotile/z_index_map = [  ]
+4/occluder_offset = Vector2( 0, 0 )
+4/navigation_offset = Vector2( 0, 0 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape_one_way = false
+4/shape_one_way_margin = 0.0
+4/shapes = [  ]
+4/z_index = 0
+
+[sub_resource type="TileSet" id=134]
+4/name = "ambient occlusion tilemap.png 4"
+4/texture = ExtResource( 17 )
+4/tex_offset = Vector2( 0, 0 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 0, 0, 176, 80 )
+4/tile_mode = 1
+4/autotile/bitmask_mode = 1
+4/autotile/bitmask_flags = [ Vector2( 0, 0 ), 432, Vector2( 0, 1 ), 438, Vector2( 0, 2 ), 54, Vector2( 0, 3 ), 48, Vector2( 1, 0 ), 504, Vector2( 1, 1 ), 511, Vector2( 1, 2 ), 63, Vector2( 1, 3 ), 56, Vector2( 2, 0 ), 216, Vector2( 2, 1 ), 219, Vector2( 2, 2 ), 27, Vector2( 2, 3 ), 24, Vector2( 3, 0 ), 144, Vector2( 3, 1 ), 146, Vector2( 3, 2 ), 18, Vector2( 3, 3 ), 16, Vector2( 4, 0 ), 184, Vector2( 4, 1 ), 191, Vector2( 4, 2 ), 506, Vector2( 4, 3 ), 58, Vector2( 4, 4 ), 186, Vector2( 5, 0 ), 176, Vector2( 5, 1 ), 182, Vector2( 5, 2 ), 434, Vector2( 5, 3 ), 50, Vector2( 5, 4 ), 178, Vector2( 6, 0 ), 248, Vector2( 6, 1 ), 255, Vector2( 6, 2 ), 507, Vector2( 6, 3 ), 59, Vector2( 6, 4 ), 251, Vector2( 7, 0 ), 440, Vector2( 7, 1 ), 447, Vector2( 7, 2 ), 510, Vector2( 7, 3 ), 62, Vector2( 7, 4 ), 446, Vector2( 8, 0 ), 152, Vector2( 8, 1 ), 155, Vector2( 8, 2 ), 218, Vector2( 8, 3 ), 26, Vector2( 8, 4 ), 154, Vector2( 9, 0 ), 254, Vector2( 9, 1 ), 443, Vector2( 9, 2 ), 442, Vector2( 9, 3 ), 190, Vector2( 10, 2 ), 250, Vector2( 10, 3 ), 187 ]
+4/autotile/icon_coordinate = Vector2( 3, 3 )
+4/autotile/tile_size = Vector2( 16, 16 )
+4/autotile/spacing = 0
+4/autotile/occluder_map = [  ]
+4/autotile/navpoly_map = [  ]
+4/autotile/priority_map = [  ]
+4/autotile/z_index_map = [  ]
+4/occluder_offset = Vector2( 0, 0 )
+4/navigation_offset = Vector2( 0, 0 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape_one_way = false
+4/shape_one_way_margin = 0.0
+4/shapes = [  ]
+4/z_index = 0
 
 [node name="root" type="Node2D"]
 
@@ -1274,6 +1483,12 @@ z_index = 2
 tile_set = SubResource( 18 )
 cell_size = Vector2( 16, 16 )
 format = 1
+
+[node name="ambient occlusion" type="TileMap" parent="."]
+tile_set = SubResource( 134 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -196604, 4, 196611 )
 
 [node name="YSort" type="YSort" parent="."]
 

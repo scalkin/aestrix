@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/stone_wall.png-ad949ca446cafb31bd15dd1d51696ac7.stex"
+path="res://.import/cave_wall_1.png-208c58b07473be2fe1b647520b58539f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/objects/buildings/interiors/walls/stone_wall.png"
-dest_files=[ "res://.import/stone_wall.png-ad949ca446cafb31bd15dd1d51696ac7.stex" ]
+source_file="res://assets/objects/walls/cave_wall_1.png"
+dest_files=[ "res://.import/cave_wall_1.png-208c58b07473be2fe1b647520b58539f.stex" ]
 
 [params]
 

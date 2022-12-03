@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/wooden_wall.png-2fb1a50dbbc3bdc28185b6aa7613f891.stex"
+path="res://.import/water_drip.png-b41bfd9f1bba442f1dc07b9b47129dc5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/objects/buildings/interiors/walls/wooden_wall.png"
-dest_files=[ "res://.import/wooden_wall.png-2fb1a50dbbc3bdc28185b6aa7613f891.stex" ]
+source_file="res://assets/environment/misc/water_drip.png"
+dest_files=[ "res://.import/water_drip.png-b41bfd9f1bba442f1dc07b9b47129dc5.stex" ]
 
 [params]
 

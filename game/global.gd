@@ -9,8 +9,8 @@ export var health = 10.0 setget set_health
 export var max_health = 10.0
 var start_location = Vector2.ZERO #used for travelling between scenes
 var player_accel = 500
-var player_max_speed = 150
-var player_max_run_speed = 225
+var player_max_speed = 100
+var player_max_run_speed = 150
 export var held_item_id = 1
 var loaded = false #is false while loading
 var loaded2 = false #is false until loaded at least once
@@ -141,7 +141,7 @@ var quests = {
 #just some data about the quests that doesn't change
 var quest_data = {
 	"names" : ["Once upon a time...", "To new lands!"],
-	"objective_decriptions" : [["Ozin has requested that you deal with the rats in his basement. If you complete the task, you can keep the magical dagger in the basement.", "You've killed half the rats in the basement so far. Remember that if you are low on health, you can eat food by switching to the backpack tab and clicking the 'food' button, selecting some food, and hitting 'equip/use'.", "You've killed all the rats in the basement, you should grab the dagger from that chest now.", "You've cleared the basement, now go tell Ozin about your success.", "Please select a quest to view more information."], ["Wilfred has advised that you travel to Axehithe, south through the forest."]],
+	"objective_decriptions" : [["Ozin has requested that you deal with the rats in his basement. If you complete the task, you can keep the magical dagger in the basement.", "You've killed half the rats in the basement so far. Remember that if you are low on health, you can eat food by switching to the backpack tab and clicking the 'food' button, selecting some food, and hitting 'equip/use'.", "You've killed all the rats in the basement, you should grab the dagger from that chest now.", "You've cleared the basement, now go tell Ozin about your success.", "Quest completed"], ["Wilfred has advised that you travel to Axehithe, south through the forest."]],
 	"objectives_in_quest" : [4, 2],
 }
 
@@ -162,6 +162,9 @@ signal game_loaded
 signal game_saved
 #used to notify player script that the player_position variable has been updated and to update global_position accordingly
 signal player_position_updated
+
+func max_run_speed():
+	return 150 + 10*player_stats[4]
 
 func set_player_position(value : Vector2):
 	print("set player position to " + str(value))
@@ -231,7 +234,6 @@ func update_quests(value):
 
 func set_player_stats(value):
 	player_stats = value
-	player_max_run_speed = (player_stats[4]*50)+ 225
 
 func set_xp(value):
 	xp = value
@@ -258,7 +260,6 @@ func save():
 		"weapons_inventory" : weapons_inventory,
 		"food_inventory" : food_inventory,
 		"held_item_id" : held_item_id,
-		"player_max_speed" : player_max_speed,
 		"player_accel" : player_accel,
 		"fullscreen" : OS.window_fullscreen,
 		"max_health" : max_health,
@@ -283,8 +284,6 @@ func reset():
 		"weapons_inventory" : [0, 1, 0, 0, 0, 0, 0],
 		"food_inventory" : [5, 1],
 		"held_item_id" : 1,
-		"player_max_speed" : 100,
-		"player_max_run_speed" : 225,
 		"player_accel" : 500,
 		"max_health" : 10.0,
 		"health" : 10.0,

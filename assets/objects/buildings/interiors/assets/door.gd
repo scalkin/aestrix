@@ -1,3 +1,4 @@
+tool
 extends Area2D
 
 export var texture = 0
