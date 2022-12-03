@@ -637,7 +637,7 @@ position = Vector2( 0, -31 )
 polygon = PoolVector2Array( -30, 31, 31, 31, 32, -15, -31, -14 )
 
 [node name="Sprite" parent="YSort/objects/building6" index="2"]
-position = Vector2( -37, -81 )
+position = Vector2( -36, -81 )
 texture = ExtResource( 15 )
 offset = Vector2( 0, 0.5 )
 
