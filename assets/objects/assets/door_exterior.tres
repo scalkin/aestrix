@@ -1,6 +1,6 @@
 [gd_resource type="SpriteFrames" load_steps=4 format=2]
 
-[ext_resource path="res://assets/objects/buildings/interiors/assets/door.png" type="Texture" id=1]
+[ext_resource path="res://assets/objects/buildings/interiors/assets/door-tall.png" type="Texture" id=1]
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 1 )

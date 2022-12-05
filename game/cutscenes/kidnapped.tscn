@@ -833,7 +833,7 @@ smoothing_enabled = true
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 anchor_right = 1.0
-margin_right = 256.0
+margin_right = 768.0
 margin_bottom = 25.0
 color = Color( 0, 0, 0, 1 )
 
@@ -842,6 +842,6 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 131.0
-margin_right = 256.0
+margin_right = 768.0
 margin_bottom = 156.0
 color = Color( 0, 0, 0, 1 )

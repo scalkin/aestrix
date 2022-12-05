@@ -4,6 +4,11 @@ enum{
 	MOUSE
 	CONTROLLER
 }
+enum{
+	MONK,
+	ROGUE,
+	MOVEMENT
+}
 onready var transition_effect = $CanvasLayer2/ColorRect
 export var health = 10.0 setget set_health
 export var max_health = 10.0
@@ -141,7 +146,7 @@ var quests = {
 #just some data about the quests that doesn't change
 var quest_data = {
 	"names" : ["Once upon a time...", "To new lands!"],
-	"objective_decriptions" : [["Ozin has requested that you deal with the rats in his basement. If you complete the task, you can keep the magical dagger in the basement.", "You've killed half the rats in the basement so far. Remember that if you are low on health, you can eat food by switching to the backpack tab and clicking the 'food' button, selecting some food, and hitting 'equip/use'.", "You've killed all the rats in the basement, you should grab the dagger from that chest now.", "You've cleared the basement, now go tell Ozin about your success.", "Quest completed"], ["Wilfred has advised that you travel to Axehithe, south through the forest."]],
+	"objective_decriptions" : [["Ozin has requested that you deal with the rats in his basement. If you complete the task, you can keep the magical dagger in the basement.", "You've killed half the rats in the basement so far. Remember that if you are low on health, you can eat food by switching to the backpack tab and clicking the 'food' button, selecting some food, and hitting 'equip/use'.", "You've killed all the rats in the basement, you should grab the dagger from that chest now.", "You've cleared the basement, now go tell Ozin about your success.", "Quest completed"], ["Wilfred has advised that you travel to Axehithe, south through the forest.", "On your way to Axehithe, you were kidnapped by a group of dark wizards. They seem to have brought you to some kind of cave, you should probably get out of here, you don't know what they are trying to do."]],
 	"objectives_in_quest" : [4, 2],
 }
 

@@ -67,7 +67,7 @@ scale = Vector2( 8.13503, 16.7942 )
 texture = ExtResource( 24 )
 
 [node name="Sprite" parent="." index="4"]
-position = Vector2( -979, -1107.5 )
+position = Vector2( -980, -1107.5 )
 centered = false
 region_rect = Rect2( -1000, -2100.42, 2139, 2237.42 )
 
@@ -156,10 +156,12 @@ position = Vector2( 8, 40 )
 [node name="objects" type="YSort" parent="YSort" index="1"]
 
 [node name="rat" parent="YSort/objects" index="0" instance=ExtResource( 18 )]
-position = Vector2( 504, -132 )
+position = Vector2( 574, -100 )
+knockback_factor = 1.0
 
 [node name="rat2" parent="YSort/objects" index="1" instance=ExtResource( 18 )]
 position = Vector2( 661, -14 )
+knockback_factor = 1.0
 
 [node name="rock" parent="YSort/objects" index="2" instance=ExtResource( 2 )]
 position = Vector2( -35, -108 )
@@ -863,7 +865,8 @@ shape = SubResource( 6 )
 disabled = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="YSort/quest_wall3/quest_wall/wall" index="1"]
-polygon = PoolVector2Array( -6, -26, -39, 0, -75, -11, -32, -40, -51, -49, -91, 2, -1, 31, 10, -17 )
+position = Vector2( -9, -34 )
+polygon = PoolVector2Array( 92, -32, 65, -43, 89, 22, 26, 104, -59, 129, -107, 100, -91, 130, 4, 143, 101, 26 )
 
 [node name="quest_wall2" parent="YSort" index="5" instance=ExtResource( 21 )]
 position = Vector2( -96, -142 )

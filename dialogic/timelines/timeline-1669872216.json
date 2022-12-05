@@ -27,6 +27,28 @@
 		{
 			"call_node": {
 				"arguments": [
+					"1",
+					"1"
+				],
+				"method_name": "",
+				"target_node_path": "dialogue"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"call_node": {
+				"arguments": [
+					"0",
+					"0"
+				],
+				"method_name": "objective_completed",
+				"target_node_path": "dialogue"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"call_node": {
+				"arguments": [
 
 				],
 				"method_name": "end_dialogue",

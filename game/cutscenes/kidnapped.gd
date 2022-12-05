@@ -22,7 +22,7 @@ func change_scene():
 	var save = global.save()
 	save["weapons_inventory"][6] = 0
 	save["held_item_id"] = 1
-	save["current_scene"] = "res://levels/dungeons/dungeon_2.tscn"
+	save["current_scene"] = "res://levels/dungeons/dark_wizard_encampment_1.tscn"
 	save["player_position_x"] = 0
 	save["player_position_y"] = 0
 	global.save_game(save)

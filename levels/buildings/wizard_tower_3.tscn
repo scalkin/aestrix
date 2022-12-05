@@ -85,7 +85,7 @@ texture = ExtResource( 2 )
 flip_v = true
 
 [node name="16X8Gradient5" type="Sprite" parent="stairs2" index="3"]
-position = Vector2( 9, -12 )
+position = Vector2( 9, -13 )
 scale = Vector2( 4.15931, 0.650618 )
 texture = ExtResource( 2 )
 flip_v = true
@@ -98,7 +98,7 @@ centered = false
 flip_v = true
 
 [node name="16X8Gradient7" type="Sprite" parent="." index="8"]
-position = Vector2( 17, -31 )
+position = Vector2( 17, -32 )
 scale = Vector2( 2.20465, 0.650618 )
 texture = ExtResource( 2 )
 centered = false

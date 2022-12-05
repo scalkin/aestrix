@@ -11,9 +11,9 @@ position = Vector2( -12, -21 )
 texture = ExtResource( 2 )
 
 [node name="fire_particles" parent="." index="3" instance=ExtResource( 3 )]
-position = Vector2( 3, -3 )
+position = Vector2( 3, -5 )
 rotation = -0.261799
 
 [node name="fire_particles2" parent="." index="4" instance=ExtResource( 3 )]
-position = Vector2( -3, -3 )
+position = Vector2( -3, -5 )
 rotation = 0.261799

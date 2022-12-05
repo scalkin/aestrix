@@ -12,6 +12,7 @@ export var max_speed = 125
 export var accel = 500
 export var wander_distance = 75
 export var xp = 5
+export var knockback_factor = 1.0
 
 signal player_detected
 
@@ -89,7 +90,7 @@ func _on_sprite_timer_timeout():
 
 
 func _on_hitbox_hit():
-	velocity = global.player_direction * global.player_stats[5] * 100
+	velocity = global.player_direction * global.player_stats[5] * 100 * knockback_factor
 
 
 func _on_death_timer_timeout():
