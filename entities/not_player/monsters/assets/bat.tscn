@@ -49,9 +49,9 @@ animations = [ {
 health = 2
 accel = 200
 knockback_factor = 2.0
+animate_while_still = true
 
 [node name="AnimatedSprite" parent="." index="4"]
 material = SubResource( 9 )
 position = Vector2( -12, -23 )
 frames = SubResource( 8 )
-frame = 3

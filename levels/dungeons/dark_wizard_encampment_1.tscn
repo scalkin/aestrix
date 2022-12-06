@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://levels/root.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/dungeons/shadowlake_caves.png" type="Texture" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://assets/environment/tree/tree.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/environment/tree/bush.tscn" type="PackedScene" id=10]
 [ext_resource path="res://game/detection_boxes/warp.tscn" type="PackedScene" id=11]
+[ext_resource path="res://game/quest/quest_wall.tscn" type="PackedScene" id=12]
+[ext_resource path="res://entities/not_player/monsters/assets/bat.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=2]
 resource_local_to_scene = true
@@ -19,6 +21,10 @@ extents = Vector2( 18, 68 )
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 6.00002
 height = 18.0
+
+[sub_resource type="RectangleShape2D" id=3]
+resource_local_to_scene = true
+extents = Vector2( 10, 70.3897 )
 
 [node name="root" instance=ExtResource( 1 )]
 
@@ -184,6 +190,9 @@ scene = "res://game/cutscenes/escape_dark_wizard_cave.tscn"
 position = Vector2( 0, 15 )
 shape = SubResource( 2 )
 
+[node name="player" parent="YSort" index="0"]
+position = Vector2( 656, 40 )
+
 [node name="objects" type="YSort" parent="YSort" index="1"]
 
 [node name="small_rock" parent="YSort/objects" index="0" instance=ExtResource( 4 )]
@@ -287,4 +296,60 @@ position = Vector2( -39, -72 )
 [node name="bush5" parent="YSort/objects" index="26" instance=ExtResource( 10 )]
 position = Vector2( 88, -93 )
 
+[node name="quest_wall" parent="YSort" index="2" instance=ExtResource( 12 )]
+position = Vector2( 450, 82 )
+__meta__ = {
+"_editor_description_": "mode 0:
+add monsters and such to this guy and once they are all gone, it will queue_free along with the wall.
+mode 1:
+it will wait until objective_id is completed
+mode 2:
+blocks path after objective_id until _objective_id_2"
+}
+quest_id = 1
+objective_id = 2
+
+[node name="CollisionShape2D" parent="YSort/quest_wall/wall" index="0"]
+position = Vector2( 12, -43 )
+shape = SubResource( 3 )
+
+[node name="bat" parent="YSort/quest_wall" index="1" instance=ExtResource( 13 )]
+position = Vector2( 49, -24 )
+animate_while_still = false
+
+[node name="bat2" parent="YSort/quest_wall" index="2" instance=ExtResource( 13 )]
+position = Vector2( 88, -74 )
+animate_while_still = false
+
+[node name="quest_wall2" parent="YSort" index="3" instance=ExtResource( 12 )]
+position = Vector2( 167, 39 )
+__meta__ = {
+"_editor_description_": "mode 0:
+add monsters and such to this guy and once they are all gone, it will queue_free along with the wall.
+mode 1:
+it will wait until objective_id is completed
+mode 2:
+blocks path after objective_id until _objective_id_2"
+}
+quest_id = 1
+objective_id = 3
+
+[node name="CollisionShape2D" parent="YSort/quest_wall2/wall" index="0"]
+position = Vector2( 12, -43 )
+shape = SubResource( 3 )
+
+[node name="bat" parent="YSort/quest_wall2" index="1" instance=ExtResource( 13 )]
+position = Vector2( 88, -7 )
+animate_while_still = false
+
+[node name="bat2" parent="YSort/quest_wall2" index="2" instance=ExtResource( 13 )]
+position = Vector2( 55, -61 )
+animate_while_still = false
+
+[node name="bat3" parent="YSort/quest_wall2" index="3" instance=ExtResource( 13 )]
+position = Vector2( 185, 51 )
+animate_while_still = false
+
 [editable path="warps/warp"]
+[editable path="YSort/quest_wall"]
+[editable path="YSort/quest_wall2"]

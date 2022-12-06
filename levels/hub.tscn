@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://levels/root.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/environment/rocks/small_rock.tscn" type="PackedScene" id=2]
@@ -27,6 +27,7 @@
 [ext_resource path="res://assets/objects/buildings/assets/bakery_1.png" type="Texture" id=25]
 [ext_resource path="res://assets/objects/assets/well.tscn" type="PackedScene" id=26]
 [ext_resource path="res://entities/npc/assets/wilfred_2.tscn" type="PackedScene" id=27]
+[ext_resource path="res://assets/objects/assets/closed_sign.png" type="Texture" id=28]
 
 [sub_resource type="RectangleShape2D" id=1]
 resource_local_to_scene = true
@@ -158,10 +159,12 @@ position = Vector2( 8, 40 )
 [node name="rat" parent="YSort/objects" index="0" instance=ExtResource( 18 )]
 position = Vector2( 574, -100 )
 knockback_factor = 1.0
+animate_while_still = false
 
 [node name="rat2" parent="YSort/objects" index="1" instance=ExtResource( 18 )]
 position = Vector2( 661, -14 )
 knockback_factor = 1.0
+animate_while_still = false
 
 [node name="rock" parent="YSort/objects" index="2" instance=ExtResource( 2 )]
 position = Vector2( -35, -108 )
@@ -820,7 +823,7 @@ tile_data = PoolIntArray( -3211226, -1610612736, 0, -3145690, -1610612736, 0, -3
 
 [node name="CollisionPolygon2D" parent="YSort/objects/building5" index="1"]
 position = Vector2( 0, 10 )
-polygon = PoolVector2Array( -51, -10, 17, -11, 17, -32, 33, -32, 33, -10, 42, -10, 42, -16, 40, -18, 40, -71, -49, -71, -49, -18, -50.8939, -15.7278 )
+polygon = PoolVector2Array( -51, -10, 42, -10, 42, -16, 40, -18, 40, -71, -49, -71, -49, -18, -50.8939, -15.7278 )
 
 [node name="Sprite" parent="YSort/objects/building5" index="2"]
 position = Vector2( -59, -81 )
@@ -828,6 +831,13 @@ texture = ExtResource( 25 )
 
 [node name="door" parent="YSort/objects/building5/Sprite" index="0" instance=ExtResource( 4 )]
 position = Vector2( 84, 72 )
+
+[node name="CollisionShape2D" parent="YSort/objects/building5/Sprite/door" index="1"]
+disabled = true
+
+[node name="ClosedSign" type="Sprite" parent="YSort/objects/building5" index="3"]
+position = Vector2( 25, -12 )
+texture = ExtResource( 28 )
 
 [node name="well" parent="YSort/objects" index="187" instance=ExtResource( 26 )]
 position = Vector2( 220, -60 )
@@ -902,6 +912,7 @@ scale = Vector2( 1.198, 1.48087 )
 [editable path="YSort/objects/building3"]
 [editable path="YSort/objects/building4"]
 [editable path="YSort/objects/building5"]
+[editable path="YSort/objects/building5/Sprite/door"]
 [editable path="YSort/quest_wall3"]
 [editable path="YSort/quest_wall3/quest_wall"]
 [editable path="YSort/quest_wall2"]

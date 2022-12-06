@@ -1,14 +1,48 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://entities/npc/npc.tscn" type="PackedScene" id=1]
+[ext_resource path="res://entities/npc/assets/innkeeper.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 25, 26 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 25, 0, 25, 26 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 50, 0, 25, 26 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 75, 0, 25, 26 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 100, 0, 25, 26 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 2 )
+region = Rect2( 125, 0, 25, 26 )
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
 [node name="innkeeper" instance=ExtResource( 1 )]
 dialogic_timeline = "innkeeper_1"
 
-[node name="AnimatedSprite" parent="." index="0"]
-frame = 5
+[node name="AnimatedSprite" parent="." index="2"]
+frames = SubResource( 8 )
+frame = 1
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 shape = SubResource( 1 )

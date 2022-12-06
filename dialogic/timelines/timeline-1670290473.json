@@ -1,16 +1,10 @@
 {
 	"events": [
 		{
-			"character": "",
+			"character": "character-1669046076.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "You can't tell what they are saying."
-		},
-		{
-			"character": "",
-			"event_id": "dialogic_001",
-			"portrait": "",
-			"text": "You should get out of here before they see you."
+			"text": "Oi! What're ye doin' up there?"
 		},
 		{
 			"call_node": {
@@ -29,7 +23,7 @@
 	],
 	"metadata": {
 		"dialogic-version": "1.4.5",
-		"file": "timeline-1670271617.json",
-		"name": "escape_1"
+		"file": "timeline-1670290473.json",
+		"name": "tavern_stairs"
 	}
 }

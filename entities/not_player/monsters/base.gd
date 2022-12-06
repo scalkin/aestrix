@@ -13,6 +13,7 @@ export var accel = 500
 export var wander_distance = 75
 export var xp = 5
 export var knockback_factor = 1.0
+export var animate_while_still = false
 
 signal player_detected
 
@@ -54,7 +55,8 @@ func _physics_process(delta):
 				rand_range(-wander_distance/2, wander_distance/2))
 	$world_detect.rotation = atan2(velocity.y, velocity.x) - deg2rad(90)
 	target_vector = (target_location - global_position).normalized()*state
-	$AnimatedSprite.playing = state == WALK
+	if not animate_while_still:
+		$AnimatedSprite.playing = state == WALK
 	if player_detected:
 		velocity = velocity.move_toward(target_vector*max_speed, accel*delta)
 	else:
