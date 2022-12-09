@@ -80,8 +80,13 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Pixelrpg"
+config/name="Aestrix"
+config/description="Open source top down pixel art story-driven rpg."
 run/main_scene="res://levels/hub.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="aestrix"
+boot_splash/show_image=false
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
 
 [autoload]
@@ -251,6 +256,8 @@ run={
 2d_physics/layer_5="enemy_hitbox"
 2d_physics/layer_6="enemy_hurtbox"
 2d_physics/layer_7="soft_collision"
+2d_physics/layer_8="water"
+2d_physics/layer_9="bridge"
 
 [physics]
 

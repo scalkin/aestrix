@@ -2,6 +2,7 @@ extends Node2D
 
 func _ready():
 	$main.play("main")
+	pass
 
 func player_walk_left():
 	$player.play("walk_left")

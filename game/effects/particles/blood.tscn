@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://game/effects/particles/particle.png" type="Texture" id=1]
+[ext_resource path="res://game/effects/particles/blood.gd" type="Script" id=2]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.26087, 0.797101, 0.815217, 1 )
@@ -37,3 +38,4 @@ explosiveness = 0.64
 local_coords = false
 process_material = SubResource( 3 )
 texture = ExtResource( 1 )
+script = ExtResource( 2 )

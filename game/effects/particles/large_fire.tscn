@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://game/effects/lights/circular_glow32x32.png" type="Texture" id=1]
 [ext_resource path="res://game/effects/particles/particle.png" type="Texture" id=2]
+[ext_resource path="res://game/effects/particles/fire.gd" type="Script" id=3]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
@@ -40,6 +41,38 @@ scale_random = 1.0
 scale_curve = SubResource( 5 )
 color_ramp = SubResource( 3 )
 
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Light2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "flicker"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Light2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 0 ), Vector2( -1, -1 ), Vector2( -1, 0 ), Vector2( 0, 1 ), Vector2( -1, 1 ) ]
+}
+
 [node name="fire_particles" type="Particles2D"]
 material = SubResource( 1 )
 amount = 32
@@ -47,8 +80,15 @@ lifetime = 6.0
 preprocess = 2.0
 process_material = SubResource( 6 )
 texture = ExtResource( 2 )
+script = ExtResource( 3 )
 
 [node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 1, 0 )
 texture = ExtResource( 1 )
 color = Color( 1, 0.686275, 0.27451, 1 )
 energy = 0.75
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 0.1
+anims/RESET = SubResource( 7 )
+anims/flicker = SubResource( 8 )

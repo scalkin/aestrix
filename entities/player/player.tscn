@@ -300,7 +300,7 @@ texture = ExtResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 27 )
-position = Vector2( 0.5, -9 )
+position = Vector2( -0.5, -9 )
 texture = ExtResource( 1 )
 hframes = 28
 

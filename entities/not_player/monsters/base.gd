@@ -6,6 +6,7 @@ var player_detected = false
 var state = WALK
 var target_vector = Vector2.ZERO
 var velocity = Vector2.ZERO
+var blood_res = preload("res://game/effects/particles/blood.tscn")
 
 export var damage = 1
 export var max_speed = 125
@@ -30,6 +31,11 @@ func _ready():
 	target_location = start_location
 
 func on_death():
+	var blood_effect = blood_res.instance()
+	get_parent().add_child(blood_effect)
+	blood_effect.global_position = global_position
+	blood_effect.emitting = true
+	blood_effect.amount = 16
 	global.xp += xp
 	$hurtbox.queue_free()
 	queue_free()

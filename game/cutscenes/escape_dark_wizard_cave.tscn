@@ -877,7 +877,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.7, 0.8, 1.4, 1.7, 2.2, 3.3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 6, -15 ), Vector2( 0, -15 ), Vector2( 0, -15 ), Vector2( 0, -86 ), Vector2( 0, -86 ), Vector2( 0, -15 ), Vector2( -29, 67 ) ]
+"values": [ Vector2( 6, -15 ), Vector2( 0, -15 ), Vector2( 0, -15 ), Vector2( 0, -130 ), Vector2( 0, -130 ), Vector2( 0, -15 ), Vector2( -29, 67 ) ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -1377,6 +1377,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -50.0
 margin_top = -25.0
-margin_right = 974.0
+margin_right = 1230.0
 margin_bottom = 25.0
 color = Color( 0, 0, 0, 1 )

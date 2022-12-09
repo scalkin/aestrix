@@ -55,3 +55,4 @@ animate_while_still = true
 material = SubResource( 9 )
 position = Vector2( -12, -23 )
 frames = SubResource( 8 )
+frame = 2

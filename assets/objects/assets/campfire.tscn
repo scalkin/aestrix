@@ -17,3 +17,7 @@ rotation = -0.261799
 [node name="fire_particles2" parent="." index="4" instance=ExtResource( 3 )]
 position = Vector2( -3, -5 )
 rotation = 0.261799
+
+[node name="fire_particles3" parent="." index="5" instance=ExtResource( 3 )]
+position = Vector2( 2.38419e-07, -4 )
+rotation = 0.261799
