@@ -21,3 +21,13 @@ func player_idle_down():
 
 func dialogue():
 	dialogue.start("escape_1")
+
+func change_scene():
+	var save = global.save()
+	save["weapons_inventory"][6] = 0
+	save["held_item_id"] = 1
+	save["current_scene"] = "res://levels/towns/achenbourne.tscn"
+	save["player_position_x"] = 713
+	save["player_position_y"] = -691
+	global.save_game(save)
+	global.load_game()

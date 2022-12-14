@@ -26,6 +26,17 @@
 			"character": "",
 			"event_id": "dialogic_001",
 			"portrait": "",
+			"text": "..."
+		},
+		{
+			"event_id": "dialogic_023",
+			"hide_dialogbox": false,
+			"wait_seconds": 1.5
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
 			"text": "You awaken in some kind of cave, you should get out of here as soon as possible."
 		},
 		{

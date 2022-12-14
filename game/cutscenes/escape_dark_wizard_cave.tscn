@@ -886,8 +886,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.7, 0.9, 1.7, 2, 2.4, 3.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.7, 0.9, 1.7, 2, 2.4, 3.2, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "player_walk_left"
@@ -909,6 +909,9 @@ tracks/1/keys = {
 }, {
 "args": [  ],
 "method": "player_walk_left"
+}, {
+"args": [  ],
+"method": "change_scene"
 } ]
 }
 tracks/2/type = "value"
@@ -1377,6 +1380,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -50.0
 margin_top = -25.0
-margin_right = 1230.0
+margin_right = 1486.0
 margin_bottom = 25.0
 color = Color( 0, 0, 0, 1 )
